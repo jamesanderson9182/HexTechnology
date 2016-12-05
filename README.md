@@ -1,5 +1,6 @@
 #TODO
 * composer
+* vagrant / Docker
 * require rhubab
 * equipment list
 * pull list creator
