@@ -1,0 +1,26 @@
+
+{
+  "require":
+  {
+    "rhubarbphp/rhubarb": "*",
+    "rhubarbphp/module-stem": "*",
+    "rhubarbphp/module-leaf": "*",
+    "rhubarbphp/module-patterns": "*",
+    "rhubarbphp/module-leaf-common-controls": "*",
+    "rhubarbphp/module-leaf-crud": "^1.0",
+    "rhubarbphp/module-leaf-html5upload": "dev-master",
+    "rhubarbphp/scaffold-authentication": "^1.0",
+    "jamesanderson9182/rhubarb-leaf-twitter-timeline": "dev-master"
+  },
+  "config":
+  {
+    "bin-dir": "bin/"
+  },
+  "autoload":
+  {
+    "psr-4":
+    {
+      "HexTechnology\\": "src/"
+    }
+  }
+}
