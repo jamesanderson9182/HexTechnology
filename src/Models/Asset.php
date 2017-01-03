@@ -11,14 +11,14 @@ use Rhubarb\Stem\Schema\Columns\MoneyColumn;
 use Rhubarb\Stem\Schema\Columns\StringColumn;
 use Rhubarb\Stem\Schema\ModelSchema;
 
+
 /**
  *
  *
  * @property int $AssetID Repository field
  * @property string $AssetName Repository field
- * @property float $InitialCost Repository field
- * @property float $CurrentRentalCost Repository field
- * @property string $SerialNumber Repository field
+ * @property float $RentalCostPerDay Repository field
+ * @property float $RentalCostPerWeek Repository field
  * @property string $AssetType Repository field
  * @property string $Description Repository field
  */
@@ -36,9 +36,8 @@ class Asset extends Model
         $schema->addColumn(
             new AutoIncrementColumn("AssetID"),
             new StringColumn("AssetName", 30),
-            new MoneyColumn("InitialCost"),
-            new MoneyColumn("CurrentRentalCost"),
-            new StringColumn("SerialNumber", 30),
+            new MoneyColumn("RentalCostPerDay"),
+            new MoneyColumn("RentalCostPerWeek"),
             new MySqlEnumColumn(
                 "AssetType",
                 "Cable",

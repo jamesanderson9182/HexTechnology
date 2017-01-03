@@ -27,7 +27,6 @@ class AssetsCollectionView extends CrudView
 <h2><a href="{$asset->AssetID}/">{$asset->AssetName}</a></h2>
 <p>Type: {$asset->AssetType}</p>
 <p>Current Rental Cost: £{$asset->CurrentRentalCost}</p>
-<p>Serial Number: {$asset->SerialNumber}</p>
 </div>
 <br>
 HTML;
