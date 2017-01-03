@@ -44,6 +44,7 @@ class Asset extends Model
                 "Cable",
                 [
                     "Cable",
+                    "Microphone",
                     "SoundDesk",
                     "Speaker",
                     "Adaptor",
