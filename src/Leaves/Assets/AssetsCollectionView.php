@@ -23,7 +23,7 @@ class AssetsCollectionView extends CrudView
         foreach($assets as $asset)
         {
             print<<<HTML
-<div id="{$asset->AssetID}">
+<div class="asset" id="{$asset->AssetID}">
 <h2><a href="{$asset->AssetID}/">{$asset->AssetName}</a></h2>
 <p>Type: {$asset->AssetType}</p>
 <p>Current Rental Cost: £{$asset->CurrentRentalCost}</p>
