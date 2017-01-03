@@ -1,6 +1,6 @@
 <?php
 
-namespace HexTechnology\Settings;
+namespace HexTechnology;
 
 use Rhubarb\Crown\Exceptions\Handlers\ExceptionHandler;
 use Rhubarb\Crown\Logging\Log;

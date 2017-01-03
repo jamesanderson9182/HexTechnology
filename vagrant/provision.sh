@@ -13,4 +13,12 @@ cp /vagrant/vagrant/php.ini /etc/php.ini -f
 cp /vagrant/vagrant/xdebug.ini /etc/php.d/xdebug.ini -f
 cp /vagrant/vagrant/site.config.php /vagrant/settings/site.config.php -f
 
+chmod +x /vagrant/bin/custard
+chmod +x /vagrant/bin/custard.bat
+chmod +x /vagrant/bin/vcustard
+chmod +x /vagrant/bin/vcustard.bat
+
+/vagrant/bin/custard stem:update-schemas
+/vagrant/bin/custard stem:seed-data
+
 service httpd restart
