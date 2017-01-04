@@ -20,6 +20,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property float $InitialValue Repository field
  * @property float $CurrentValue Repository field
  * @property int $AssetID Repository field
+ * @property-read Asset $Asset Relationship
  */
 class SerialNumber extends Model
 {

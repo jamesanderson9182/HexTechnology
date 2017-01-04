@@ -16,11 +16,13 @@ class SerialsCollectionView extends CrudView
     protected function printViewContent()
     {
         parent::printViewContent();
-        $serials = SerialNumber::all()->joinWith(Asset::all(), "AssetID", "AssetID", ["AssetName"]);
-        //ToDo: Come up with a more efficient way of getting the asset names, the tables should be linked
+        print "<a href='add/'>Add</a>";
+
+        $serials = SerialNumber::all();
+        /** @var SerialNumber $serial */
         foreach ($serials as $serial)
         {
-            print "<p>ASSET:" .$serial->AssetName . "</p>";
+            print "<p>ASSET: " .$serial->Asset->AssetName . "</p>";
             print "<p>SerialNumber:  <a href='$serial->SerialNumberID/'>" . $serial->SerialNumberCode . "</a></p>";
         }
     }

@@ -21,6 +21,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property float $RentalCostPerWeek Repository field
  * @property string $AssetType Repository field
  * @property string $Description Repository field
+ * @property-read SerialNumber[]|\Rhubarb\Stem\Collections\RepositoryCollection $SerialNumbers Relationship
  */
 class Asset extends Model
 {

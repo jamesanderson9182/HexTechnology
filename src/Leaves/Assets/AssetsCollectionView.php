@@ -19,18 +19,21 @@ class AssetsCollectionView extends CrudView
         parent::printViewContent();
 
         $assets = Asset::all();
+        print "<a href='add/'>Add</a>";
         print "<div>";
         foreach($assets as $asset)
         {
+            $numberOfEachAsset = count($asset->SerialNumbers);
             print<<<HTML
 <div class="asset" id="{$asset->AssetID}">
 <h2><a href="{$asset->AssetID}/">{$asset->AssetName}</a></h2>
 <p>Type: {$asset->AssetType}</p>
-<p>Current Rental Cost: £{$asset->CurrentRentalCost}</p>
+<p>Rental Cost Per Day: £{$asset->RentalCostPerDay}</p>
+<p>Rental Cost Per Week: £{$asset->RentalCostPerWeek}</p>
+<p>Number of asset: {$numberOfEachAsset}</p>
 </div>
 <br>
 HTML;
-
         }
         print "</div>";
     }

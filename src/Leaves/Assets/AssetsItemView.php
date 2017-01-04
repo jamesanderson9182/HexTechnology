@@ -21,7 +21,8 @@ class AssetsItemView extends CrudView
          "AssetType",
          "Description",
          "RentalCostPerDay",
-        "RentalCostPerWeek"
+        "RentalCostPerWeek",
+            "SerialNumbers"
         );
     }
 
@@ -30,10 +31,8 @@ class AssetsItemView extends CrudView
     protected function printViewContent()
     {
         parent::printViewContent();
+        /** @var Asset $asset */
         $asset = $this->model->restModel;
-        $serialNumbers = SerialNumber::find(
-            new Equals("AssetID", $asset->AssetID)
-        );
         print "<p>AssetName</p>" . $this->leaves["AssetName"];
         print "<p>RentalCostPerDay</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>AssetType</p>" . $this->leaves["AssetType"];
@@ -41,9 +40,9 @@ class AssetsItemView extends CrudView
         print "<p>RentalCostPerDay</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>RentalCostPerWeek</p>" . $this->leaves["RentalCostPerWeek"];
 
-        print "<p>Count of serial numbers: " . sizeof($serialNumbers). "</p>";
+        print "<p>Count of serial numbers: " . sizeof($asset->SerialNumbers). "</p>";
         /** @var Asset $asset */
-    foreach ($serialNumbers as $serialNumber) {
+    foreach ($asset->SerialNumbers as $serialNumber) {
         print<<<HTML
         <div class="asset-serial" id="{$asset->AssetID}">
         <div class="asset-serial-code">Serial Code: <a href="/serials/$serialNumber->SerialNumberID/">{$serialNumber->SerialNumberCode}</a></div>

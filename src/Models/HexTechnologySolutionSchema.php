@@ -14,16 +14,16 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("SerialNumber", SerialNumber::class, 1.1);
     }
 
-    public function declareOneToManyRelationships($relationships)
+    protected function defineRelationships()
     {
-        parent::declareOneToManyRelationships($relationships);
+        parent::defineRelationships();
         $this->declareOneToManyRelationships([
             "Asset" =>
                 [
                     "SerialNumbers" => "SerialNumber.AssetID"
                 ]
         ]);
-
     }
+
 
 }
