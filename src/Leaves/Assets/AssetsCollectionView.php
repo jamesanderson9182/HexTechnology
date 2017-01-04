@@ -29,7 +29,7 @@ class AssetsCollectionView extends CrudView
             print<<<HTML
 <div class="asset" id="{$asset->AssetID}">
 <h2><a href="{$asset->AssetID}/">{$asset->AssetName}</a></h2>
-<p>Type: <a href="/asset-types/{$asset->AssetTypeID}/">{$asset->AssetTypeName}</p>
+<p>Type: <a href="types/{$asset->AssetTypeID}/">{$asset->AssetTypeName}</a></p>
 <p>Rental Cost Per Day: £{$asset->RentalCostPerDay}</p>
 <p>Rental Cost Per Week: £{$asset->RentalCostPerWeek}</p>
 <p>Number of asset: {$numberOfEachAsset}</p>
