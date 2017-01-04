@@ -46,7 +46,7 @@ class AssetsItemView extends CrudView
     foreach ($serialNumbers as $serialNumber) {
         print<<<HTML
         <div class="asset-serial" id="{$asset->AssetID}">
-        <div class="asset-serial-code">Serial Code: {$serialNumber->SerialNumberCode}</div>
+        <div class="asset-serial-code">Serial Code: <a href="/serials/$serialNumber->SerialNumberID/">{$serialNumber->SerialNumberCode}</a></div>
         <div class="asset-serial-initial">Initial Value: £{$serialNumber->InitialValue}</div>
         <div class="asset-serial-current">Current Value: £{$serialNumber->CurrentValue}</div>
         <div class="asset-serial-location">Current Location: </div>
