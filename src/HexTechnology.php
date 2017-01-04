@@ -5,9 +5,11 @@ namespace HexTechnology;
 use HexTechnology\Custard\HexTechnologyDataSeeder;
 use HexTechnology\Layouts\DefaultLayout;
 use HexTechnology\Leaves\Assets\AssetsCollection;
+use HexTechnology\Leaves\Assets\AssetTypes\AssetTypesCollection;
 use HexTechnology\Leaves\Index\Index;
 use HexTechnology\Leaves\Serials\SerialsCollection;
 use HexTechnology\Models\Asset;
+use HexTechnology\Models\AssetType;
 use HexTechnology\Models\HexTechnologySolutionSchema;
 use HexTechnology\Models\SerialNumber;
 use Rhubarb\Crown\Application;
@@ -42,7 +44,9 @@ class HexTechnology extends Application
         $this->addUrlHandlers(
             [
                 "/" => new ClassMappedUrlHandler(Index::class, [
-                    "assets/" => new CrudUrlHandler(Asset::class, StringTools::getNamespaceFromClass(AssetsCollection::class)),
+                    "assets/" => new CrudUrlHandler(Asset::class, StringTools::getNamespaceFromClass(AssetsCollection::class),[],[
+                        "types/" => new CrudUrlHandler(AssetType::class, StringTools::getNamespaceFromClass(AssetTypesCollection::class))
+                    ]),
                     "serials/" => new CrudUrlHandler(SerialNumber::class, StringTools::getNamespaceFromClass(SerialsCollection::class))
                 ])
             ]

@@ -6,6 +6,7 @@ namespace HexTechnology\Models;
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Repositories\MySql\Schema\Columns\MySqlEnumColumn;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
+use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
 use Rhubarb\Stem\Schema\Columns\LongStringColumn;
 use Rhubarb\Stem\Schema\Columns\MoneyColumn;
 use Rhubarb\Stem\Schema\Columns\StringColumn;
@@ -22,6 +23,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $AssetType Repository field
  * @property string $Description Repository field
  * @property-read SerialNumber[]|\Rhubarb\Stem\Collections\RepositoryCollection $SerialNumbers Relationship
+ * @property int $AssetTypeID Repository field
  */
 class Asset extends Model
 {
@@ -39,19 +41,7 @@ class Asset extends Model
             new StringColumn("AssetName", 30),
             new MoneyColumn("RentalCostPerDay"),
             new MoneyColumn("RentalCostPerWeek"),
-            new MySqlEnumColumn(
-                "AssetType",
-                "Cable",
-                [
-                    "Cable",
-                    "Microphone",
-                    "SoundDesk",
-                    "Speaker",
-                    "Adaptor",
-                    "LightFixture",
-                    "LightingDesk",
-                    "Other"
-                ]),
+            new ForeignKeyColumn("AssetTypeID"),
             new LongStringColumn("Description")
         );
         $schema->labelColumnName = "AssetName";

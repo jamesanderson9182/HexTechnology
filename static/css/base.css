@@ -1,3 +1,8 @@
+html {
+font-family: sans-serif;
+}
+
+/*https://color.adobe.com/create/color-wheel/?base=2&rule=Analogous&selected=0&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.3604964216376835,0.025661830661582785,1,0.8952767087313769,0.6908015864097529,0.91,1,0.8091226224282999,0.8173271780882724,0.91,0.7571112257800265,0.6908015864097529,1,0.9260311302340068,0.8117889968971381&swatchOrder=0,1,2,3,4*/
 .asset {
     font-family: sans-serif;
     background-color: #eeeeee;

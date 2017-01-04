@@ -18,7 +18,7 @@ class AssetsItemView extends CrudView
         $this->registerSubLeaf(
          "AssetName",
          "RentalCostPerDay",
-         "AssetType",
+         "AssetTypeID",
          "Description",
          "RentalCostPerDay",
         "RentalCostPerWeek",
@@ -35,7 +35,7 @@ class AssetsItemView extends CrudView
         $asset = $this->model->restModel;
         print "<p>AssetName</p>" . $this->leaves["AssetName"];
         print "<p>RentalCostPerDay</p>" . $this->leaves["RentalCostPerDay"];
-        print "<p>AssetType</p>" . $this->leaves["AssetType"];
+        print "<p>AssetType</p>" . $this->leaves["AssetTypeID"];
         print "<p>Description</p>" . $this->leaves["Description"];
         print "<p>RentalCostPerDay</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>RentalCostPerWeek</p>" . $this->leaves["RentalCostPerWeek"];
