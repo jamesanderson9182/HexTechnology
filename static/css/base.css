@@ -18,3 +18,14 @@ font-family: sans-serif;
     padding: 10px;
     width: 300px;
 }
+
+nav ul li {
+    display: inline-block;
+    padding: 10px;
+    background-color: #7100FF;
+    color: #ffffff;
+}
+
+nav ul li a:visited  {
+    color: #ffffff;
+}

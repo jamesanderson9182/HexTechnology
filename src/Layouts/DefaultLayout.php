@@ -48,9 +48,13 @@ class DefaultLayout extends BaseLayout
     {
         $pageSettings = HtmlPageSettings::singleton();
         return <<<HTML
+        <nav>
             <ul>
                 <li><h1><a href="/assets/">Assets</a></h1></li>
+                <li><h1><a href="/assets/types/">Assets Types</a></h1></li>
+                <li><h1><a href="/serials/">Serial Numbers</a></h1></li>
             </ul>
+        </nav>
 HTML;
     }
     protected function printContent($content)
