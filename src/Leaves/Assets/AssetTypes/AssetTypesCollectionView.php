@@ -10,6 +10,7 @@ class AssetTypesCollectionView extends CrudView
     protected function printViewContent()
     {
         parent::printViewContent();
+        print "<a href='add/'>Add</a>";
         $assetTypes = AssetType::all();
         foreach ($assetTypes as $assetType) {
             print "<a href='$assetType->AssetTypeID/' class='asset-type-link'>$assetType->AssetTypeName</a> <br>";

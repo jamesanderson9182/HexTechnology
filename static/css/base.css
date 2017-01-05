@@ -21,11 +21,19 @@ font-family: sans-serif;
 
 nav ul li {
     display: inline-block;
-    padding: 10px;
     background-color: #7100FF;
+    font-size: 12pt;
     color: #ffffff;
 }
 
 nav ul li a:visited  {
     color: #ffffff;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
 }

@@ -3,7 +3,6 @@
 namespace HexTechnology\Leaves\Assets;
 
 
-use HexTechnology\Models\Asset;
 use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;
 use Rhubarb\Leaf\Crud\Leaves\CrudModel;
 

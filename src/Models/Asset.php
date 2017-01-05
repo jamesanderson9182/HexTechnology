@@ -4,7 +4,6 @@ namespace HexTechnology\Models;
 
 
 use Rhubarb\Stem\Models\Model;
-use Rhubarb\Stem\Repositories\MySql\Schema\Columns\MySqlEnumColumn;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
 use Rhubarb\Stem\Schema\Columns\LongStringColumn;
@@ -24,6 +23,10 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $Description Repository field
  * @property-read SerialNumber[]|\Rhubarb\Stem\Collections\RepositoryCollection $SerialNumbers Relationship
  * @property int $AssetTypeID Repository field
+ * @property string $MaxPowerRating Repository field
+ * @property string $Model Repository field
+ * @property int $ManufacturerID Repository field
+ * @property-read Manufacturer $Manufacturer Relationship
  */
 class Asset extends Model
 {
@@ -39,12 +42,18 @@ class Asset extends Model
         $schema->addColumn(
             new AutoIncrementColumn("AssetID"),
             new StringColumn("AssetName", 30),
+            new StringColumn("Model", 30),
             new MoneyColumn("RentalCostPerDay"),
             new MoneyColumn("RentalCostPerWeek"),
+            new StringColumn("MaxPowerRating", 30),
             new ForeignKeyColumn("AssetTypeID"),
-            new LongStringColumn("Description")
+            new LongStringColumn("Description"),
+            new ForeignKeyColumn("ManufacturerID")
         );
         $schema->labelColumnName = "AssetName";
         return $schema;
     }
+
+    //TODO before save if manufacturer id and model are set but asset name isn't, set it to be the concatenation of these two
+    //Method for times rented
 }

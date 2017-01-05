@@ -6,11 +6,13 @@ use HexTechnology\Custard\HexTechnologyDataSeeder;
 use HexTechnology\Layouts\DefaultLayout;
 use HexTechnology\Leaves\Assets\AssetsCollection;
 use HexTechnology\Leaves\Assets\AssetTypes\AssetTypesCollection;
+use HexTechnology\Leaves\Assets\Manufacturers\ManufacturersCollection;
 use HexTechnology\Leaves\Index\Index;
 use HexTechnology\Leaves\Serials\SerialsCollection;
 use HexTechnology\Models\Asset;
 use HexTechnology\Models\AssetType;
 use HexTechnology\Models\HexTechnologySolutionSchema;
+use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\SerialNumber;
 use Rhubarb\Crown\Application;
 use Rhubarb\Crown\Layout\LayoutModule;
@@ -45,7 +47,8 @@ class HexTechnology extends Application
             [
                 "/" => new ClassMappedUrlHandler(Index::class, [
                     "assets/" => new CrudUrlHandler(Asset::class, StringTools::getNamespaceFromClass(AssetsCollection::class),[],[
-                        "types/" => new CrudUrlHandler(AssetType::class, StringTools::getNamespaceFromClass(AssetTypesCollection::class))
+                        "types/" => new CrudUrlHandler(AssetType::class, StringTools::getNamespaceFromClass(AssetTypesCollection::class)),
+                        "manufacturers/" => new CrudUrlHandler(Manufacturer::class, StringTools::getNamespaceFromClass(ManufacturersCollection::class))
                     ]),
                     "serials/" => new CrudUrlHandler(SerialNumber::class, StringTools::getNamespaceFromClass(SerialsCollection::class))
                 ])

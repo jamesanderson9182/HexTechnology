@@ -16,16 +16,17 @@ class AssetsItemView extends CrudView
     {
         parent::createSubLeaves();
         $this->registerSubLeaf(
-         "AssetName",
-         "RentalCostPerDay",
-         "AssetTypeID",
-         "Description",
-         "RentalCostPerDay",
-        "RentalCostPerWeek",
-            "SerialNumbers"
+            "AssetName",
+            "RentalCostPerDay",
+            "AssetTypeID",
+            "Description",
+            "RentalCostPerDay",
+            "RentalCostPerWeek",
+            "MaxPowerRating",
+            "Model",
+            "ManufacturerID"
         );
     }
-
 
 
     protected function printViewContent()
@@ -39,22 +40,44 @@ class AssetsItemView extends CrudView
         print "<p>Description</p>" . $this->leaves["Description"];
         print "<p>RentalCostPerDay</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>RentalCostPerWeek</p>" . $this->leaves["RentalCostPerWeek"];
+        print "<p>Model</p>" . $this->leaves["Model"];
+        print "<p>Manufacturer</p>" . $this->leaves["ManufacturerID"];
 
-        print "<p>Count of serial numbers: " . sizeof($asset->SerialNumbers). "</p>";
-        /** @var Asset $asset */
-    foreach ($asset->SerialNumbers as $serialNumber) {
-        print<<<HTML
-        <div class="asset-serial" id="{$asset->AssetID}">
-        <div class="asset-serial-code">Serial Code: <a href="/serials/$serialNumber->SerialNumberID/">{$serialNumber->SerialNumberCode}</a></div>
-        <div class="asset-serial-initial">Initial Value: £{$serialNumber->InitialValue}</div>
-        <div class="asset-serial-current">Current Value: £{$serialNumber->CurrentValue}</div>
-        <div class="asset-serial-location">Current Location: </div>
-        </div>
+        print "<br>";
+        print "<br>";
+
+        print $this->leaves["Save"];
+        print $this->leaves["Cancel"];
+        print $this->leaves["Delete"];
+        /** @var integer $totalSerials */
+        $totalSerials = sizeof($asset->SerialNumbers);
+        print "<p>Count of serial numbers: " . $totalSerials . "</p>\n";
+        if($totalSerials >0)
+        {
+            print<<<HTML
+            <div style="overflow-x:auto;">
+<table>
+    <thead>
+        <td>Serial Code</td>                
+        <td>Initial Value</td>                
+        <td>Current Value</td>                
+        <td>Current Location:</td>                        
+    </thead>
 HTML;
-    }
-    print $this->leaves["Save"];
-    print $this->leaves["Cancel"];
-    print $this->leaves["Delete"];
+
+            foreach ($asset->SerialNumbers as $serialNumber) {
+                print<<<HTML
+    <tr>
+        <td><a href="/serials/$serialNumber->SerialNumberID/">{$serialNumber->SerialNumberCode}</a></td>
+        <td>£{$serialNumber->InitialValue}</td>
+        <td>£{$serialNumber->CurrentValue}</td>
+        <td>e.g. warehouse</td>
+    </tr>
+HTML;
+            }
+            print "</table></div>";
+        }
+
     }
 
 }

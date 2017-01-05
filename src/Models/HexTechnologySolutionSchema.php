@@ -13,6 +13,7 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("Asset", Asset::class);
         $this->addModel("SerialNumber", SerialNumber::class);
         $this->addModel("AssetType", AssetType::class);
+        $this->addModel("Manufacturer", Manufacturer::class);
     }
 
     protected function defineRelationships()
@@ -20,14 +21,19 @@ class HexTechnologySolutionSchema extends SolutionSchema
         parent::defineRelationships();
         //One Asset can have many serial numbers
         //One Asset Type can have many Assets
+        //One manufacturer can have many Assets
         $this->declareOneToManyRelationships([
             "Asset" =>
                 [
                     "SerialNumbers" => "SerialNumber.AssetID"
                 ],
             "AssetType" =>
+                [
+                    "Assets" => "Asset.AssetTypeID"
+                ],
+            "Manufacturer" =>
             [
-                "Assets" => "Asset.AssetTypeID"
+                "Assets" => "Asset.ManufacturerID"
             ]
         ]);
     }

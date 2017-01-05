@@ -69,6 +69,7 @@ HTML;
             <title><?= $this->getTitle(); ?></title>
             <?= LayoutModule::getHeadItemsAsHtml(); ?>
             <?= ResourceLoader::getResourceInjectionHtml(); ?>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
         <header>
             <?php $this->printPageHeading(); ?>
