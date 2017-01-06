@@ -20,10 +20,10 @@ class DefaultLayout extends BaseLayout
         ?>
         <div id="top">
             <?php
-            $title = $this->getTitle();
-            if ($title != "") {
-                print "<a href='/'> <h1>" . $title . "</h1></a>";
-            }
+//            $title = $this->getTitle();
+//            if ($title != "") {
+//                print "<a href='/'> <h1>" . $title . "</h1></a>";
+//            }
             ?>
         </div>
         <?php print $this->getNav(); ?>
@@ -49,6 +49,7 @@ class DefaultLayout extends BaseLayout
         $pageSettings = HtmlPageSettings::singleton();
         return <<<HTML
         <nav>
+        <img src="http://hextechnology.co.uk/wp-content/uploads/2014/08/Hex-Technology-logo-refined3.png" alt="logo" height="55px">
             <ul>
                 <li><h1><a href="/assets/">Assets</a></h1></li>
                 <li><h1><a href="/assets/types/">Assets Types</a></h1></li>
@@ -69,6 +70,7 @@ HTML;
             <title><?= $this->getTitle(); ?></title>
             <?= LayoutModule::getHeadItemsAsHtml(); ?>
             <?= ResourceLoader::getResourceInjectionHtml(); ?>
+            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
             <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
         <header>
