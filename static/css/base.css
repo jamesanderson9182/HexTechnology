@@ -98,6 +98,7 @@ table, th, td {
     display: block;
     background-color: #9580bc;
     font-weight: bold;
+    overflow-x:auto;
 }
 
 .item {
