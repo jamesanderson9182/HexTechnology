@@ -5,25 +5,45 @@ use HexTechnology\Models\SerialNumber;
 use Rhubarb\Leaf\Crud\Leaves\CrudView;
 use Rhubarb\Stem\Filters\Equals;
 
-/**
- * Created by PhpStorm.
- * User: James-MSI
- * Date: 04/01/2017
- * Time: 19:42
- */
 class SerialsCollectionView extends CrudView
 {
     protected function printViewContent()
     {
         parent::printViewContent();
-        print "<a href='add/' class='button-add'>Add</a>";
-
         $serials = SerialNumber::all();
         /** @var SerialNumber $serial */
-        foreach ($serials as $serial)
+
+        ?>
+        <h1 class="title">Serial Numbers for Assets</h1>
+        <div class="collection-table">
+        <a href='add/' class='button-add'>Add</a>
+        <?php
+        if (sizeof($serials)>0)
         {
-            print "<p>ASSET: " .$serial->Asset->AssetName . "</p>";
-            print "<p>SerialNumber:  <a href='$serial->SerialNumberID/'>" . $serial->SerialNumberCode . "</a></p>";
+            ?>
+            <script src="/static/js/sortable.js"></script>
+            <table class="sortable">
+                <thead>
+                <td>Serial Number</td>
+                <td>Asset Name</td>
+                <td>Type</td>
+                </thead>
+            <?php
+            foreach ($serials as $serial)
+            {
+                ?>
+                <tr>
+                    <td><a href="<?=$serial->SerialNumberID?>/"><?= $serial->SerialNumberCode ?></a></td>
+                    <td><a href="/assets/<?= $serial->Asset->AssetID ?>/"> <?= $serial->Asset->AssetName ?></a></td>
+                    <td><a href="/assets/type/<?= $serial->Asset->AssetType->AssetTypeID ?>/"><?= $serial->Asset->AssetType->AssetTypeName ?></a></td>
+                </tr>
+                <?php
+            }
         }
+
+        ?>
+        </table>
+        </div>
+        <?php
     }
 }

@@ -25,8 +25,6 @@ class SerialsItemView extends CrudView
             "PurchaseDate",
             "AssetID"
         );
-
-
     }
 
     protected function printViewContent()
@@ -35,20 +33,28 @@ class SerialsItemView extends CrudView
         /** @var SerialNumber $serialNumber */
         $serialNumber = $this->model->restModel;
         $dateAdded = date("F jS, Y", $serialNumber->DateAddedToSystem->getTimestamp() );
-        ?>
 
-        <div class="serial-asset"><a href="/assets/<?= $this->model->restModel->Asset->AssetID ?>/">Asset<?= $this->leaves["AssetID"] ?></a></div>
-        <div class="serial-serial-code">Serial Number: <?= $this->leaves["SerialNumberCode"]?></div>
-        <div class="serial-serial-initial-value">Initial Cost: <?= $this->leaves["InitialValue"] ?></div>
-        <div class="serial-serial-current-value">Current Value: <?= $this->leaves["CurrentValue"] ?></div>
-        <div class="serial-serial-current-value">Asset: <?= $this->leaves["AssetID"] ?></div>
-        <div class="serial-serial-current-value">PurchaseDate: <?= $this->leaves["PurchaseDate"] ?></div>
-        <div class="serial-serial-current-value">Date Added To System: <?= $dateAdded ?></div>
+        ?>
+        <h1 class="title">Serial Number: <?= $serialNumber->SerialNumberCode?> for Asset: <?= $serialNumber->Asset->AssetName ?></h1>
+        <div class="item">
+        <p><a href="/assets/<?= $this->model->restModel->Asset->AssetID ?>/">Asset</a></p>
+        <?= $this->leaves["AssetID"] ?>
+        <p>Serial Number</p>
+        <?= $this->leaves["SerialNumberCode"]?>
+        <p>Initial Cost</p>
+        <?= $this->leaves["InitialValue"] ?>
+        <p>Current Value</p>
+        <?= $this->leaves["CurrentValue"] ?>
+        <p>Asset</p>
+        <?= $this->leaves["AssetID"] ?>
+        <p>PurchaseDate</p>
+        <?= $this->leaves["PurchaseDate"] ?>
+        <p>Date Added To System: <?= $dateAdded ?></p>
         <?php
         print $this->leaves["Save"];
         print $this->leaves["Delete"];
         print $this->leaves["Cancel"];
-
+        print "</div>";//closing item div
     }
 
 }

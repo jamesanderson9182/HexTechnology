@@ -11,6 +11,7 @@ namespace HexTechnology\Leaves\Assets;
 
 use HexTechnology\Models\Asset;
 use HexTechnology\Models\AssetType;
+use HexTechnology\Models\SerialNumber;
 use Rhubarb\Leaf\Crud\Leaves\CrudView;
 
 class AssetsCollectionView extends CrudView
@@ -21,6 +22,9 @@ class AssetsCollectionView extends CrudView
 
         // I am doing a join here as I am unable to pull out the types from the asset alone
         $assets = Asset::all()->joinWith(AssetType::all(), "AssetTypeID", "AssetTypeID", ["AssetTypeName"]);
+        $totalAssets = SerialNumber::all()->count();
+        print "<h1 class='title'>Assets</h1>";
+        print "<div class='collection-table'>";
         print "<a href='add/' class='button-add'>Add</a>";
         if (sizeof($assets) > 0) {
             print<<<HTML
@@ -34,7 +38,7 @@ class AssetsCollectionView extends CrudView
         <td>Max Power Rating</td>
         <td>Model</td>
         <td>Manufacturer</td>
-        <td>Number Owned</td>
+        <td>Number Owned ({$totalAssets})</td>
     </thead>
 HTML;
             foreach ($assets as $asset) {
@@ -56,6 +60,7 @@ HTML;
             }
         }
         print "</table>";
+        print "</div>";//Closing collection table div
     }
 
 }

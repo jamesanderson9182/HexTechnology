@@ -49,10 +49,11 @@ class DefaultLayout extends BaseLayout
         $pageSettings = HtmlPageSettings::singleton();
         return <<<HTML
         <nav>
-        <img src="http://hextechnology.co.uk/wp-content/uploads/2014/08/Hex-Technology-logo-refined3.png" alt="logo" height="55px">
+        <a href="/"><img src="/static/images/logo.png" alt="logo" height="55px"></a>
             <ul>
                 <li><h1><a href="/assets/">Assets</a></h1></li>
                 <li><h1><a href="/assets/types/">Assets Types</a></h1></li>
+                <li><h1><a href="/assets/manufacturers/">Manufacturers</a></h1></li>
                 <li><h1><a href="/serials/">Serial Numbers</a></h1></li>
             </ul>
         </nav>

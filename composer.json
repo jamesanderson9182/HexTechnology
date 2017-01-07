@@ -1,4 +1,3 @@
-
 {
   "require":
   {
@@ -10,7 +9,8 @@
     "rhubarbphp/module-leaf-crud": "^1.0",
     "rhubarbphp/module-leaf-html5upload": "dev-master",
     "rhubarbphp/scaffold-authentication": "^1.0",
-    "jamesanderson9182/rhubarb-leaf-twitter-timeline": "dev-master"
+    "jamesanderson9182/rhubarb-leaf-twitter-timeline": "dev-master",
+    "rhubarbphp/module-jsvalidation": "^1.1"
   },
   "config":
   {
