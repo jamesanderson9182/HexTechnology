@@ -18,7 +18,7 @@ chmod +x /vagrant/bin/custard.bat
 chmod +x /vagrant/bin/vcustard
 chmod +x /vagrant/bin/vcustard.bat
 
-/vagrant/bin/custard stem:update-schemas
-/vagrant/bin/custard stem:seed-data
+/vagrant/vendor/rhubarbphp/custard/bin/custard stem:update-schemas
+/vagrant/vendor/rhubarbphp/custard/bin/custard stem:seed-data
 
 service httpd restart
