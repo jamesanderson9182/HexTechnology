@@ -34,12 +34,15 @@ class AssetsItemView extends CrudView
         parent::printViewContent();
         /** @var Asset $asset */
         $asset = $this->model->restModel;
-        print "<p>AssetName</p>" . $this->leaves["AssetName"];
-        print "<p>RentalCostPerDay</p>" . $this->leaves["RentalCostPerDay"];
-        print "<p>AssetType</p>" . $this->leaves["AssetTypeID"];
+        print "<h1 class='title'>Asset: {$asset->AssetName}</h1>";
+        print "<div class='item'>";
+        print "<a href='../'>back</a>";
+        print "<p>Asset Name</p>" . $this->leaves["AssetName"];
+        print "<p>Rental Cost Per Day</p>" . $this->leaves["RentalCostPerDay"];
+        print "<p>Asset Type</p>" . $this->leaves["AssetTypeID"];
         print "<p>Description</p>" . $this->leaves["Description"];
-        print "<p>RentalCostPerDay</p>" . $this->leaves["RentalCostPerDay"];
-        print "<p>RentalCostPerWeek</p>" . $this->leaves["RentalCostPerWeek"];
+        print "<p>Rental Cost Per Day</p>" . $this->leaves["RentalCostPerDay"];
+        print "<p>Rental Cost Per Week</p>" . $this->leaves["RentalCostPerWeek"];
         print "<p>Model</p>" . $this->leaves["Model"];
         print "<p>Manufacturer</p>" . $this->leaves["ManufacturerID"];
 
@@ -49,13 +52,15 @@ class AssetsItemView extends CrudView
         print $this->leaves["Save"];
         print $this->leaves["Cancel"];
         print $this->leaves["Delete"];
+        print "</div>"; // closing item div
         /** @var integer $totalSerials */
         $totalSerials = sizeof($asset->SerialNumbers);
-        print "<p>Count of serial numbers: " . $totalSerials . "</p>\n";
+
         if($totalSerials >0)
         {
             print<<<HTML
-            <div style="overflow-x:auto;">
+            <div style="overflow-x:auto;" class="item-related">
+            <p>Count of serial numbers: {$totalSerials}</p>
 <table>
     <thead>
         <td>Serial Code</td>                

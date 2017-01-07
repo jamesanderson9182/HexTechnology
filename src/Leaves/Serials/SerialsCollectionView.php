@@ -16,7 +16,7 @@ class SerialsCollectionView extends CrudView
     protected function printViewContent()
     {
         parent::printViewContent();
-        print "<a href='add/'>Add</a>";
+        print "<a href='add/' class='button-add'>Add</a>";
 
         $serials = SerialNumber::all();
         /** @var SerialNumber $serial */

@@ -1,7 +1,27 @@
 html {
-font-family: sans-serif;
+    font-family: sans-serif;
     background-color: #808080;
     color: #eeeeee;
+    margin: 0;
+    padding: 0;
+}
+.title {
+    background-color: #523784;
+    margin: 0;
+    padding: 20px;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.button-add {
+    height: 15px;
+    background-color: mediumseagreen;
+    padding: 15px 20px 15px 20px;
+    display: inline-block;
+    margin: 10px 0px 10px 20px;
+    border-radius: 5px;
 }
 
 /*https://color.adobe.com/create/color-wheel/?base=2&rule=Analogous&selected=0&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.3604964216376835,0.025661830661582785,1,0.8952767087313769,0.6908015864097529,0.91,1,0.8091226224282999,0.8173271780882724,0.91,0.7571112257800265,0.6908015864097529,1,0.9260311302340068,0.8117889968971381&swatchOrder=0,1,2,3,4*/
@@ -20,11 +40,13 @@ font-family: sans-serif;
     padding: 10px;
     width: 300px;
 }
+
 nav {
     height: 55px;
     background-color: #7100FF;
     margin: 0px;
 }
+
 nav img {
     float: left;
 }
@@ -47,6 +69,7 @@ nav ul li {
     font-family: "Roboto", sans-serif;
     height: 100%;
 }
+
 nav ul li:hover {
     display: inline-block;
     background-color: #f97352;
@@ -55,7 +78,7 @@ nav ul li:hover {
     font-family: "Roboto", sans-serif;
 }
 
-nav ul li a:visited  {
+nav ul li a:visited {
     color: #ffffff;
     font-family: "Roboto", sans-serif;
 }
@@ -67,3 +90,28 @@ table {
 table, th, td {
     border: 1px solid black;
 }
+
+.item {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    display: block;
+    background-color: #9580bc;
+    font-weight: bold;
+}
+
+.item-related {
+    background-color: #c2b4db;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    display: block;
+    font-weight: bold;
+}
+
+a:-webkit-any-link {
+     color: #FFFFFF;
+     text-decoration: underline;
+     cursor: auto;
+ }
+

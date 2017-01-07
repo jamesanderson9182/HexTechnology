@@ -21,23 +21,41 @@ class AssetsCollectionView extends CrudView
 
         // I am doing a join here as I am unable to pull out the types from the asset alone
         $assets = Asset::all()->joinWith(AssetType::all(), "AssetTypeID", "AssetTypeID", ["AssetTypeName"]);
-        print "<a href='add/'>Add</a>";
-        print "<div>";
-        foreach($assets as $asset)
-        {
-            $numberOfEachAsset = count($asset->SerialNumbers);
+        print "<a href='add/' class='button-add'>Add</a>";
+        if (sizeof($assets) > 0) {
             print<<<HTML
-<div class="asset" id="{$asset->AssetID}">
-<h2><a href="{$asset->AssetID}/">{$asset->AssetName}</a></h2>
-<p>Type: <a href="types/{$asset->AssetTypeID}/">{$asset->AssetTypeName}</a></p>
-<p>Rental Cost Per Day: £{$asset->RentalCostPerDay}</p>
-<p>Rental Cost Per Week: £{$asset->RentalCostPerWeek}</p>
-<p>Number of asset: {$numberOfEachAsset}</p>
-</div>
-<br>
+<script src="/static/js/sortable.js"></script>
+<table class="sortable">
+    <thead>
+        <td>Asset Name</td>
+        <td>Rental Cost Per Day</td>
+        <td>Rental Cost Per Week</td>
+        <td>Asset Type</td>
+        <td>Max Power Rating</td>
+        <td>Model</td>
+        <td>Manufacturer</td>
+        <td>Number Owned</td>
+    </thead>
 HTML;
+            foreach ($assets as $asset) {
+                $numberOfEachAsset = count($asset->SerialNumbers);
+                print<<<HTML
+<tr>     
+<td><a href="{$asset->AssetID}/">{$asset->AssetName}</a></td>
+<td>{$asset->RentalCostPerDay}</td>
+<td>{$asset->RentalCostPerWeek}</td>
+<td>{$asset->AssetType}</td>
+<td>{$asset->MaxPowerRating}</td>
+<td>{$asset->Manufacturer}</td>
+<td>{$asset->Model}</td>
+<td>{$numberOfEachAsset}</td>
+</tr>
+HTML;
+
+
+            }
         }
-        print "</div>";
+        print "</table>";
     }
 
 }
