@@ -26,6 +26,10 @@ class AssetsItemView extends CrudView
             "Model",
             "ManufacturerID"
         );
+
+        $this->leaves["Save"]->addCssClassNames("btn btn-success");
+        $this->leaves["Cancel"]->addCssClassNames("btn btn-warning");
+        $this->leaves["Delete"]->addCssClassNames("btn btn-danger");
     }
 
 
@@ -34,9 +38,11 @@ class AssetsItemView extends CrudView
         parent::printViewContent();
         /** @var Asset $asset */
         $asset = $this->model->restModel;
+
+
         print "<h1 class='title'>Asset: {$asset->AssetName}</h1>";
         print "<div class='item'>";
-        print "<a href='../'>back</a>";
+        print "<span class='btn btn-warning'><img src='/static/images/back.svg' height='13px' style='margin-right:5px; margin-bottom:-1px;'><a href='../'>back</a></span>";
         print "<p>Asset Name</p>" . $this->leaves["AssetName"];
         print "<p>Rental Cost Per Day</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>Asset Type <a href='../types/add/'> (add)</a> </p>" . $this->leaves["AssetTypeID"];
@@ -49,9 +55,12 @@ class AssetsItemView extends CrudView
         print "<br>";
         print "<br>";
 
+        print "<div class='button-bar'>";
         print $this->leaves["Save"];
         print $this->leaves["Cancel"];
         print $this->leaves["Delete"];
+        print "</div>"; // closing button bar div
+
         print "</div>"; // closing item div
         /** @var integer $totalSerials */
         $totalSerials = sizeof($asset->SerialNumbers);

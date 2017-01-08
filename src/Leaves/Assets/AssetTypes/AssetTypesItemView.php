@@ -13,6 +13,9 @@ class AssetTypesItemView extends CrudView
         $this->registerSubLeaf(
           "AssetTypeName"
         );
+        $this->leaves["Save"]->addCssClassNames("btn btn-success");
+        $this->leaves["Cancel"]->addCssClassNames("btn btn-warning");
+        $this->leaves["Delete"]->addCssClassNames("btn btn-danger");
     }
 
     protected function printViewContent()
@@ -23,11 +26,15 @@ class AssetTypesItemView extends CrudView
         ?>
         <h1 class="title">Asset Type: <?= $assetType->AssetTypeName ?></h1>
         <div class="item">
+        <span class='btn btn-warning'><img src='/static/images/back.svg' height='13px' style='margin-right:5px; margin-bottom:-1px;'><a href='../'>back</a></span>
         <?php
+        print "<p>Asset Type:</p>";
         print $this->leaves["AssetTypeName"] . "<br>";
+        print "<div class='button-bar'>";
         print $this->leaves["Save"];
         print $this->leaves["Delete"];
         print $this->leaves["Cancel"];
+        print "</div>";
 
         print "<h2>Items With This Type</h2>";
         if (sizeof($assetType->Assets) >0 )

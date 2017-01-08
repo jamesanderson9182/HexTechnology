@@ -16,7 +16,9 @@ class IndexView extends View
     protected function printViewContent()
     {
         parent::printViewContent();
-        print "Welcome to the home page, can't believe this worked!";
+        ?>
+        <h1 class="title">HexTechnology | Making your event work like magic!</h1>
+        <?php
     }
 
 }
