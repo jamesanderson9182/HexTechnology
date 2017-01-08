@@ -20,6 +20,9 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
 
     public function SeedAssets()
     {
+        /*
+         * SM58s
+         */
         $assetType = new AssetType();
         $assetType->AssetTypeName = "Microphone";
         $assetType->save();
@@ -63,6 +66,10 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $serial->PurchaseDate = new RhubarbDate("now");
         $serial->save();
 
+        /**
+         * QU 32
+         */
+
         $assetType = new AssetType();
         $assetType->AssetTypeName = "Sound Desk";
         $assetType->save();
@@ -86,6 +93,41 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $serial->SerialNumberCode = "QU32X-525659";
         $serial->InitialValue = 3500;
         $serial->CurrentValue = 3400;
+        $serial->AssetID = $asset->AssetID;
+        $serial->PurchaseDate = new RhubarbDate("now");
+        $serial->save();
+
+        /**
+         * Behringer sound desk
+         */
+
+        $manufacturer = new Manufacturer();
+        $manufacturer->ManufacturerName = "Behringer";
+        $manufacturer->save();
+
+        $asset = new Asset();
+        $asset->AssetName = "Behringer X1222";
+        $asset->RentalCostPerDay = 15;
+        $asset->RentalCostPerWeek = 30;
+        $asset->Description = "Handy wee desk! ".
+            $asset->AssetTypeID = $assetType->AssetTypeID;
+        $asset->MaxPowerRating = "Na";
+        $asset->Model = "X1222";
+        $asset->ManufacturerID = $manufacturer->ManufacturerID;
+        $asset->save();
+
+        $serial = new SerialNumber();
+        $serial->SerialNumberCode = "X122jrdl";
+        $serial->InitialValue = 100;
+        $serial->CurrentValue = 90;
+        $serial->AssetID = $asset->AssetID;
+        $serial->PurchaseDate = new RhubarbDate("now");
+        $serial->save();
+
+        $serial = new SerialNumber();
+        $serial->SerialNumberCode = "X122jraaaaa";
+        $serial->InitialValue = 100;
+        $serial->CurrentValue = 90;
         $serial->AssetID = $asset->AssetID;
         $serial->PurchaseDate = new RhubarbDate("now");
         $serial->save();
