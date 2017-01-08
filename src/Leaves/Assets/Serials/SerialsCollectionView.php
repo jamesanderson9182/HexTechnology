@@ -1,9 +1,7 @@
 <?php
-namespace HexTechnology\Leaves\Serials;
-use HexTechnology\Models\Asset;
+namespace HexTechnology\Leaves\Assets\Serials;
 use HexTechnology\Models\SerialNumber;
 use Rhubarb\Leaf\Crud\Leaves\CrudView;
-use Rhubarb\Stem\Filters\Equals;
 
 class SerialsCollectionView extends CrudView
 {

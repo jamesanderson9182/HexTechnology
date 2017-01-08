@@ -46,18 +46,13 @@ class SerialNumber extends Model
         return $schema;
     }
 
-   /*
-    * TODO: Make this work!
-    */
-   /*protected function beforeSave()
+    protected function beforeSave()
     {
         parent::beforeSave();
         //Save the date added to the system to be now if it hasn't already been saved
-        if( $this->DateAddedToSystem == date("0000-00-00") ){
+        if( $this->isNewRecord() ){
             $this->DateAddedToSystem = new RhubarbDate("now");
-            $this->save();
         }
-        //This needs to be called last as this is where the save happens
     }
-*/
+
 }

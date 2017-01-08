@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: James-MSI
- * Date: 04/01/2017
- * Time: 19:46
- */
 
-namespace HexTechnology\Leaves\Serials;
+namespace HexTechnology\Leaves\Assets\Serials;
 
 
 use HexTechnology\Models\Asset;
@@ -33,24 +27,29 @@ class SerialsItemView extends CrudView
         /** @var SerialNumber $serialNumber */
         $serialNumber = $this->model->restModel;
         $dateAdded = date("F jS, Y", $serialNumber->DateAddedToSystem->getTimestamp() );
-
+        $title = "Serial Number: $serialNumber->SerialNumberCode";
+        if(!$this->model->restModel->isNewRecord()){
+            $title .= " for Asset: $serialNumber->Asset->AssetName";
+        }
         ?>
-        <h1 class="title">Serial Number: <?= $serialNumber->SerialNumberCode?> for Asset: <?= $serialNumber->Asset->AssetName ?></h1>
+        <h1 class="title"><?= $title ?></h1>
         <div class="item">
-        <p><a href="/assets/<?= $this->model->restModel->Asset->AssetID ?>/">Asset</a></p>
-        <?= $this->leaves["AssetID"] ?>
         <p>Serial Number</p>
         <?= $this->leaves["SerialNumberCode"]?>
         <p>Initial Cost</p>
         <?= $this->leaves["InitialValue"] ?>
         <p>Current Value</p>
         <?= $this->leaves["CurrentValue"] ?>
-        <p>Asset</p>
+        <p>Asset <a href="/assets/add/">(add)</a></p>
         <?= $this->leaves["AssetID"] ?>
         <p>PurchaseDate</p>
         <?= $this->leaves["PurchaseDate"] ?>
-        <p>Date Added To System: <?= $dateAdded ?></p>
         <?php
+
+        if(!$this->model->restModel->isNewRecord()){
+           print "<p>Date Added To System: $dateAdded</p>";
+        }
+
         print $this->leaves["Save"];
         print $this->leaves["Delete"];
         print $this->leaves["Cancel"];

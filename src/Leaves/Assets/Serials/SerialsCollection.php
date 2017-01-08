@@ -1,5 +1,5 @@
 <?php
-namespace HexTechnology\Leaves\Serials;
+namespace HexTechnology\Leaves\Assets\Serials;
 use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;
 
 /**

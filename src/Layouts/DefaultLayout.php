@@ -54,7 +54,7 @@ class DefaultLayout extends BaseLayout
                 <li><h1><a href="/assets/">Assets</a></h1></li>
                 <li><h1><a href="/assets/types/">Assets Types</a></h1></li>
                 <li><h1><a href="/assets/manufacturers/">Manufacturers</a></h1></li>
-                <li><h1><a href="/serials/">Serial Numbers</a></h1></li>
+                <li><h1><a href="/assets/serials/">Serial Numbers</a></h1></li>
             </ul>
         </nav>
 HTML;

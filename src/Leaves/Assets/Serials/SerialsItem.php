@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: James-MSI
- * Date: 04/01/2017
- * Time: 19:47
- */
 
-namespace HexTechnology\Leaves\Serials;
+namespace HexTechnology\Leaves\Assets\Serials;
 
 
 use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;

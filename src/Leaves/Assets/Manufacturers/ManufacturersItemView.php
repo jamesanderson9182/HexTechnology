@@ -33,7 +33,29 @@ class ManufacturersItemView extends CrudView
         print $this->leaves["Save"];
         print $this->leaves["Cancel"];
         print $this->leaves["Delete"];
-        print "</div>"; // closing div for item
+        if(sizeof($manufacturer->Assets)>0){
+            ?>
+            </div>
+            <div class="item-related">
+                <h2>Assets from this manufacturer</h2>
+                <ul>
+                    <?php
+                    foreach ($manufacturer->Assets as $asset)
+                    {
+                        ?>
+                        <li>
+                            <a href="/assets/<?= $asset->AssetID ?>/">
+                                <?= $asset->AssetName ?></a> (<a href="/assets/types/<?= $asset->AssetTypeID ?>/"><?= $asset->AssetType->AssetTypeName ?></a>)
+
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </div>
+            <?php
+        }
+
     }
 
 }

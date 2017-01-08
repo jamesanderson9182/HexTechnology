@@ -39,12 +39,12 @@ class AssetsItemView extends CrudView
         print "<a href='../'>back</a>";
         print "<p>Asset Name</p>" . $this->leaves["AssetName"];
         print "<p>Rental Cost Per Day</p>" . $this->leaves["RentalCostPerDay"];
-        print "<p>Asset Type</p>" . $this->leaves["AssetTypeID"];
+        print "<p>Asset Type <a href='../types/add/'> (add)</a> </p>" . $this->leaves["AssetTypeID"];
         print "<p>Description</p>" . $this->leaves["Description"];
         print "<p>Rental Cost Per Day</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>Rental Cost Per Week</p>" . $this->leaves["RentalCostPerWeek"];
         print "<p>Model</p>" . $this->leaves["Model"];
-        print "<p>Manufacturer</p>" . $this->leaves["ManufacturerID"];
+        print "<p>Manufacturer <a href='../manufacturers/add/'> (add)</a></p>" . $this->leaves["ManufacturerID"];
 
         print "<br>";
         print "<br>";
@@ -73,7 +73,7 @@ HTML;
             foreach ($asset->SerialNumbers as $serialNumber) {
                 print<<<HTML
     <tr>
-        <td><a href="/serials/$serialNumber->SerialNumberID/">{$serialNumber->SerialNumberCode}</a></td>
+        <td><a href="/assets/serials/$serialNumber->SerialNumberID/">{$serialNumber->SerialNumberCode}</a></td>
         <td>£{$serialNumber->InitialValue}</td>
         <td>£{$serialNumber->CurrentValue}</td>
         <td>e.g. warehouse</td>

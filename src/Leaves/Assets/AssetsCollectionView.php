@@ -36,8 +36,8 @@ class AssetsCollectionView extends CrudView
         <td>Rental Cost Per Week</td>
         <td>Asset Type</td>
         <td>Max Power Rating</td>
-        <td>Model</td>
         <td>Manufacturer</td>
+        <td>Model</td>
         <td>Number Owned ({$totalAssets})</td>
     </thead>
 HTML;
@@ -48,9 +48,9 @@ HTML;
 <td><a href="{$asset->AssetID}/">{$asset->AssetName}</a></td>
 <td>{$asset->RentalCostPerDay}</td>
 <td>{$asset->RentalCostPerWeek}</td>
-<td>{$asset->AssetType}</td>
+<td><a href="/assets/types/{$asset->AssetType->AssetTypeID}/">{$asset->AssetType}</a></td>
 <td>{$asset->MaxPowerRating}</td>
-<td>{$asset->Manufacturer}</td>
+<td><a href="/assets/manufacturers/{$asset->Manufacturer->ManufacturerID}/">{$asset->Manufacturer}</a></td>
 <td>{$asset->Model}</td>
 <td>{$numberOfEachAsset}</td>
 </tr>
