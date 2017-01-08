@@ -67,30 +67,56 @@ class AssetsItemView extends CrudView
 
         if($totalSerials >0)
         {
-            print<<<HTML
+            ?>
             <div style="overflow-x:auto;" class="item-related">
-            <p>Count of serial numbers: {$totalSerials}</p>
-<table>
-    <thead>
-        <td>Serial Code</td>                
-        <td>Initial Value</td>                
-        <td>Current Value</td>                
-        <td>Current Location:</td>                        
-    </thead>
-HTML;
+            <p>Count of serial numbers: <?= $totalSerials ?></p>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Serial Numbers.." class="input-search">
+<table id="myTable">
+    <tr class="header">
+        <th>Serial Code</th>
+        <th>Initial Value</th>
+        <th>Current Value</th>
+        <th>Current Location:</th>
+    </tr>
+            <?php
 
             foreach ($asset->SerialNumbers as $serialNumber) {
-                print<<<HTML
+                ?>
     <tr>
-        <td><a href="/assets/serials/$serialNumber->SerialNumberID/">{$serialNumber->SerialNumberCode}</a></td>
-        <td>£{$serialNumber->InitialValue}</td>
-        <td>£{$serialNumber->CurrentValue}</td>
+        <td><a href="/assets/serials/$serialNumber->SerialNumberID/"><?= $serialNumber->SerialNumberCode ?></a></td>
+        <td>£<?= $serialNumber->InitialValue ?></td>
+        <td>£<?= $serialNumber->CurrentValue ?></td>
         <td>e.g. warehouse</td>
     </tr>
-HTML;
+                <?php
             }
-            print "</table></div>";
+            ?>
+            </table></div>
+            <script>
+                function myFunction() {
+                    // Declare variables
+                    var input, filter, table, tr, td, i;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+            <?php
         }
+        //TODO Replace inline JS with a ViewBridge
 
     }
 

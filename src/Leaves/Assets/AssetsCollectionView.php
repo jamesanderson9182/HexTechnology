@@ -27,20 +27,23 @@ class AssetsCollectionView extends CrudView
         print "<div class='collection-table'>";
         print "<a href='add/' class='button-add'>Add</a>";
         if (sizeof($assets) > 0) {
-            print<<<HTML
-<script src="/static/js/sortable.js"></script>
-<table class="sortable">
-    <thead>
-        <td>Asset Name</td>
-        <td>Rental Cost Per Day</td>
-        <td>Rental Cost Per Week</td>
-        <td>Asset Type</td>
-        <td>Max Power Rating</td>
-        <td>Manufacturer</td>
-        <td>Model</td>
-        <td>Number Owned ({$totalAssets})</td>
-    </thead>
-HTML;
+            ?>
+
+            <script src="/static/js/sortable.js"></script>
+            <br>
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Assets.." class="input-search">
+<table class="sortable" id="myTable">
+    <tr class="header">
+        <th>Asset Name</th>
+        <th>Rental Cost Per Day</th>
+        <th>Rental Cost Per Week</th>
+        <th>Asset Type</th>
+        <th>Max Power Rating</th>
+        <th>Manufacturer</th>
+        <th>Model</th>
+        <th>Number Owned (<?= $totalAssets ?>)</th>
+    </tr>
+<?php
             foreach ($assets as $asset) {
                 $numberOfEachAsset = count($asset->SerialNumbers);
                 print<<<HTML
@@ -54,11 +57,36 @@ HTML;
 <td>{$asset->Model}</td>
 <td>{$numberOfEachAsset}</td>
 </tr>
+
+        <script>
+            function myFunction() {
+                // Declare variables
+                var input, filter, table, tr, td, i;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
 HTML;
 
 
             }
         }
+
+        //TODO Put above inline script into a viewbridge
         print "</table>";
         print "</div>";//Closing collection table div
     }
