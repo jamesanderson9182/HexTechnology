@@ -36,7 +36,9 @@ class AssetTypesItemView extends CrudView
         print $this->leaves["Cancel"];
         print "</div>";
 
-        print "<h2>Items With This Type</h2>";
+        //TODO put this into a table
+
+        print "<h2>Assets With This Type</h2>";
         if (sizeof($assetType->Assets) >0 )
         {
             print "<ul>";

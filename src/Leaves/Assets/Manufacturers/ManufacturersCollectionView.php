@@ -15,35 +15,33 @@ class ManufacturersCollectionView extends CrudView
         ?>
         <h1 class="title" xmlns="http://www.w3.org/1999/html">Manufacturers</h1>
         <div class="collection-table">
-            <a href='add/' class='button-add'>Add</a>
+        <a href='add/' class='button-add'>Add</a>
         <?php
-        if (sizeof($manufacturers)>0)
+        if ($manufacturers->count() > 0) {
             ?>
             <script src="/static/js/sortable.js"></script>
             <table class="sortable">
-            <thead>
+                <thead>
                 <td>Manufacturer</td>
                 <td>Total Owned from Each</td>
-            </thead>
-            <?php
-            foreach ( $manufacturers as $manufacturer )
-            {
-                $countOfSerials = 0;
-                foreach ($manufacturer->Assets as $asset)
-                {
-                    $countOfSerials += $asset->SerialNumbers->count();
+                </thead>
+                <?php
+                foreach ($manufacturers as $manufacturer) {
+                    $countOfSerials = 0;
+                    foreach ($manufacturer->Assets as $asset) {
+                        $countOfSerials += $asset->SerialNumbers->count();
+                    }
+                    ?>
+                    <tr>
+                        <td><a href="<?= $manufacturer->ManufacturerID ?>/"><?= $manufacturer->ManufacturerName ?></td>
+                        <td><?= $countOfSerials ?></td>
+                    </tr>
+                    <?php
                 }
                 ?>
-                <tr>
-                    <td><a href="<?= $manufacturer->ManufacturerID?>/"><?=$manufacturer->ManufacturerName?></td>
-                    <td><?= $countOfSerials ?></td>
-                </tr>
-                <?php
-            }
-        ?>
             </table>
-        </div>
-        <?php
+            </div>
+            <?php
+        }
     }
-
 }
