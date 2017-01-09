@@ -21,6 +21,7 @@ class AssetsCollectionView extends CrudView
         parent::printViewContent();
 
         // I am doing a join here as I am unable to pull out the types from the asset alone
+        //TODO find out if the next few variables are supposed to be in the leaf and therefore unit testable
         $assets = Asset::all()->joinWith(AssetType::all(), "AssetTypeID", "AssetTypeID", ["AssetTypeName"]);
         $totalAssets = SerialNumber::all()->count();
         print "<h1 class='title'>Assets</h1>";
