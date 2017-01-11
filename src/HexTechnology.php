@@ -14,12 +14,16 @@ use HexTechnology\Models\AssetType;
 use HexTechnology\Models\HexTechnologySolutionSchema;
 use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\SerialNumber;
+use HexTechnology\RestApi\AssetsResource;
 use Rhubarb\Crown\Application;
 use Rhubarb\Crown\Layout\LayoutModule;
 use Rhubarb\Crown\String\StringTools;
 use Rhubarb\Crown\UrlHandlers\ClassMappedUrlHandler;
 use Rhubarb\Leaf\Crud\UrlHandlers\CrudUrlHandler;
 use Rhubarb\Leaf\LeafModule;
+use Rhubarb\RestApi\Resources\ApiDescriptionResource;
+use Rhubarb\RestApi\UrlHandlers\RestApiRootHandler;
+use Rhubarb\RestApi\UrlHandlers\RestCollectionHandler;
 use Rhubarb\Stem\Custard\SeedDemoDataCommand;
 use Rhubarb\Stem\Repositories\MySql\MySql;
 use Rhubarb\Stem\Repositories\Repository;
@@ -43,6 +47,19 @@ class HexTechnology extends Application
     {
         parent::registerUrlHandlers();
         ///TODO: Require login
+
+        /*
+         * Urls for api
+         */
+        $this->addUrlHandlers([
+            "/api" => new RestApiRootHandler(ApiDescriptionResource::class, [
+                "/assets" => new RestCollectionHandler(AssetsResource::class)
+            ])
+        ]);
+
+        /*
+         * Urls for web pages
+         */
         $this->addUrlHandlers(
             [
                 "/" => new ClassMappedUrlHandler(Index::class, [
@@ -65,7 +82,8 @@ class HexTechnology extends Application
         return [
             new LayoutModule(DefaultLayout::class),
             new LeafModule(),
-            new StemModule()
+            new StemModule(),
+
         ];
     }
     public function getCustardCommands()

@@ -10,7 +10,8 @@
     "rhubarbphp/module-leaf-html5upload": "dev-master",
     "rhubarbphp/scaffold-authentication": "^1.0",
     "jamesanderson9182/rhubarb-leaf-twitter-timeline": "dev-master",
-    "rhubarbphp/module-jsvalidation": "^1.1"
+    "rhubarbphp/module-jsvalidation": "^1.1",
+    "rhubarbphp/module-restapi": "^2.0"
   },
   "config":
   {
