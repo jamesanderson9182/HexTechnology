@@ -120,4 +120,16 @@ class AssetsItemView extends CrudView
 
     }
 
+	public function getDeploymentPackage()
+	{
+		$package =  parent::getDeploymentPackage();
+		$package->resourcesToDeploy[] = __DIR__ . "/". $this->getViewBridgeName() . ".js";
+		return $package;
+	}
+
+	protected function getViewBridgeName()
+	{
+		return "AssetItemViewBridge";
+	}
+
 }
