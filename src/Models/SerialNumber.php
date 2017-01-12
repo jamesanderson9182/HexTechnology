@@ -42,7 +42,7 @@ class SerialNumber extends Model
             new DateColumn("DateAddedToSystem"),
             new ForeignKeyColumn("AssetID")
         );
-        $schema->labelColumnName = "AssetName";
+        $schema->labelColumnName = "SerialNumberCode";
         return $schema;
     }
 

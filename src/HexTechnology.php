@@ -15,6 +15,7 @@ use HexTechnology\Models\HexTechnologySolutionSchema;
 use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\SerialNumber;
 use HexTechnology\RestApi\AssetsResource;
+use HexTechnology\RestApi\SerialsResource;
 use Rhubarb\Crown\Application;
 use Rhubarb\Crown\Layout\LayoutModule;
 use Rhubarb\Crown\String\StringTools;
@@ -53,7 +54,9 @@ class HexTechnology extends Application
          */
         $this->addUrlHandlers([
             "/api" => new RestApiRootHandler(ApiDescriptionResource::class, [
-                "/assets" => new RestCollectionHandler(AssetsResource::class)
+                "/assets" => new RestCollectionHandler(AssetsResource::class, [
+                	"/serials" => new RestCollectionHandler(SerialsResource::class)
+				])
             ])
         ]);
 

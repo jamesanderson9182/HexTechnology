@@ -2,6 +2,7 @@
 
 namespace HexTechnology\RestApi;
 
+use HexTechnology\Models\Asset;
 use Rhubarb\RestApi\Resources\ModelRestResource;
 
 class AssetsResource extends ModelRestResource
@@ -16,4 +17,20 @@ class AssetsResource extends ModelRestResource
     {
         return "Asset";
     }
+
+	public function getChildResource( $childUrlFragment )
+	{
+		switch ($childUrlFragment) {
+			case "/serials":
+				/** @var Asset $asset */
+				$asset = $this->getModel();
+				$serials = $asset->SerialNumbers;
+				$serialResource = new SerialsResource($this);
+				$serialResource->setModelCollection($serials);
+				return $serialResource;
+				break;
+		}
+		return parent::getChildResource($childUrlFragment);
+	}
+
 }
