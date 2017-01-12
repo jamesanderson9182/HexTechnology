@@ -1,6 +1,7 @@
 Installation Guide 
 ==================
 ```bash
+FORGET THE GUIDE, USE EVENTS TO FIRE JQUERY BACK!
 git clone git@gitlab.com:janderson9182/HexTechnology.git
 cd HexTechnology
 composer install 
