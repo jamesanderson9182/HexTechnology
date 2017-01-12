@@ -5,6 +5,7 @@ namespace HexTechnology\Leaves\Assets;
 
 use HexTechnology\Models\Asset;
 use HexTechnology\Models\SerialNumber;
+use Rhubarb\Leaf\Controls\Common\Buttons\Button;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\DropDown\DropDown;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
 use Rhubarb\Leaf\Crud\Leaves\CrudView;
@@ -12,6 +13,12 @@ use Rhubarb\Stem\Filters\Equals;
 
 class AssetsItemView extends CrudView
 {
+
+    /**
+     * @var AssetsItemModel
+     */
+    protected $model;
+
     protected function createSubLeaves()
     {
         parent::createSubLeaves();
@@ -24,7 +31,14 @@ class AssetsItemView extends CrudView
             "RentalCostPerWeek",
             "MaxPowerRating",
             "Model",
-            "ManufacturerID"
+            "ManufacturerID",
+            $newSerialButton = new Button("AddSerial", "Add Serial", function(){
+                $this->model->serialAddedEvent->raise();
+            }),
+            $serialNumberCode = new TextBox("SerialNumberCode"),
+            $serialNumberInitialPrice = new TextBox("SerialNumberInitialPrice"),
+            $serialNumberCurrentValue= new TextBox( "SerialNumberCurrentValue"),
+            $serialNumberPurchaseDate = new TextBox("SerialNumberPurchaseDate")
         );
 
         $this->leaves["Save"]->addCssClassNames("btn btn-success");
@@ -41,16 +55,22 @@ class AssetsItemView extends CrudView
 
 
         print "<h1 class='title'>Asset: {$asset->AssetName}</h1>";
-        print "<div class='item'>";
-        print "<span class='btn btn-warning'><img src='/static/images/back.svg' height='13px' style='margin-right:5px; margin-bottom:-1px;'><a href='../'>back</a></span>";
+        print "<div class='item'>
+               <span class='btn btn-warning'><img src='/static/images/back.svg' height='13px' style='margin-right:5px; margin-bottom:-1px;'><a href='../'>back</a></span>
+               <div class='item-two-column'>
+               <div class='item-column'>";
         print "<p>Asset Name</p>" . $this->leaves["AssetName"];
         print "<p>Rental Cost Per Day</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>Asset Type <a href='../types/add/'> (add)</a> </p>" . $this->leaves["AssetTypeID"];
         print "<p>Description</p>" . $this->leaves["Description"];
+        print "</div>";
+        print "<div class='item-column'>";
         print "<p>Rental Cost Per Day</p>" . $this->leaves["RentalCostPerDay"];
         print "<p>Rental Cost Per Week</p>" . $this->leaves["RentalCostPerWeek"];
         print "<p>Model</p>" . $this->leaves["Model"];
         print "<p>Manufacturer <a href='../manufacturers/add/'> (add)</a></p>" . $this->leaves["ManufacturerID"];
+        print "</div>";
+        print "</div>";
 
         print "<br>";
         print "<br>";
@@ -91,6 +111,12 @@ class AssetsItemView extends CrudView
                 <?php
             }
             ?>
+    <tr>
+        <td><?= $this->leaves["SerialNumberCode"] ?><?= $this->leaves["AddSerial"] ?></td>
+        <td><?= $this->leaves["SerialNumberInitialPrice"] ?></td>
+        <td><?= $this->leaves["SerialNumberCurrentValue"] ?></td>
+        <td><?= $this->leaves["SerialNumberPurchaseDate"] ?></td>
+    </tr>
             </table></div>
             <script>
                 function myFunction() {

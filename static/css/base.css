@@ -214,3 +214,16 @@ a:-webkit-any-link {
 .item-search {
     display: block;
 }
+
+.item-two-column {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item-column {
+    display: inline-block;
+    margin-left: 50px;
+}

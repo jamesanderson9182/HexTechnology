@@ -1,8 +1,6 @@
 <?php
 
-
 namespace HexTechnology\Models;
-
 
 use Rhubarb\Crown\DateTime\RhubarbDate;
 use Rhubarb\Crown\Tests\Fixtures\Codeception\RhubarbConnector;
@@ -13,7 +11,6 @@ use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
 use Rhubarb\Stem\Schema\Columns\MoneyColumn;
 use Rhubarb\Stem\Schema\Columns\StringColumn;
 use Rhubarb\Stem\Schema\ModelSchema;
-
 
 /**
  *
@@ -50,9 +47,16 @@ class SerialNumber extends Model
     {
         parent::beforeSave();
         //Save the date added to the system to be now if it hasn't already been saved
-        if( $this->isNewRecord() ){
+        if ($this->isNewRecord()) {
             $this->DateAddedToSystem = new RhubarbDate("now");
         }
+
+        //TODO Have a method called GetCurrentLocation that when called without the 'Get' works out the current location
+        //based on who had it last and if the person who had it last returned it.
+
+        //TODO before save check if there is a serial number with this unique code in the system already,
+        // if so throw a ModelConsistencyException make sure that the same one with the same serial does not throw
+        // one though
     }
 
 }
