@@ -8,10 +8,12 @@ use HexTechnology\Layouts\HexTechnologyLayoutProvider;
 use HexTechnology\Leaves\Assets\AssetsCollection;
 use HexTechnology\Leaves\Assets\AssetTypes\AssetTypesCollection;
 use HexTechnology\Leaves\Assets\Manufacturers\ManufacturersCollection;
+use HexTechnology\Leaves\Clients\ClientsCollection;
 use HexTechnology\Leaves\Index\Index;
 use HexTechnology\Leaves\Assets\Serials\SerialsCollection;
 use HexTechnology\Models\Asset;
 use HexTechnology\Models\AssetType;
+use HexTechnology\Models\Client;
 use HexTechnology\Models\HexTechnologySolutionSchema;
 use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\SerialNumber;
@@ -74,7 +76,8 @@ class HexTechnology extends Application
                         "types/" => new CrudUrlHandler(AssetType::class, StringTools::getNamespaceFromClass(AssetTypesCollection::class)),
                         "serials/" => new CrudUrlHandler(SerialNumber::class, StringTools::getNamespaceFromClass(SerialsCollection::class)),
                         "manufacturers/" => new CrudUrlHandler(Manufacturer::class, StringTools::getNamespaceFromClass(ManufacturersCollection::class))
-                    ])
+                    ]),
+                    "clients/" => new CrudUrlHandler(Client::class, StringTools::getNamespaceFromClass(ClientsCollection::class))
                 ])
             ]
         );

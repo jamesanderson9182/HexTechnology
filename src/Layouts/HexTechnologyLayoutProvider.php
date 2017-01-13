@@ -30,7 +30,7 @@ class HexTechnologyLayoutProvider extends LayoutProvider
     public function printContainerTitle($containerTitle)
     {
         ?>
-        <h3><?= $containerTitle ?></h3>
+        <h1 class="title"><?= $containerTitle ?></h1>
         <?php
     }
 

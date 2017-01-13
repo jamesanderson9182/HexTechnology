@@ -20,11 +20,11 @@ class DefaultLayout extends BaseLayout
         ?>
         <div id="top">
             <?php
-//            $title = $this->getTitle();
-//            if ($title != "") {
-//                print "<a href='/'> <h1>" . $title . "</h1></a>";
-//            }
-            ?>
+      /*      $title = $this->getTitle();
+            if ($title != "") {
+                print "<a href='/'> <h1>" . $title . "</h1></a>";
+            }
+      */    ?>
         </div>
         <?php print $this->getNav(); ?>
         <div id="content">
