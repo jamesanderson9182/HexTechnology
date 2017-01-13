@@ -14,6 +14,7 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("SerialNumber", SerialNumber::class);
         $this->addModel("AssetType", AssetType::class);
         $this->addModel("Manufacturer", Manufacturer::class);
+        $this->addModel("Client", Client::class);
     }
 
     protected function defineRelationships()
