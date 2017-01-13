@@ -18,9 +18,12 @@ class AssetsItemModel extends CrudModel
     public $SerialNumberCurrentValue = "";
     public $SerialNumberPurchaseDate = "";
 
+    public $testEvent;
+
     public function __construct()
     {
         $this->serialAddedEvent = new Event();
+        $this->testEvent = new Event();
         parent::__construct();
     }
 

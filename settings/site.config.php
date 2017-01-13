@@ -2,6 +2,7 @@
 
 namespace HexTechnology;
 
+use Rhubarb\Crown\Application;
 use Rhubarb\Crown\Exceptions\Handlers\ExceptionHandler;
 use Rhubarb\Crown\Logging\Log;
 use Rhubarb\Crown\Logging\PhpLog;
@@ -18,3 +19,7 @@ Log::attachLog( new PhpLog( Log::ERROR_LEVEL ) );
 
 // Switch off exception trapping. You should have this on in the production environment.
 ExceptionHandler::disableExceptionTrapping();
+
+$application = Application::current();
+$application->developerMode = true;
+

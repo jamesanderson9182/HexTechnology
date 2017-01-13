@@ -9,6 +9,7 @@ use Rhubarb\Leaf\Controls\Common\Buttons\Button;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\DropDown\DropDown;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
 use Rhubarb\Leaf\Crud\Leaves\CrudView;
+use Rhubarb\Leaf\LayoutProviders\LayoutProvider;
 use Rhubarb\Stem\Filters\Equals;
 
 class AssetsItemView extends CrudView
@@ -50,6 +51,9 @@ class AssetsItemView extends CrudView
     protected function printViewContent()
     {
         parent::printViewContent();
+
+//        LayoutProvider::getProvider()->printItems();
+
         /** @var Asset $asset */
         $asset = $this->model->restModel;
 
@@ -140,6 +144,7 @@ class AssetsItemView extends CrudView
                     }
                 }
             </script>
+            <button id="james">Hello</button>
             <?php
         }
         //TODO Replace inline JS with a ViewBridge
