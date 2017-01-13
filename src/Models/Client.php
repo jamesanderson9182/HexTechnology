@@ -20,7 +20,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $Town Repository field
  * @property string $Mobile Repository field
  * @property string $Telephone Repository field
- * @property string $email Repository field
+ * @property string $Email Repository field
  */
 class Client extends Model
 {
@@ -43,7 +43,7 @@ class Client extends Model
             new StringColumn("Town", 50),
             new StringColumn("Mobile", 50),
             new StringColumn("Telephone", 50),
-            new StringColumn("email", 50)
+            new StringColumn("Email", 50)
         );
         $schema->labelColumnName = "ClientDisplayName";
         return $schema;
