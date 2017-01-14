@@ -20,11 +20,11 @@ class DefaultLayout extends BaseLayout
         ?>
         <div id="top">
             <?php
-//            $title = $this->getTitle();
-//            if ($title != "") {
-//                print "<a href='/'> <h1>" . $title . "</h1></a>";
-//            }
-            ?>
+      /*      $title = $this->getTitle();
+            if ($title != "") {
+                print "<a href='/'> <h1>" . $title . "</h1></a>";
+            }
+      */    ?>
         </div>
         <?php print $this->getNav(); ?>
         <div id="content">
@@ -52,9 +52,7 @@ class DefaultLayout extends BaseLayout
         <a href="/"><img src="/static/images/logo.png" alt="logo" height="55px"></a>
             <ul>
                 <li><h1><a href="/assets/">Assets</a></h1></li>
-                <li><h1><a href="/assets/types/">Assets Types</a></h1></li>
-                <li><h1><a href="/assets/manufacturers/">Manufacturers</a></h1></li>
-                <li><h1><a href="/assets/serials/">Serial Numbers</a></h1></li>
+                <li><h1><a href="/clients/">Clients</a></h1></li>
             </ul>
         </nav>
 HTML;
