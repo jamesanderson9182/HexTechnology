@@ -15,6 +15,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $ProjectName Repository field
  * @property int $ClientID Repository field
  * @property-read Client $Client Relationship
+ * @property-read ProjectExpense[]|\Rhubarb\Stem\Collections\RepositoryCollection $ProjectExpenses Relationship
  */
 class Project extends Model
 {

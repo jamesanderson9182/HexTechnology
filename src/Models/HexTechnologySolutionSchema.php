@@ -15,6 +15,7 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("Manufacturer", Manufacturer::class);
         $this->addModel("Client", Client::class);
         $this->addModel("Project", Project::class);
+        $this->addModel("ProjectExpense", ProjectExpense::class);
     }
 
     protected function defineRelationships()
@@ -23,6 +24,8 @@ class HexTechnologySolutionSchema extends SolutionSchema
         //One Asset can have many serial numbers
         //One Asset Type can have many Assets
         //One manufacturer can have many Assets
+        //One Client will have many projects
+        //One Project can have many expenses
         $this->declareOneToManyRelationships([
             "Asset" =>
                 [
@@ -36,9 +39,14 @@ class HexTechnologySolutionSchema extends SolutionSchema
                 [
                     "Assets" => "Asset.ManufacturerID"
                 ],
-            "Client" => [
-                "Projects" => "Project.ClientID"
-            ]
+            "Client" =>
+                [
+                    "Projects" => "Project.ClientID"
+                ],
+            "Project" =>
+                [
+                    "ProjectExpenses" => "ProjectExpense.ProjectID"
+                ]
         ]);
     }
 
