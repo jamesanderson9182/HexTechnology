@@ -2,19 +2,20 @@
 
 namespace HexTechnology\Leaves\Expenses;
 
+use HexTechnology\Layouts\HexTechnologyCollectionTableView;
 use HexTechnology\Models\Expense;
-use Rhubarb\Leaf\Crud\Leaves\CrudView;
 use Rhubarb\Leaf\Table\Leaves\Table;
 
-class ExpensesCollectionView extends CrudView
+class ExpensesCollectionView extends HexTechnologyCollectionTableView
 {
     protected function createSubLeaves()
     {
         parent::createSubLeaves();
 
-        $this->registerSubLeaf(
-           $table =  new Table(Expense::all())
-        );
+        /** @var Table $table */
+        $table = $this->leaves["Table"];
+
+        $table->setCollection(Expense::all());
 
         $table->columns = [
             "View" => "<a href='{ExpenseID}/'>view</a>",
@@ -23,15 +24,6 @@ class ExpensesCollectionView extends CrudView
             "ExpenseType",
             "TotalCharge"
         ];
-    }
-
-    protected function printViewContent()
-    {
-        parent::printViewContent();
-        print "<h1 class='title'>" . $this->getTitle() . "</h1>";
-        print "<div class='collection-table'>";
-        print $this->leaves["Table"];
-        print "<div>";
     }
 
 }
