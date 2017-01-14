@@ -17,6 +17,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read Client $Client Relationship
  * @property-read Expense[]|\Rhubarb\Stem\Collections\RepositoryCollection $ProjectExpenses Relationship
  * @property-read Expense[]|\Rhubarb\Stem\Collections\RepositoryCollection $Expenses Relationship
+ * @property-read Task[]|\Rhubarb\Stem\Collections\RepositoryCollection $Tasks Relationship
  */
 class Project extends Model
 {

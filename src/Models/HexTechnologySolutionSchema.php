@@ -16,6 +16,7 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("Client", Client::class);
         $this->addModel("Project", Project::class);
         $this->addModel("Expense", Expense::class);
+        $this->addModel("Task", Task::class);
     }
 
     protected function defineRelationships()
@@ -27,6 +28,7 @@ class HexTechnologySolutionSchema extends SolutionSchema
          * One manufacturer can have many Assets
          * One Client will have many projects
          * One Project can have many expenses
+         * One Project can have many tasks
          */
         $this->declareOneToManyRelationships([
             "Asset" =>
@@ -47,7 +49,8 @@ class HexTechnologySolutionSchema extends SolutionSchema
                 ],
             "Project" =>
                 [
-                    "Expenses" => "Expense.ProjectID"
+                    "Expenses" => "Expense.ProjectID",
+                    "Tasks" => "Task.ProjectID"
                 ]
         ]);
     }
