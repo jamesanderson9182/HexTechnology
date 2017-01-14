@@ -9,6 +9,7 @@ use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\Project;
 use HexTechnology\Models\Expense;
 use HexTechnology\Models\SerialNumber;
+use HexTechnology\Models\Task;
 use Rhubarb\Crown\DateTime\RhubarbDate;
 use Rhubarb\Stem\Custard\DemoDataSeederInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,6 +22,8 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $this->SeedAssets();
         $this->SeedClients();
         $this->SeedProjects();
+        $this->SeedExpenses();
+        $this->SeedTasks();
     }
 
     public function SeedAssets()
@@ -270,6 +273,13 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Do what I'm told";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "Sky Box to DVD";
@@ -295,6 +305,13 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Do what I'm told";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "New Years Eve";
@@ -319,6 +336,13 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->TotalCharge = 2;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Park the cars";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         /*
          * Projects for Trinity
@@ -361,6 +385,27 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Pack gear";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Check venue for internet";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Arrange transport";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "QU32 Training";
@@ -375,6 +420,20 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
         $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Create PowerPoint";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Arrange Dates";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         /*
          * Projects in Kilkeel
@@ -427,10 +486,24 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in field";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "12th 2016";
         $project->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in field";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         $expense = new Expense();
         $expense->ProjectID = $project->ProjectID;
@@ -462,6 +535,12 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in field";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         $project = new Project();
         $project->ClientID = $client->ClientID;
@@ -488,6 +567,13 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in tent";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "Christmas Presenter Training";
@@ -502,6 +588,13 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
         $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Arrange date for training";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         $project = new Project();
         $project->ClientID = $client->ClientID;
@@ -518,6 +611,20 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Plug in the cable";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Contemplate stupidity of the human race";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "GTFO Training";
@@ -533,24 +640,85 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
         $expense->save();
 
+        $task = new Task();
+        $task->TaskTitle = "Arrange date for training";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Kiss that moustache goodbye forever!";
+        $task->TaskDescription = "See you know who...";
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         /*
          * Projects that don't have a client
          */
         $project = new Project();
         $project->ProjectName = "No clients, woo!";
         $project->save();
+    }
 
-        /*
-         * An expense that doesn't have a client
-         */
-
+    public function SeedExpenses()
+    {
         $expense = new Expense();
-        $expense->ExpenseTitle = "Purchase";
+        $expense->ExpenseTitle = "PC";
         $expense->ExpenseDetails = "New Pc with better graphics card to render videos faster";
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
-        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
         $expense->save();
+
+        $expense = new Expense();
+        $expense->ExpenseTitle = "MacBookPro 2017 17\"";
+        $expense->ExpenseDetails = "Because who needs USB 3";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ExpenseTitle = "iPhone";
+        $expense->ExpenseDetails = "Baaaaaa";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ExpenseTitle = "Car";
+        $expense->ExpenseDetails = "Brum brum";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+    }
+
+    public function SeedTasks()
+    {
+        $task = new Task();
+        $task->TaskTitle = "Put new bar codes on";
+        $task->TaskDescription;
+        $task->Completed = false;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Phone yer man back";
+        $task->TaskDescription;
+        $task->Completed = false;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Tick this box";
+        $task->TaskDescription = "lol, every time you seed data this will be unticked xD";
+        $task->Completed = false;
+        $task->save();
     }
 }
