@@ -25,8 +25,10 @@ class ProjectItemView extends CrudView
         parent::printViewContent();
         print "<h1 class='title'>" . $this->getTitle() . "</h1>";
         ?>
-            <div class='item'>
-            <span class='btn btn-warning'><img src='/static/images/back.svg' height='13px' style='margin-right:5px; margin-bottom:-1px;'><a href='../'>back</a></span>
+        <div class='item'>
+            <span class='btn btn-warning'><img src='/static/images/back.svg' height='13px'
+                                               style='margin-right:5px; margin-bottom:-1px;'><a
+                        href='../'>back</a></span>
         <?php
         $this->layoutItemsWithContainer("",
             [

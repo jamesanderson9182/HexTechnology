@@ -3,7 +3,6 @@
 namespace HexTechnology\Leaves\Project;
 
 use HexTechnology\Models\Project;
-use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;
 use Rhubarb\Leaf\Crud\Leaves\CrudView;
 use Rhubarb\Leaf\Table\Leaves\Table;
 
@@ -16,11 +15,9 @@ class ProjectCollectionView extends CrudView
             $table = new Table(Project::all())
         );
         $table->columns = [
-            "ProjectID",
-            "ProjectName",
-            "ClientID"
+            "Project Name" => "<a href='{ProjectID}/'>{ProjectName}</a>",
+            "Client" => "<a href'/clients/{ClientID}'>{Client.ClientDisplayName}</a>",
         ];
-
     }
 
     protected function printViewContent()
@@ -31,5 +28,4 @@ class ProjectCollectionView extends CrudView
         print $this->leaves["Table"];
         print "</div>";
     }
-
 }
