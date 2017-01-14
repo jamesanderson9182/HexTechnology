@@ -38,7 +38,7 @@ class Task extends Model
             new BooleanColumn("Completed"),
             new ForeignKeyColumn("ProjectID")
         );
-        $schema->labelColumnName = "TaskName";
+        $schema->labelColumnName = "TaskTitle";
         return $schema;
     }
 }
