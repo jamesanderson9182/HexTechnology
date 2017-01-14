@@ -21,6 +21,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $Mobile Repository field
  * @property string $Telephone Repository field
  * @property string $Email Repository field
+ * @property-read Project[]|\Rhubarb\Stem\Collections\RepositoryCollection $Projects Relationship
  */
 class Client extends Model
 {
