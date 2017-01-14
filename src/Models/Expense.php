@@ -25,10 +25,12 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property float $TotalCharge Repository field
  * @property string $ExpenseType Repository field
  * @property-read Project $Project Relationship
+ * @property int $ExpenseID Repository field
  */
-class ProjectExpense extends Model
+class Expense extends Model
 {
-
+    const EXPENSE_TYPE_PURCHASE = "Purchase";
+    const EXPENSE_TYPE_TIME = "Time";
     /**
      * Returns the schema for this data object.
      *
@@ -36,18 +38,18 @@ class ProjectExpense extends Model
      */
     protected function createSchema()
     {
-        $schema = new ModelSchema("ProjectExpense");
+        $schema = new ModelSchema("Expense");
         $schema->addColumn(
-            new AutoIncrementColumn("ProjectExpenseID"),
+            new AutoIncrementColumn("ExpenseID"),
             new ForeignKeyColumn("ProjectID"),
             new StringColumn("ExpenseTitle", 50),
             new LongStringColumn("ExpenseDetails"),
             new IntegerColumn("NumberOfUnits"),
             new DecimalColumn("UnitCost"),
             new MoneyColumn("TotalCharge"),
-            new MySqlEnumColumn("ExpenseType", "Purchase", [
-                "Purchase",
-                "Time"
+            new MySqlEnumColumn("ExpenseType", self::EXPENSE_TYPE_PURCHASE, [
+                self::EXPENSE_TYPE_PURCHASE,
+                self::EXPENSE_TYPE_TIME
             ])
         );
         $schema->labelColumnName = "ExpenseTitle";
