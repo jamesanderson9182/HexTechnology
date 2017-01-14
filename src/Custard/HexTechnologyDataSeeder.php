@@ -6,6 +6,7 @@ use HexTechnology\Models\Asset;
 use HexTechnology\Models\AssetType;
 use HexTechnology\Models\Client;
 use HexTechnology\Models\Manufacturer;
+use HexTechnology\Models\Project;
 use HexTechnology\Models\SerialNumber;
 use Rhubarb\Crown\DateTime\RhubarbDate;
 use Rhubarb\Stem\Custard\DemoDataSeederInterface;
@@ -18,6 +19,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
     {
         $this->SeedAssets();
         $this->SeedClients();
+        $this->SeedProjects();
     }
 
     public function SeedAssets()
@@ -211,6 +213,25 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->save();
 
         $client = new Client();
+        $client->ClientDisplayName = "Timothy Hancock";
+        $client->Forename = "Timothy";
+        $client->Surname = "Hancock";
+        $client->AddressLine1 = "Ap #217-2694 Dolor. Rd.";
+        $client->Postcode = "P1A 0W9";
+        $client->Town = "Middlesbrough";
+        $client->Mobile = "076 4063 6734";
+        $client->Telephone = "(0113) 954 3727";
+        $client->Email = "dapibus.quam.quis@afelisullamcorper.co.uk";
+        $client->save();
+    }
+
+    public function SeedProjects(){
+
+        /*
+         * Projects for Hillary
+         */
+
+        $client = new Client();
         $client->ClientDisplayName = "Hillary Thompson";
         $client->Forename = "Hillary";
         $client->Surname = "Thompson";
@@ -221,6 +242,25 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->Telephone = "070 7521 6106";
         $client->Email = "scelerisque.mollis@Phasellus.edu";
         $client->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "VHS To DVD";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "Sky Box to DVD";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "New Years Eve";
+        $project->save();
+
+        /*
+         * Projects for Trinity
+         */
 
         $client = new Client();
         $client->ClientDisplayName = "Trinity Methodist Church";
@@ -234,6 +274,20 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->Email = "nec.euismod.in@auctornunc.org";
         $client->save();
 
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "Variety Concert";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "QU32 Training";
+        $project->save();
+
+        /*
+         * Projects in Kilkeel
+         */
+
         $client = new Client();
         $client->ClientDisplayName = "FuseFM";
         $client->Forename = "Roberta";
@@ -246,16 +300,41 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->Email = "Aliquam.auctor.velit@interdumfeugiatSed.edu";
         $client->save();
 
-        $client = new Client();
-        $client->ClientDisplayName = "Timothy Hancock";
-        $client->Forename = "Timothy";
-        $client->Surname = "Hancock";
-        $client->AddressLine1 = "Ap #217-2694 Dolor. Rd.";
-        $client->Postcode = "P1A 0W9";
-        $client->Town = "Middlesbrough";
-        $client->Mobile = "076 4063 6734";
-        $client->Telephone = "(0113) 954 3727";
-        $client->Email = "dapibus.quam.quis@afelisullamcorper.co.uk";
-        $client->save();
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "11th Night 2016";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "12th 2016";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "11th Day Tent Band 2016";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "Christmas Presenter Training";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "Plugging in ethernet cable";
+        $project->save();
+
+        $project = new Project();
+        $project->ClientID = $client->ClientID;
+        $project->ProjectName = "GTFO Training";
+        $project->save();
+
+        /*
+         * Projects that don't have a client
+         */
+        $project = new Project();
+        $project->ProjectName = "No clients, woo!";
+        $project->save();
     }
 }

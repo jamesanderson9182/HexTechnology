@@ -2,7 +2,6 @@
 
 namespace HexTechnology\Models;
 
-
 use Rhubarb\Stem\Schema\SolutionSchema;
 
 class HexTechnologySolutionSchema extends SolutionSchema
@@ -15,6 +14,7 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("AssetType", AssetType::class);
         $this->addModel("Manufacturer", Manufacturer::class);
         $this->addModel("Client", Client::class);
+        $this->addModel("Project", Project::class);
     }
 
     protected function defineRelationships()
@@ -33,11 +33,13 @@ class HexTechnologySolutionSchema extends SolutionSchema
                     "Assets" => "Asset.AssetTypeID"
                 ],
             "Manufacturer" =>
-            [
-                "Assets" => "Asset.ManufacturerID"
+                [
+                    "Assets" => "Asset.ManufacturerID"
+                ],
+            "Client" => [
+                "Projects" => "Project.ClientID"
             ]
         ]);
     }
-
 
 }
