@@ -7,7 +7,9 @@ use HexTechnology\Models\AssetType;
 use HexTechnology\Models\Client;
 use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\Project;
+use HexTechnology\Models\Expense;
 use HexTechnology\Models\SerialNumber;
+use HexTechnology\Models\Task;
 use Rhubarb\Crown\DateTime\RhubarbDate;
 use Rhubarb\Stem\Custard\DemoDataSeederInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -20,6 +22,8 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $this->SeedAssets();
         $this->SeedClients();
         $this->SeedProjects();
+        $this->SeedExpenses();
+        $this->SeedTasks();
     }
 
     public function SeedAssets()
@@ -225,7 +229,8 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->save();
     }
 
-    public function SeedProjects(){
+    public function SeedProjects()
+    {
 
         /*
          * Projects for Hillary
@@ -248,15 +253,96 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $project->ProjectName = "VHS To DVD";
         $project->save();
 
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "DVDs";
+        $expense->ExpenseDetails = "Had to buy a dvd to burn onto";
+        $expense->NumberOfUnits = 1;
+        $expense->UnitCost = 2;
+        $expense->TotalCharge = 2;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Do what I'm told";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "Sky Box to DVD";
         $project->save();
 
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "DVDs";
+        $expense->ExpenseDetails = "Had to buy a dvd to burn onto";
+        $expense->NumberOfUnits = 1;
+        $expense->UnitCost = 2;
+        $expense->TotalCharge = 2;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Do what I'm told";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "New Years Eve";
         $project->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Broken Microphone";
+        $expense->ExpenseDetails = "Had to buy a new microphone as one got dropped into pool by drunkard";
+        $expense->NumberOfUnits = 1;
+        $expense->UnitCost = 2;
+        $expense->TotalCharge = 2;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Park the cars";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         /*
          * Projects for Trinity
@@ -279,10 +365,75 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $project->ProjectName = "Variety Concert";
         $project->save();
 
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Rental";
+        $expense->ExpenseDetails = "Rental Order To myself";
+        $expense->NumberOfUnits = 1;
+        $expense->UnitCost = 500;
+        $expense->TotalCharge = 500;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Pack gear";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Check venue for internet";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Arrange transport";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "QU32 Training";
         $project->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Create PowerPoint";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Arrange Dates";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         /*
          * Projects in Kilkeel
@@ -305,30 +456,203 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $project->ProjectName = "11th Night 2016";
         $project->save();
 
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "CD";
+        $expense->ExpenseDetails = "Had to buy a cd to give to them after the event";
+        $expense->NumberOfUnits = 1;
+        $expense->UnitCost = 2;
+        $expense->TotalCharge = 2;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Rental";
+        $expense->ExpenseDetails = "Equipment Rental to myself";
+        $expense->NumberOfUnits = 1;
+        $expense->UnitCost = 1000;
+        $expense->TotalCharge = 1000;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in field";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "12th 2016";
         $project->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in field";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "CD";
+        $expense->ExpenseDetails = "Had to burn 2 copies of the cd";
+        $expense->NumberOfUnits = 2;
+        $expense->UnitCost = 2;
+        $expense->TotalCharge = 4;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Rental";
+        $expense->ExpenseDetails = "Equipment Rental to myself";
+        $expense->NumberOfUnits = 1;
+        $expense->UnitCost = 1000;
+        $expense->TotalCharge = 1000;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in field";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "11th Day Tent Band 2016";
         $project->save();
 
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "CD";
+        $expense->ExpenseDetails = "Had to burn 2 copies of the cd";
+        $expense->NumberOfUnits = 2;
+        $expense->UnitCost = 2;
+        $expense->TotalCharge = 4;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Check for internet in tent";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "Christmas Presenter Training";
         $project->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Arrange date for training";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "Plugging in ethernet cable";
         $project->save();
 
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Plug in the cable";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Contemplate stupidity of the human race";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
         $project = new Project();
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "GTFO Training";
         $project->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Time";
+        $expense->ExpenseDetails = "Time taken to ...";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Arrange date for training";
+        $task->TaskDescription;
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Kiss that moustache goodbye forever!";
+        $task->TaskDescription = "See you know who...";
+        $task->Completed = true;
+        $task->ProjectID = $project->ProjectID;
+        $task->save();
 
         /*
          * Projects that don't have a client
@@ -336,5 +660,65 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $project = new Project();
         $project->ProjectName = "No clients, woo!";
         $project->save();
+    }
+
+    public function SeedExpenses()
+    {
+        $expense = new Expense();
+        $expense->ExpenseTitle = "PC";
+        $expense->ExpenseDetails = "New Pc with better graphics card to render videos faster";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ExpenseTitle = "MacBookPro 2017 17\"";
+        $expense->ExpenseDetails = "Because who needs USB 3";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ExpenseTitle = "iPhone";
+        $expense->ExpenseDetails = "Baaaaaa";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ExpenseTitle = "Car";
+        $expense->ExpenseDetails = "Brum brum";
+        $expense->NumberOfUnits = 3;
+        $expense->UnitCost = 15.0;
+        $expense->TotalCharge = 45;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+    }
+
+    public function SeedTasks()
+    {
+        $task = new Task();
+        $task->TaskTitle = "Put new bar codes on";
+        $task->TaskDescription;
+        $task->Completed = false;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Phone yer man back";
+        $task->TaskDescription;
+        $task->Completed = false;
+        $task->save();
+
+        $task = new Task();
+        $task->TaskTitle = "Tick this box";
+        $task->TaskDescription = "lol, every time you seed data this will be unticked xD";
+        $task->Completed = false;
+        $task->save();
     }
 }
