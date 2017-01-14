@@ -55,6 +55,7 @@ class DefaultLayout extends BaseLayout
                 <li><h1><a href="/clients/">Clients</a></h1></li>
                 <li><h1><a href="/projects/">Projects</a></h1></li>
                 <li><h1><a href="/expenses/">Expenses</a></h1></li>
+                <li><h1><a href="/tasks/">Tasks</a></h1></li>
             </ul>
         </nav>
 HTML;
