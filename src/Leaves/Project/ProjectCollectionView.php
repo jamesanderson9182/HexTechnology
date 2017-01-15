@@ -17,7 +17,7 @@ class ProjectCollectionView extends HexTechnologyCollectionTableView
 
         $table->columns =
             [
-                "" => "<a href='{ProjectID}'>view</a>",
+                "" => "<a href='{ProjectID}/'>view</a>",
                 "ProjectName",
                 "Client"
             ];

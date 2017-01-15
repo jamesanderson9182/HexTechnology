@@ -25,7 +25,10 @@ class HexTechnologyCollectionTableView extends CrudView
         );
     }
 
-    protected function printViewContent()
+    /**
+     * This is final so that no subclasses can override it
+     */
+    final function printViewContent()
     {
         parent::printViewContent();
         ?>
