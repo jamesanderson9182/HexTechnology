@@ -215,12 +215,16 @@ a:-webkit-any-link {
     display: block;
 }
 
-.item-two-column {
+.multi-column {
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.column {
+    margin-bottom: 30px;
 }
 
 .item-column {
@@ -240,4 +244,18 @@ a:-webkit-any-link {
 .table-centered {
     display: flex;
     justify-content:  center;
+}
+
+.overflow-auto {
+    overflow-x:auto;
+}
+
+@media (max-width: 1024px) {
+    .multi-column {
+        width: 100%;
+        display: block;
+        align-items: left;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
 }
