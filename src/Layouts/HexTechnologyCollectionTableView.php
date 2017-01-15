@@ -38,7 +38,11 @@ class HexTechnologyCollectionTableView extends CrudView
         <?php
         $this->printAboveTable();
 
+        print "<div style='overflow-x:auto;' class='table-centered'>";
+        print "<div>";
         print $this->leaves["Table"];
+        print "</div>";
+        print "</div>";
 
         $this->printBelowTable();
 

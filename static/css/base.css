@@ -236,3 +236,8 @@ a:-webkit-any-link {
     display: flex;
     flex-direction: column;
 }
+
+.table-centered {
+    display: flex;
+    justify-content:  center;
+}
