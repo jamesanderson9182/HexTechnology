@@ -35,7 +35,9 @@ class HexTechnologyItemView extends CrudView
             <span class='btn btn-warning'>
                 <img src='/static/images/back.svg' height='13px' style='margin-right:5px; margin-bottom:-1px;'>
                 <a href='../'>
-                    back
+                    <?php
+                    print $this->model->restModel->getModelName() . "s";
+                    ?>
                 </a>
             </span>
             <!--    End of Back Button    -->

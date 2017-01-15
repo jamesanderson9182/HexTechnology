@@ -4,10 +4,12 @@ namespace HexTechnology\Leaves\Assets;
 
 use HexTechnology\Layouts\HexTechnologyItemView;
 use HexTechnology\Models\SerialNumber;
+use Rhubarb\Crown\DateTime\RhubarbDate;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
+use Rhubarb\Leaf\Controls\Common\DateTime\Date;
+use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
 use Rhubarb\Leaf\Table\Leaves\Table;
-use Rhubarb\Stem\Filters\EndsWith;
 use Rhubarb\Stem\Filters\Equals;
 
 class AssetsItemView extends HexTechnologyItemView
@@ -35,21 +37,26 @@ class AssetsItemView extends HexTechnologyItemView
                 $this->model->serialAddedEvent->raise();
             }),
             $serialNumberCode = new TextBox("SerialNumberCode"),
-            $serialNumberInitialPrice = new TextBox("SerialNumberInitialPrice"),
-            $serialNumberCurrentValue = new TextBox("SerialNumberCurrentValue"),
-            $serialNumberPurchaseDate = new TextBox("SerialNumberPurchaseDate"),
+            $serialNumberInitialPrice = new NumericTextBox("SerialNumberInitialPrice", 2),
+            $serialNumberCurrentValue = new NumericTextBox("SerialNumberCurrentValue", 2),
+            $serialNumberPurchaseDate = new Date("SerialNumberPurchaseDate"),
 
             $table = new Table(SerialNumber::find(new Equals("AssetID", $this->model->restModel->UniqueIdentifier)))
         );
 
+        $serialNumberInitialPrice->setPlaceholderText("£");
+        $serialNumberCurrentValue->setPlaceholderText("£");
+
         $table->columns = [
-            "" => "view",
+            "" => "<a href='/assets/serials/{SerialNumberID}/'>view</a>",
             "SerialNumberCode",
             "InitialValue",
             "CurrentValue",
-            "PurchaseDate",
             "PurchaseDate"
         ];
+
+        $serialNumberPurchaseDate->setYearRange(2010, 2050);
+
 
     }
 
@@ -63,12 +70,12 @@ class AssetsItemView extends HexTechnologyItemView
                 "AssetName",
                 "RentalCostPerDay",
                 "AssetTypeID",
-                "Description",
                 "RentalCostPerDay",
                 "RentalCostPerWeek",
                 "MaxPowerRating",
                 "Model",
-                "ManufacturerID"
+                "ManufacturerID",
+                "Description",
             ]
         );
 
@@ -81,28 +88,16 @@ class AssetsItemView extends HexTechnologyItemView
 
         $this->layoutItemsWithContainer( "",
             [
-                "Code" => "SerialNumberCode",
-                "Init" => "SerialNumberInitialPrice",
-                "Val" => "SerialNumberCurrentValue",
-                "Date" => "SerialNumberPurchaseDate",
+                "Serial Number" => "SerialNumberCode",
+                "Initial Value" => "SerialNumberInitialPrice",
+                "Current Value" => "SerialNumberCurrentValue",
+                "Date Purchased" => "SerialNumberPurchaseDate",
                 "AddSerial"
             ]
         );
 
         print "</div>";
         print "</div>";
-    }
-
-    public function getDeploymentPackage()
-    {
-        $package = parent::getDeploymentPackage();
-        $package->resourcesToDeploy[] = __DIR__ . "/" . $this->getViewBridgeName() . ".js";
-        return $package;
-    }
-
-    protected function getViewBridgeName()
-    {
-        return "AssetItemViewBridge";
     }
 
 }

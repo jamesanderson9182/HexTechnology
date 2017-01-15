@@ -259,3 +259,9 @@ a:-webkit-any-link {
         justify-content: space-around;
     }
 }
+
+#AssetsItem_Description {
+    max-width: 300px;
+    height: 200px;
+    max-height: 200px;
+}
