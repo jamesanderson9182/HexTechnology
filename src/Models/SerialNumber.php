@@ -3,7 +3,6 @@
 namespace HexTechnology\Models;
 
 use Rhubarb\Crown\DateTime\RhubarbDate;
-use Rhubarb\Crown\Tests\Fixtures\Codeception\RhubarbConnector;
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\DateColumn;

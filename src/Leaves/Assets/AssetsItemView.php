@@ -3,9 +3,14 @@
 namespace HexTechnology\Leaves\Assets;
 
 use HexTechnology\Layouts\HexTechnologyItemView;
-use HexTechnology\Models\Asset;
+use HexTechnology\Models\SerialNumber;
+use Rhubarb\Crown\DateTime\RhubarbDate;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
+use Rhubarb\Leaf\Controls\Common\DateTime\Date;
+use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
+use Rhubarb\Leaf\Table\Leaves\Table;
+use Rhubarb\Stem\Filters\Equals;
 
 class AssetsItemView extends HexTechnologyItemView
 {
@@ -32,83 +37,67 @@ class AssetsItemView extends HexTechnologyItemView
                 $this->model->serialAddedEvent->raise();
             }),
             $serialNumberCode = new TextBox("SerialNumberCode"),
-            $serialNumberInitialPrice = new TextBox("SerialNumberInitialPrice"),
-            $serialNumberCurrentValue = new TextBox("SerialNumberCurrentValue"),
-            $serialNumberPurchaseDate = new TextBox("SerialNumberPurchaseDate")
+            $serialNumberInitialPrice = new NumericTextBox("SerialNumberInitialPrice", 2),
+            $serialNumberCurrentValue = new NumericTextBox("SerialNumberCurrentValue", 2),
+            $serialNumberPurchaseDate = new Date("SerialNumberPurchaseDate"),
+
+            $table = new Table(SerialNumber::find(new Equals("AssetID", $this->model->restModel->UniqueIdentifier)))
         );
+
+        $serialNumberInitialPrice->setPlaceholderText("£");
+        $serialNumberCurrentValue->setPlaceholderText("£");
+
+        $table->columns = [
+            "" => "<a href='/assets/serials/{SerialNumberID}/'>view</a>",
+            "SerialNumberCode",
+            "InitialValue",
+            "CurrentValue",
+            "PurchaseDate"
+        ];
+
+        $serialNumberPurchaseDate->setYearRange(2010, 2050);
+
 
     }
 
     protected function printInnerContent()
     {
+        print "<div class='multi-column'>";
+        print "<div class='column'>";
         $this->layoutItemsWithContainer(
             "",
             [
                 "AssetName",
                 "RentalCostPerDay",
                 "AssetTypeID",
-                "Description",
                 "RentalCostPerDay",
                 "RentalCostPerWeek",
                 "MaxPowerRating",
                 "Model",
-                "ManufacturerID"
+                "ManufacturerID",
+                "Description",
             ]
         );
-        $asset = $this->model->restModel;
-        /** @var integer $totalSerials */
-        $totalSerials = sizeof($asset->SerialNumbers);
 
-        if ($totalSerials > 0) {
-            ?>
-            <div style="overflow-x:auto;" class="item-related">
-                <p>Count of serial numbers: <?= $totalSerials ?></p>
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Serial Numbers.."
-                       class="input-search">
-                <table id="myTable">
-                    <tr class="header">
-                        <th>Serial Code</th>
-                        <th>Initial Value</th>
-                        <th>Current Value</th>
-                        <th>Current Location:</th>
-                    </tr>
-                    <?php
+        print "</div>";
+        print "<div class='column'>";
 
-                    foreach ($asset->SerialNumbers as $serialNumber) {
-                        ?>
-                        <tr>
-                            <td>
-                                <a href="/assets/serials/$serialNumber->SerialNumberID/"><?= $serialNumber->SerialNumberCode ?></a>
-                            </td>
-                            <td>£<?= $serialNumber->InitialValue ?></td>
-                            <td>£<?= $serialNumber->CurrentValue ?></td>
-                            <td>e.g. warehouse</td>
-                        </tr>
-                        <?php
-                    }
-                    ?>
-                    <tr>
-                        <td><?= $this->leaves["SerialNumberCode"] ?><?= $this->leaves["AddSerial"] ?></td>
-                        <td><?= $this->leaves["SerialNumberInitialPrice"] ?></td>
-                        <td><?= $this->leaves["SerialNumberCurrentValue"] ?></td>
-                        <td><?= $this->leaves["SerialNumberPurchaseDate"] ?></td>
-                    </tr>
-                </table>
-            </div>
-            <?php
-        }
-    }
+        print "<div class='overflow-auto'>";
+        print $this->leaves["Table"];
+        print "</div>";
 
-    public function getDeploymentPackage()
-    {
-        $package = parent::getDeploymentPackage();
-        $package->resourcesToDeploy[] = __DIR__ . "/" . $this->getViewBridgeName() . ".js";
-        return $package;
-    }
+        $this->layoutItemsWithContainer( "",
+            [
+                "Serial Number" => "SerialNumberCode",
+                "Initial Value" => "SerialNumberInitialPrice",
+                "Current Value" => "SerialNumberCurrentValue",
+                "Date Purchased" => "SerialNumberPurchaseDate",
+                "AddSerial"
+            ]
+        );
 
-    protected function getViewBridgeName()
-    {
-        return "AssetItemViewBridge";
+        print "</div>";
+        print "</div>";
     }
 
 }
