@@ -5,3 +5,6 @@
 /composer.lock
 /cache/
 /bin/*
+tests/_output/*
+tests/_data/*
+tests/_support/_generated/*

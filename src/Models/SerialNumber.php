@@ -49,7 +49,6 @@ class SerialNumber extends Model
         if ($this->isNewRecord()) {
             $this->DateAddedToSystem = new RhubarbDate("now");
         }
-
         //TODO Have a method called GetCurrentLocation that when called without the 'Get' works out the current location
         //based on who had it last and if the person who had it last returned it.
 
