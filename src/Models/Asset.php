@@ -54,6 +54,16 @@ class Asset extends Model
         return $schema;
     }
 
-    //TODO before save if manufacturer id and model are set but asset name isn't, set it to be the concatenation of these two
-    //Method for times rented
+    protected function beforeSave()
+    {
+        parent::beforeSave();
+        if($this->AssetName == "")
+        {
+            if ($this->Manufacturer != null && $this->Model != "") {
+                $this->AssetName = $this->Manufacturer->ManufacturerName . " " . $this->Model;
+            }
+        }
+    }
+
+    // TODO Method for times rented
 }
