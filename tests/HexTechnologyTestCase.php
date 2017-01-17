@@ -38,4 +38,22 @@ abstract class HexTechnologyTestCase extends Test
 		 */
 	}
 
+    /**
+     * @param string $expectedException
+     * @param callable $callable
+     * @param string|null $message
+     */
+    public function assertThrowsException($expectedException, callable $callable, $message = null)
+    {
+        $thrown = false;
+        try {
+            $callable();
+        } catch (\Exception $ex) {
+            $thrown = true;
+            $this->assertInstanceOf($expectedException, $ex);
+        }
+
+        $this->assertTrue($thrown, $message !== null ? $message : "Expected a {$expectedException} to be thrown");
+    }
+
 }

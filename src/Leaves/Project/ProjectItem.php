@@ -6,6 +6,7 @@ use HexTechnology\Models\Expense;
 use Rhubarb\Crown\Exceptions\ForceResponseException;
 use Rhubarb\Crown\Response\RedirectResponse;
 use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;
+use Rhubarb\Stem\Models\Validation\ValidationError;
 
 class ProjectItem extends CrudLeaf
 {
@@ -39,6 +40,12 @@ class ProjectItem extends CrudLeaf
     protected function onModelCreated()
     {
         $this->model->NewExpenseEvent->attachHandler(function () {
+
+
+            if($this->model->ExpenseTitle == ""){
+                // An expense needs to have title!
+                throw new ForceResponseException(new RedirectResponse("."));
+            }
             $expense = new Expense();
 
             $expense->ProjectID = $this->model->restModel->UniqueIdentifier;
