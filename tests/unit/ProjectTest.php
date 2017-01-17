@@ -40,4 +40,60 @@ class ProjectTest extends HexTechnologyTestCase
 
         $this->assertEquals($task->TaskTitle, $project->Tasks[0]->TaskTitle, "A Project can have many Tasks");
     }
+
+    public function testTotalExpenses()
+    {
+        $project = new Project();
+        $project->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Four Times Three Equals 12";
+        $expense->UnitCost = 4;
+        $expense->NumberOfUnits = 3;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Five Times Nine Equals 45";
+        $expense->UnitCost = 5;
+        $expense->NumberOfUnits = 9;
+        $expense->save();
+
+        $expenditure = $project->TotalExpenses;
+        $this->assertEquals(4 * 3 + 5 * 9, $expenditure, "TotalExpenses of a Project should equal the sum of Expense.UnitCost(s) x Expenses.NumberOfUnit(s)");
+    }
+
+    public function testTotalProfitAndRevenue()
+    {
+        $project = new Project();
+        $project->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Sample tracking hours against project";
+        //Cost per hour
+        $expense->UnitCost = 21.30;
+        //Hours worked
+        $expense->NumberOfUnits = 3;
+        $expense->TotalCharge = 100;
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
+        $expense->save();
+
+        $expense = new Expense();
+        $expense->ProjectID = $project->ProjectID;
+        $expense->ExpenseTitle = "Buy paint";
+        $expense->UnitCost = 10.30;
+        //Hours worked
+        $expense->NumberOfUnits = 1;
+        $expense->TotalCharge = 10; //Did't charge the 30p
+        $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
+        $expense->save();
+
+        $this->assertEquals(110, $project->TotalRevenue, "TotalRevenue should equal the sum of Expense.TotalCharge(s)");
+
+
+        $this->assertEquals(35.80 , $project->TotalRevenue - $project->TotalExpenses, "TotalProfit should equal Total Revenue Minus TotalExpenses");
+    }
+
 }

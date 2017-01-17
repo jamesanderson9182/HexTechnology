@@ -2,6 +2,7 @@
 
 namespace HexTechnology\Models;
 
+use Rhubarb\Stem\Aggregates\Count;
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
@@ -18,6 +19,9 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read Expense[]|\Rhubarb\Stem\Collections\RepositoryCollection $ProjectExpenses Relationship
  * @property-read Expense[]|\Rhubarb\Stem\Collections\RepositoryCollection $Expenses Relationship
  * @property-read Task[]|\Rhubarb\Stem\Collections\RepositoryCollection $Tasks Relationship
+ * @property-read mixed $TotalExpenses {@link getTotalExpenses()}
+ * @property-read mixed $TotalRevenue {@link getTotalRevenue()}
+ * @property-read mixed $TotalProfit {@link getTotalProfit()}
  */
 class Project extends Model
 {
@@ -37,5 +41,31 @@ class Project extends Model
         );
         $schema->labelColumnName = "ProjectName";
         return $schema;
+    }
+
+    public function getTotalExpenses()
+    {
+        $totalExpenses = 0;
+        foreach ($this->Expenses as $expense) {
+            $totalExpenses += $expense->UnitCost * $expense->NumberOfUnits;
+        }
+        return $totalExpenses;
+    }
+
+    public function getTotalRevenue()
+    {
+        $totalRevenue = 0;
+
+        foreach ($this->Expenses as $expense)
+        {
+            $totalRevenue += $expense->TotalCharge;
+        }
+
+        return $totalRevenue;
+    }
+
+    public function getTotalProfit()
+    {
+        return $this->TotalRevenue - $this->TotalExpenses;
     }
 }
