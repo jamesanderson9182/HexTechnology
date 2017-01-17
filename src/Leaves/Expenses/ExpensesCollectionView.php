@@ -18,7 +18,7 @@ class ExpensesCollectionView extends HexTechnologyCollectionTableView
         $table->setCollection(Expense::all());
 
         $table->columns = [
-            "View" => "<a href='{ExpenseID}/'>view</a>",
+            "" => "<a href='{ExpenseID}/'>view</a>",
             "ExpenseTitle",
             "Project.ProjectName",
             "ExpenseType",
