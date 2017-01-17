@@ -4,12 +4,13 @@ namespace HexTechnology\Leaves\Project;
 
 use HexTechnology\Layouts\HexTechnologyItemView;
 use HexTechnology\Models\Expense;
+use HexTechnology\Models\Project;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\RadioButtons\RadioButtons;
-use Rhubarb\Leaf\Controls\Common\SelectionControls\SelectionControl;
 use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
 use Rhubarb\Leaf\Table\Leaves\Table;
+use Rhubarb\Stem\Aggregates\Count;
 use Rhubarb\Stem\Filters\Equals;
 
 class ProjectItemView extends HexTechnologyItemView
@@ -37,10 +38,10 @@ class ProjectItemView extends HexTechnologyItemView
             new NumericTextBox("NumberOfUnits"),
             new NumericTextBox("UnitCost"),
             new NumericTextBox("TotalCharge"),
-            $expenseType  = new RadioButtons("ExpenseType")
+            $expenseType = new RadioButtons("ExpenseType")
         );
 
-        $expenseType->setSelectionItems(["Purchase","Time"]);
+        $expenseType->setSelectionItems(["Purchase", "Time"]);
 
         $expenses->columns =
             [
@@ -55,6 +56,8 @@ class ProjectItemView extends HexTechnologyItemView
 
     protected function printInnerContent()
     {
+        /** @var Project $project */
+        $project = $this->model->restModel;
         $this->layoutItemsWithContainer("",
             [
                 "ProjectID",
@@ -62,7 +65,14 @@ class ProjectItemView extends HexTechnologyItemView
                 "ClientID"
             ]);
         print "<h2>Related Expenses</h2>";
+
         print $this->leaves["ExpensesTable"];
+
+        ?>
+        <p>Total Expenses: £<?= $project->TotalExpenses ?></p>
+        <p>Total Profit: £<?= $project->TotalProfit ?></p>
+        <?
+
         $this->layoutItemsWithContainer("Add a new Expense",
             [
                 "ExpenseTitle",
