@@ -2,6 +2,7 @@
 
 namespace HexTechnology\Models;
 
+use Rhubarb\Stem\Exceptions\ModelConsistencyValidationException;
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Repositories\MySql\Schema\Columns\MySqlEnumColumn;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
@@ -55,4 +56,14 @@ class Expense extends Model
         $schema->labelColumnName = "ExpenseTitle";
         return $schema;
     }
+
+    protected function beforeSave()
+    {
+        if($this->ExpenseTitle == ""){
+            throw new ModelConsistencyValidationException(["Expenses should have a title!"]);
+        }
+
+        parent::beforeSave();
+    }
+
 }
