@@ -29,6 +29,34 @@ to `ssh` to `127.0.0.1 port 2222` username `vagrant` password `vagrant`
 * If you want to see the database install HeidiSQL
 * In heidi sql you can add a connection to the database which is at 127.0.1 port 3307  username vagrant password vagrant 
 
+Setting up Acceptance Tests with Chrome
+=======================================
+
+* You will need to download selenium server standalone server from here 
+    http://www.seleniumhq.org/download/
+    *   You can run it with:
+        *   `java -jar selenium-server-standalone-x.x.x.jar`
+    *   Note that it runs on port 4444, the same as geckodriver 
+    *   You should leave this running in it's own terminal window
+
+## Creating tests
+`bin/codecept generate:cept acceptance nameOfYourTestFileCept`
+* If you want to make one yourself, make sure the last word of the file 
+name is `Cept`
+* You should create acceptance test files in `tests/acceptance`
+* The above command will create a sample test. `$I→amOnPage("/");` will 
+bring you to the home page of your site
+* For a list of possible commands 
+    * http://codeception.com/docs/modules/WebDriver
+
+## Running tests
+* Run your copy of selenium 
+`java -jar selenium-server-standalone-x.x.x.jar` (See top of document)
+* In the project root directory: `bin/codecept run acceptance`  
+* If you want to run an individual test, just put it's name / path at 
+the end of the command, relative to `tests/acceptance`
+`bin/codecept run acceptance myTestCept`
+
 Fun / Nice To haves
 ===================
 The following list is more of a nice to have / fun to implement list. 
