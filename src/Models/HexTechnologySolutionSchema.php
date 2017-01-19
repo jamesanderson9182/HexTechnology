@@ -53,6 +53,8 @@ class HexTechnologySolutionSchema extends SolutionSchema
                     "Tasks" => "Task.ProjectID"
                 ]
         ]);
+
+//        $this->declareOneToOneRelationship();
     }
 
 }
