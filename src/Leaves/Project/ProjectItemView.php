@@ -6,6 +6,7 @@ use HexTechnology\Layouts\HexTechnologyItemView;
 use HexTechnology\Models\Expense;
 use HexTechnology\Models\Project;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
+use Rhubarb\Leaf\Controls\Common\Checkbox\Checkbox;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\RadioButtons\RadioButtons;
 use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
@@ -34,11 +35,17 @@ class ProjectItemView extends HexTechnologyItemView
             $NewExpenseEvent = new Button("NewExpenseEvent", "Add Expense", function () {
                 $this->model->NewExpenseEvent->raise();
             }),
+            //Expenses
             new TextBox("ExpenseTitle"),
             new NumericTextBox("NumberOfUnits"),
             new NumericTextBox("UnitCost"),
             new NumericTextBox("TotalCharge"),
-            $expenseType = new RadioButtons("ExpenseType")
+            $expenseType = new RadioButtons("ExpenseType"),
+
+            // Tasks
+            new TextBox("TaskTitle"),
+            new Checkbox("Completed"),
+            new Table($this->model->restModel->Tasks, 50, "TasksTable")
         );
 
         $expenseType->setSelectionItems(["Purchase", "Time"]);
@@ -82,6 +89,16 @@ class ProjectItemView extends HexTechnologyItemView
                 "ExpenseType",
                 "NewExpenseEvent"
             ]);
+
+        print "<h2>Related Tasks</h2>";
+
+        print $this->leaves["TasksTable"];
+
+        $this->layoutItemsWithContainer("Add a new Task",
+            [
+                "TaskTitle"
+            ]
+        );
     }
 }
 
