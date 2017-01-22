@@ -77,6 +77,9 @@ nav ul li:hover {
     font-family: "Roboto", sans-serif;
 }
 
+a {
+    color: inherit;
+}
 nav ul li a:visited {
     color: #ffffff;
     font-family: "Roboto", sans-serif;
