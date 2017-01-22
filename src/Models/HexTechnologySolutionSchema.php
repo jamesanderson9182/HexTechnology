@@ -17,6 +17,7 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("Project", Project::class);
         $this->addModel("Expense", Expense::class);
         $this->addModel("Task", Task::class);
+        $this->addModel("Rental", Rental::class);
     }
 
     protected function defineRelationships()
@@ -45,7 +46,8 @@ class HexTechnologySolutionSchema extends SolutionSchema
                 ],
             "Client" =>
                 [
-                    "Projects" => "Project.ClientID"
+                    "Projects" => "Project.ClientID",
+                    "Rentals" => "Rental.ClientID"
                 ],
             "Project" =>
                 [
