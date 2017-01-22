@@ -52,6 +52,8 @@ class DefaultLayout extends BaseLayout
         <a href="/"><img src="/static/images/logo.png" alt="logo" height="55px"></a>
             <ul>
                 <a href="/assets/"><li><h1>Assets</h1></li></a>
+                <a href="/assets/manufacturers/"><li><h1>Manufacturers</h1></li></a>
+                <a href="/assets/types/"><li><h1>Asset-Types</h1></li></a>
                 <a href="/clients/"><li><h1>Clients</h1></li></a>
                 <a href="/expenses/"><li><h1>Expenses</h1></li></a>
                 <a href="/projects/"><li><h1>Projects</h1></li></a>
