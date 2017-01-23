@@ -57,7 +57,6 @@ class AssetsItemView extends HexTechnologyItemView
 
         $serialNumberPurchaseDate->setYearRange(2010, 2050);
 
-
     }
 
     protected function printInnerContent()
@@ -81,21 +80,23 @@ class AssetsItemView extends HexTechnologyItemView
 
         print "</div>";
         print "<div class='column'>";
+        if ($this->model->restModel->isNewRecord() == false) {
+            print "<div class='overflow-auto'>";
+            print $this->leaves["Table"];
+            print "</div>";
 
-        print "<div class='overflow-auto'>";
-        print $this->leaves["Table"];
-        print "</div>";
+            $this->layoutItemsWithContainer("",
+                [
+                    "Serial Number" => "SerialNumberCode",
+                    "Initial Value" => "SerialNumberInitialPrice",
+                    "Current Value" => "SerialNumberCurrentValue",
+                    "Date Purchased" => "SerialNumberPurchaseDate",
+                    "AddSerial"
+                ]
+            );
 
-        $this->layoutItemsWithContainer( "",
-            [
-                "Serial Number" => "SerialNumberCode",
-                "Initial Value" => "SerialNumberInitialPrice",
-                "Current Value" => "SerialNumberCurrentValue",
-                "Date Purchased" => "SerialNumberPurchaseDate",
-                "AddSerial"
-            ]
-        );
 
+        }
         print "</div>";
         print "</div>";
     }
