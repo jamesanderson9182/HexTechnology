@@ -25,13 +25,11 @@ class ProjectItemView extends HexTechnologyItemView
     {
         parent::createSubLeaves();
 
-        $relatedExpenses = Expense::find(new Equals("ProjectID", $this->model->restModel->UniqueIdentifier));
-
         $this->registerSubLeaf(
             "ProjectID",
             "ProjectName",
             "ClientID",
-            $expenses = new Table($relatedExpenses, 50, "ExpensesTable"),
+            $expenses = new Table($this->model->restModel->Expenses, 50, "ExpensesTable"),
             $NewExpenseEvent = new Button("NewExpenseEvent", "Add Expense", function () {
                 $this->model->NewExpenseEvent->raise();
             }),
@@ -43,9 +41,12 @@ class ProjectItemView extends HexTechnologyItemView
             $expenseType = new RadioButtons("ExpenseType"),
 
             // Tasks
-            new TextBox("TaskTitle"),
+            new TextBox("NewTaskTitle"),
             new Checkbox("Completed"),
-            new Table($this->model->restModel->Tasks, 50, "TasksTable")
+            $taskTable = new Table($this->model->restModel->Tasks, 50, "TasksTable"),
+            new Button("NewTaskEvent", "Add Task", function () {
+                $this->model->NewTaskEvent->raise();
+            })
         );
 
         $expenseType->setSelectionItems(["Purchase", "Time"]);
@@ -59,6 +60,12 @@ class ProjectItemView extends HexTechnologyItemView
                 "TotalCharge",
                 "ExpenseType"
             ];
+
+        $taskTable->columns = [
+            "" => "<a href='/tasks/{TaskID}'>view</a>",
+            "TaskTitle",
+            "Completed"
+        ];
     }
 
     protected function printInnerContent()
@@ -96,7 +103,8 @@ class ProjectItemView extends HexTechnologyItemView
 
         $this->layoutItemsWithContainer("Add a new Task",
             [
-                "TaskTitle"
+                "NewTaskTitle",
+                "NewTaskEvent"
             ]
         );
     }
