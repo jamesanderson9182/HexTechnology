@@ -23,6 +23,8 @@ class HexTechnologyCollectionTableView extends CrudView
         $this->registerSubLeaf(
             $table = new Table()
         );
+
+        $table->setNoDataHtml("<p class='empty-table'>Woah there tiger! You have no ". $this->getTitle() .". Go ahead and add one.</p>");
     }
 
     /**
