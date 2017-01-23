@@ -253,7 +253,7 @@ a:-webkit-any-link {
     overflow-x:auto;
 }
 
-@media (max-width: 1573px) {
+@media (max-width: 1434px) {
     .multi-column {
         width: 45%;
     }
