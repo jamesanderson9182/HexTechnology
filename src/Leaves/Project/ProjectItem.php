@@ -73,6 +73,14 @@ class ProjectItem extends CrudLeaf
             throw new ForceResponseException(new RedirectResponse('.'));
         });
 
+        $this->model->ToggleTaskEvent->attachHandler(function ($viewIndex) {
+            $task = new Task($viewIndex);
+            $task->Completed = !$task->Completed;
+            $task->save();
+
+            throw new ForceResponseException(new RedirectResponse('.'));
+        });
+
         parent::onModelCreated();
     }
 

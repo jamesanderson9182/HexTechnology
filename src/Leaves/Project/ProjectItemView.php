@@ -5,6 +5,7 @@ namespace HexTechnology\Leaves\Project;
 use HexTechnology\Layouts\HexTechnologyItemView;
 use HexTechnology\Models\Expense;
 use HexTechnology\Models\Project;
+use HexTechnology\Models\Task;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
 use Rhubarb\Leaf\Controls\Common\Checkbox\Checkbox;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\RadioButtons\RadioButtons;
@@ -26,7 +27,6 @@ class ProjectItemView extends HexTechnologyItemView
         parent::createSubLeaves();
 
         $this->registerSubLeaf(
-            "ProjectID",
             "ProjectName",
             "ClientID",
             $expenses = new Table($this->model->restModel->Expenses, 50, "ExpensesTable"),
@@ -43,9 +43,11 @@ class ProjectItemView extends HexTechnologyItemView
             // Tasks
             new TextBox("NewTaskTitle"),
             new Checkbox("Completed"),
-            $taskTable = new Table($this->model->restModel->Tasks, 50, "TasksTable"),
             new Button("NewTaskEvent", "Add Task", function () {
                 $this->model->NewTaskEvent->raise();
+            }),
+            $toggle = new Button("ToggleTaskButton", "↺", function ($viewIndex) {
+                $this->model->ToggleTaskEvent->raise($viewIndex);
             })
         );
 
@@ -60,12 +62,6 @@ class ProjectItemView extends HexTechnologyItemView
                 "TotalCharge",
                 "ExpenseType"
             ];
-
-        $taskTable->columns = [
-            "" => "<a href='/tasks/{TaskID}'>view</a>",
-            "TaskTitle",
-            "Completed"
-        ];
     }
 
     protected function printInnerContent()
@@ -74,7 +70,6 @@ class ProjectItemView extends HexTechnologyItemView
         $project = $this->model->restModel;
         $this->layoutItemsWithContainer("",
             [
-                "ProjectID",
                 "ProjectName",
                 "ClientID"
             ]);
@@ -99,7 +94,32 @@ class ProjectItemView extends HexTechnologyItemView
 
         print "<h2>Related Tasks</h2>";
 
-        print $this->leaves["TasksTable"];
+        //TODO test with no data
+        if ($this->model->restModel->isNewRecord() == false && sizeof($tasks = $this->model->restModel->Tasks) >0 ) {
+            ?>
+            <table>
+                <thead>
+                    <th></th>
+                    <th>Task Title</th>
+                    <th></th>
+                </thead>
+                <?php
+                /** @var Task $task */
+                foreach ($tasks as $task)
+                {
+                    $style = ($task->Completed) ? "style='text-decoration: line-through;'" : "";
+                    ?>
+                    <tr>
+                        <td><a href="/tasks/<?= $task->TaskID ?>/">view</a></td>
+                        <td <?= $style ?>><?= $task->TaskTitle ?></td>
+                        <td><?php $this->leaves["ToggleTaskButton"]->printWithIndex($task->TaskID); ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
+            <?php
+        }
 
         $this->layoutItemsWithContainer("Add a new Task",
             [

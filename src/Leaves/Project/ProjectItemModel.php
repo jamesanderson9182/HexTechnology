@@ -25,11 +25,17 @@ class ProjectItemModel extends CrudModel
      */
     public $NewTaskEvent;
 
+    /**
+     * @var Event
+     */
+    public $ToggleTaskEvent;
+
     public function __construct()
     {
         parent::__construct();
         $this->NewExpenseEvent = new Event();
         $this->NewTaskEvent = new Event();
+        $this->ToggleTaskEvent = new Event();
     }
 
 }
