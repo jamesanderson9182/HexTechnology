@@ -216,11 +216,14 @@ a:-webkit-any-link {
 }
 
 .multi-column {
-    width: 100%;
+    width: 65%;
     display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    align-items: flex-start;
+     flex-wrap: wrap;
+    justify-content: space-between;
+}
+.multi-column h2 {
+    margin-top: 0px;
 }
 
 .column {
@@ -250,13 +253,9 @@ a:-webkit-any-link {
     overflow-x:auto;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1573px) {
     .multi-column {
-        width: 100%;
-        display: block;
-        align-items: left;
-        flex-wrap: wrap;
-        justify-content: space-around;
+        width: 45%;
     }
 }
 

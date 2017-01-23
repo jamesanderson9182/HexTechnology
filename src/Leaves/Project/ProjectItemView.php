@@ -68,21 +68,30 @@ class ProjectItemView extends HexTechnologyItemView
     {
         /** @var Project $project */
         $project = $this->model->restModel;
-        $this->layoutItemsWithContainer("",
+
+        print "<div class='multi-column'>";
+
+        print "<div>";
+        $this->layoutItemsWithContainer("Project Details",
             [
                 "ProjectName",
                 "ClientID"
             ]);
+        print "</div>";
+
+        print "<div>";
         print "<h2>Related Expenses</h2>";
 
+        print "<div class='overflow-auto'>";
         print $this->leaves["ExpensesTable"];
+        print "</div>";
 
         ?>
         <p>Total Expenses: £<?= $project->TotalExpenses ?></p>
         <p>Total Profit: £<?= $project->TotalProfit ?></p>
         <?
 
-        $this->layoutItemsWithContainer("Add a new Expense",
+        $this->layoutItemsWithContainer("New Expense",
             [
                 "ExpenseTitle",
                 "NumberOfUnits",
@@ -91,7 +100,9 @@ class ProjectItemView extends HexTechnologyItemView
                 "ExpenseType",
                 "NewExpenseEvent"
             ]);
+        print "</div>";
 
+        print "<div>";
         print "<h2>Related Tasks</h2>";
 
         //TODO test with no data
@@ -121,12 +132,14 @@ class ProjectItemView extends HexTechnologyItemView
             <?php
         }
 
-        $this->layoutItemsWithContainer("Add a new Task",
+        $this->layoutItemsWithContainer("New Task",
             [
                 "NewTaskTitle",
                 "NewTaskEvent"
             ]
         );
+        print "</div>";
+        print "</div>";
     }
 }
 
