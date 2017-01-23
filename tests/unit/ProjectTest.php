@@ -96,4 +96,21 @@ class ProjectTest extends HexTechnologyTestCase
         $this->assertEquals(35.80 , $project->TotalRevenue - $project->TotalExpenses, "TotalProfit should equal Total Revenue Minus TotalExpenses");
     }
 
+    public function testProjectsCanHaveTasks(){
+        $project = new Project();
+        $project->save();
+
+        $task = new Task();
+        $task->ProjectID = $project->ProjectID;
+        $task->TaskTitle = "test 1";
+        $task->save();
+
+        $task = new Task();
+        $task->ProjectID = $project->ProjectID;
+        $task->TaskTitle = "test 2";
+        $task->save();
+
+        $this->assertEquals(2, sizeof($project->Tasks), "Projects should be able to have tasks associated with them");
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace HexTechnology\Leaves\Project;
 
 use HexTechnology\Models\Expense;
+use HexTechnology\Models\Task;
 use Rhubarb\Crown\Exceptions\ForceResponseException;
 use Rhubarb\Crown\Response\RedirectResponse;
 use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;
@@ -41,8 +42,7 @@ class ProjectItem extends CrudLeaf
     {
         $this->model->NewExpenseEvent->attachHandler(function () {
 
-
-            if($this->model->ExpenseTitle == ""){
+            if ($this->model->ExpenseTitle == "") {
                 // An expense needs to have title!
                 throw new ForceResponseException(new RedirectResponse("."));
             }
@@ -60,6 +60,27 @@ class ProjectItem extends CrudLeaf
             // Redirect the User to the current page to stop the page stying a POST
             throw new ForceResponseException(new RedirectResponse("."));
         });
+
+        $this->model->NewTaskEvent->attachHandler(function () {
+            if ($this->model->NewTaskTitle == "") {
+                throw new ForceResponseException(new RedirectResponse('.'));
+            }
+
+            $task = new Task();
+            $task->TaskTitle = $this->model->NewTaskTitle;
+            $task->ProjectID = $this->model->restModel->UniqueIdentifier;
+            $task->save();
+            throw new ForceResponseException(new RedirectResponse('.'));
+        });
+
+        $this->model->ToggleTaskEvent->attachHandler(function ($viewIndex) {
+            $task = new Task($viewIndex);
+            $task->Completed = !$task->Completed;
+            $task->save();
+
+            throw new ForceResponseException(new RedirectResponse('.'));
+        });
+
         parent::onModelCreated();
     }
 

@@ -5,7 +5,9 @@ namespace HexTechnology\Leaves\Project;
 use HexTechnology\Layouts\HexTechnologyItemView;
 use HexTechnology\Models\Expense;
 use HexTechnology\Models\Project;
+use HexTechnology\Models\Task;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
+use Rhubarb\Leaf\Controls\Common\Checkbox\Checkbox;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\RadioButtons\RadioButtons;
 use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
@@ -24,21 +26,29 @@ class ProjectItemView extends HexTechnologyItemView
     {
         parent::createSubLeaves();
 
-        $relatedExpenses = Expense::find(new Equals("ProjectID", $this->model->restModel->UniqueIdentifier));
-
         $this->registerSubLeaf(
-            "ProjectID",
             "ProjectName",
             "ClientID",
-            $expenses = new Table($relatedExpenses, 50, "ExpensesTable"),
+            $expenses = new Table($this->model->restModel->Expenses, 50, "ExpensesTable"),
             $NewExpenseEvent = new Button("NewExpenseEvent", "Add Expense", function () {
                 $this->model->NewExpenseEvent->raise();
             }),
+            //Expenses
             new TextBox("ExpenseTitle"),
             new NumericTextBox("NumberOfUnits"),
             new NumericTextBox("UnitCost"),
             new NumericTextBox("TotalCharge"),
-            $expenseType = new RadioButtons("ExpenseType")
+            $expenseType = new RadioButtons("ExpenseType"),
+
+            // Tasks
+            new TextBox("NewTaskTitle"),
+            new Checkbox("Completed"),
+            new Button("NewTaskEvent", "Add Task", function () {
+                $this->model->NewTaskEvent->raise();
+            }),
+            $toggle = new Button("ToggleTaskButton", "↺", function ($viewIndex) {
+                $this->model->ToggleTaskEvent->raise($viewIndex);
+            })
         );
 
         $expenseType->setSelectionItems(["Purchase", "Time"]);
@@ -58,22 +68,30 @@ class ProjectItemView extends HexTechnologyItemView
     {
         /** @var Project $project */
         $project = $this->model->restModel;
-        $this->layoutItemsWithContainer("",
+
+        print "<div class='multi-column'>";
+
+        print "<div>";
+        $this->layoutItemsWithContainer("Project Details",
             [
-                "ProjectID",
                 "ProjectName",
                 "ClientID"
             ]);
+        print "</div>";
+
+        print "<div>";
         print "<h2>Related Expenses</h2>";
 
+        print "<div class='overflow-auto'>";
         print $this->leaves["ExpensesTable"];
+        print "</div>";
 
         ?>
         <p>Total Expenses: £<?= $project->TotalExpenses ?></p>
         <p>Total Profit: £<?= $project->TotalProfit ?></p>
         <?
 
-        $this->layoutItemsWithContainer("Add a new Expense",
+        $this->layoutItemsWithContainer("New Expense",
             [
                 "ExpenseTitle",
                 "NumberOfUnits",
@@ -82,6 +100,46 @@ class ProjectItemView extends HexTechnologyItemView
                 "ExpenseType",
                 "NewExpenseEvent"
             ]);
+        print "</div>";
+
+        print "<div>";
+        print "<h2>Related Tasks</h2>";
+
+        //TODO test with no data
+        if ($this->model->restModel->isNewRecord() == false && sizeof($tasks = $this->model->restModel->Tasks) >0 ) {
+            ?>
+            <table>
+                <thead>
+                    <th></th>
+                    <th>Task Title</th>
+                    <th></th>
+                </thead>
+                <?php
+                /** @var Task $task */
+                foreach ($tasks as $task)
+                {
+                    $style = ($task->Completed) ? "style='text-decoration: line-through;'" : "";
+                    ?>
+                    <tr>
+                        <td><a href="/tasks/<?= $task->TaskID ?>/">view</a></td>
+                        <td <?= $style ?>><?= $task->TaskTitle ?></td>
+                        <td><?php $this->leaves["ToggleTaskButton"]->printWithIndex($task->TaskID); ?></td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </table>
+            <?php
+        }
+
+        $this->layoutItemsWithContainer("New Task",
+            [
+                "NewTaskTitle",
+                "NewTaskEvent"
+            ]
+        );
+        print "</div>";
+        print "</div>";
     }
 }
 
