@@ -8,6 +8,7 @@ use HexTechnology\Models\Project;
 use HexTechnology\Models\Task;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
 use Rhubarb\Leaf\Controls\Common\Checkbox\Checkbox;
+use Rhubarb\Leaf\Controls\Common\DateTime\Date;
 use Rhubarb\Leaf\Controls\Common\SelectionControls\RadioButtons\RadioButtons;
 use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
@@ -38,6 +39,7 @@ class ProjectItemView extends HexTechnologyItemView
             new NumericTextBox("NumberOfUnits"),
             new NumericTextBox("UnitCost"),
             new NumericTextBox("TotalCharge"),
+            new Date("ExpenseDate"),
             $expenseType = new RadioButtons("ExpenseType"),
 
             // Tasks
@@ -60,7 +62,8 @@ class ProjectItemView extends HexTechnologyItemView
                 "NumberOfUnits",
                 "UnitCost",
                 "TotalCharge",
-                "ExpenseType"
+                "ExpenseType",
+                "Date"
             ];
     }
 
@@ -100,7 +103,8 @@ class ProjectItemView extends HexTechnologyItemView
                     "UnitCost",
                     "TotalCharge",
                     "ExpenseType",
-                    "NewExpenseEvent"
+                    "NewExpenseEvent",
+                    "ExpenseDate"
                 ]);
             print "</div>";
 
