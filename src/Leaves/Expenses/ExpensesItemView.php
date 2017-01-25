@@ -15,7 +15,8 @@ class ExpensesItemView extends HexTechnologyItemView
             "NumberOfUnits",
             "UnitCost",
             "TotalCharge",
-            "ExpenseType"
+            "ExpenseType",
+			"Date"
         );
     }
 
@@ -28,7 +29,8 @@ class ExpensesItemView extends HexTechnologyItemView
                 "NumberOfUnits",
                 "UnitCost",
                 "TotalCharge",
-                "ExpenseType"
+                "ExpenseType",
+				"Date"
             ]);
     }
 

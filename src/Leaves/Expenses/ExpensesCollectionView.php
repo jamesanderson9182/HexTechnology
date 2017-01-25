@@ -22,6 +22,7 @@ class ExpensesCollectionView extends HexTechnologyCollectionTableView
             "ExpenseTitle",
             "Project.ProjectName",
             "ExpenseType",
+			"Date",
             "TotalCharge"
         ];
     }

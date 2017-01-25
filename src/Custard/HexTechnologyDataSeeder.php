@@ -257,6 +257,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
@@ -267,6 +268,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "DVDs";
         $expense->ExpenseDetails = "Had to buy a dvd to burn onto";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 1;
         $expense->UnitCost = 2;
         $expense->TotalCharge = 2;
@@ -289,6 +291,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
@@ -299,6 +302,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "DVDs";
         $expense->ExpenseDetails = "Had to buy a dvd to burn onto";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 1;
         $expense->UnitCost = 2;
         $expense->TotalCharge = 2;
@@ -321,6 +325,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
@@ -332,6 +337,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "Broken Microphone";
         $expense->ExpenseDetails = "Had to buy a new microphone as one got dropped into pool by drunkard";
         $expense->NumberOfUnits = 1;
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->UnitCost = 2;
         $expense->TotalCharge = 2;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
@@ -369,6 +375,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
@@ -379,6 +386,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Rental";
         $expense->ExpenseDetails = "Rental Order To myself";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 1;
         $expense->UnitCost = 500;
         $expense->TotalCharge = 500;
@@ -415,6 +423,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
@@ -460,6 +469,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
@@ -470,6 +480,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "CD";
         $expense->ExpenseDetails = "Had to buy a cd to give to them after the event";
+		$expense->Date = new RhubarbDate("now");
         $expense->NumberOfUnits = 1;
         $expense->UnitCost = 2;
         $expense->TotalCharge = 2;
@@ -480,6 +491,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ProjectID = $project->ProjectID;
         $expense->ExpenseTitle = "Rental";
         $expense->ExpenseDetails = "Equipment Rental to myself";
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->NumberOfUnits = 1;
         $expense->UnitCost = 1000;
         $expense->TotalCharge = 1000;
@@ -510,6 +522,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
         $expense->NumberOfUnits = 3;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
@@ -520,6 +533,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "CD";
         $expense->ExpenseDetails = "Had to burn 2 copies of the cd";
         $expense->NumberOfUnits = 2;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 2;
         $expense->TotalCharge = 4;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
@@ -530,6 +544,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "Rental";
         $expense->ExpenseDetails = "Equipment Rental to myself";
         $expense->NumberOfUnits = 1;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 1000;
         $expense->TotalCharge = 1000;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
@@ -552,6 +567,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
         $expense->NumberOfUnits = 3;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
@@ -562,6 +578,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "CD";
         $expense->ExpenseDetails = "Had to burn 2 copies of the cd";
         $expense->NumberOfUnits = 2;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 2;
         $expense->TotalCharge = 4;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
@@ -584,6 +601,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
         $expense->NumberOfUnits = 3;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
@@ -606,6 +624,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
         $expense->NumberOfUnits = 3;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
@@ -635,6 +654,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "Time";
         $expense->ExpenseDetails = "Time taken to ...";
         $expense->NumberOfUnits = 3;
+		$expense->Date = new RhubarbDate("now");
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_TIME;
@@ -667,6 +687,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense = new Expense();
         $expense->ExpenseTitle = "PC";
         $expense->ExpenseDetails = "New Pc with better graphics card to render videos faster";
+        $expense->Date = new RhubarbDate("now");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
@@ -677,6 +698,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "MacBookPro 2017 17\"";
         $expense->ExpenseDetails = "Because who needs USB 3";
         $expense->NumberOfUnits = 3;
+		$expense->Date = new RhubarbDate("2 days ago");
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
@@ -686,6 +708,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense->ExpenseTitle = "iPhone";
         $expense->ExpenseDetails = "Baaaaaa";
         $expense->NumberOfUnits = 3;
+		$expense->Date = new RhubarbDate("3 days ago");
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
         $expense->ExpenseType = Expense::EXPENSE_TYPE_PURCHASE;
@@ -694,6 +717,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $expense = new Expense();
         $expense->ExpenseTitle = "Car";
         $expense->ExpenseDetails = "Brum brum";
+		$expense->Date = new RhubarbDate("4 days ago");
         $expense->NumberOfUnits = 3;
         $expense->UnitCost = 15.0;
         $expense->TotalCharge = 45;
