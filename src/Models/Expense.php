@@ -6,6 +6,7 @@ use Rhubarb\Stem\Exceptions\ModelConsistencyValidationException;
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Repositories\MySql\Schema\Columns\MySqlEnumColumn;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
+use Rhubarb\Stem\Schema\Columns\DateColumn;
 use Rhubarb\Stem\Schema\Columns\DecimalColumn;
 use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
 use Rhubarb\Stem\Schema\Columns\IntegerColumn;
@@ -27,6 +28,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $ExpenseType Repository field
  * @property-read Project $Project Relationship
  * @property int $ExpenseID Repository field
+ * @property \Rhubarb\Crown\DateTime\RhubarbDate $Date Repository field
  */
 class Expense extends Model
 {
@@ -44,6 +46,7 @@ class Expense extends Model
             new AutoIncrementColumn("ExpenseID"),
             new ForeignKeyColumn("ProjectID"),
             new StringColumn("ExpenseTitle", 50),
+			new DateColumn("Date"),
             new LongStringColumn("ExpenseDetails"),
             new IntegerColumn("NumberOfUnits"),
             new DecimalColumn("UnitCost"),
