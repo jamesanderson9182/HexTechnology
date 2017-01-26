@@ -12,7 +12,7 @@
     "jamesanderson9182/rhubarb-leaf-twitter-timeline": "dev-master",
     "rhubarbphp/module-jsvalidation": "^1.1",
     "rhubarbphp/module-restapi": "^2.0",
-    "rhubarbphp/module-leaf-table": "^1.0",
+    "rhubarbphp/module-leaf-table": "1.0.6",
     "rhubarbphp/pikaday": "^1.5",
     "codeception/codeception" : "*"
   },
