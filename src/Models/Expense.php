@@ -29,6 +29,9 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read Project $Project Relationship
  * @property int $ExpenseID Repository field
  * @property \Rhubarb\Crown\DateTime\RhubarbDate $Date Repository field
+ * @property string $FileName Repository field
+ * @property string $FileType Repository field
+ * @property-read mixed $DownloadUrl {@link getDownloadUrl()}
  */
 class Expense extends Model
 {
@@ -54,7 +57,9 @@ class Expense extends Model
             new MySqlEnumColumn("ExpenseType", self::EXPENSE_TYPE_PURCHASE, [
                 self::EXPENSE_TYPE_PURCHASE,
                 self::EXPENSE_TYPE_TIME
-            ])
+            ]),
+            new StringColumn("FileName",300),
+            new StringColumn("FileType",300)
         );
         $schema->labelColumnName = "ExpenseTitle";
         return $schema;
@@ -67,6 +72,10 @@ class Expense extends Model
         }
 
         parent::beforeSave();
+    }
+
+    public function getDownloadUrl() {
+        return '/static/uploads/' . $this->UniqueIdentifier . '/' .  $this->FileName;
     }
 
 }
