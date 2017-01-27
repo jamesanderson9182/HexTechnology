@@ -4,6 +4,7 @@ namespace HexTechnology\Leaves\Expenses;
 
 use HexTechnology\Layouts\HexTechnologyItemView;
 use HexTechnology\Models\Expense;
+use Rhubarb\Crown\String\StringTools;
 use Rhubarb\Leaf\Controls\Common\FileUpload\SimpleFileUpload;
 use Rhubarb\Leaf\Controls\Common\FileUpload\UploadedFileDetails;
 use Rhubarb\Leaf\Controls\Html5Upload\Html5FileUpload;
@@ -56,9 +57,9 @@ class ExpensesItemView extends HexTechnologyItemView
 
         if ($expense->isNewRecord() == false) {
             if ($expense->FileName != "") {
-                if ($expense->FileType == 'image/jpeg') {
+                if (StringTools::contains($expense->FileType, 'image')) {
                     ?>
-                    <img src="<?= $expense->DownloadUrl ?>" alt="Image">
+                    <img src="<?= $expense->DownloadUrl ?>" alt="Image" style="width: 25%">
                     <br>
                     <?
                 }
