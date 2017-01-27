@@ -4,16 +4,17 @@ namespace HexTechnology\Models;
 
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
+use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
 use Rhubarb\Stem\Schema\ModelSchema;
 
 /**
  *
  *
+ * @property int $QuoteItemID Repository field
  * @property int $QuoteID Repository field
- * @property-read Project $Project Relationship
- * @property-read QuoteItem[]|\Rhubarb\Stem\Collections\RepositoryCollection $QuoteItems Relationship
+ * @property-read Quote $Quote Relationship
  */
-class Quote extends Model
+class QuoteItem extends Model
 {
 
     /**
@@ -23,10 +24,12 @@ class Quote extends Model
      */
     protected function createSchema()
     {
-        $schema = new ModelSchema("Quote");
+        $schema = new ModelSchema("QuoteItem");
         $schema->addColumn(
-            new AutoIncrementColumn("QuoteID")
+            new AutoIncrementColumn("QuoteItemID"),
+            new ForeignKeyColumn("QuoteID")
         );
+
         return $schema;
     }
 }
