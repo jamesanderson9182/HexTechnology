@@ -25,6 +25,7 @@ class QuotesItemView extends HexTechnologyItemView
             "AssetTypeID",
             "RentalCostPerDay",
             "RentalCostPerWeek",
+            "NumberOwned"
         ];
     }
 
