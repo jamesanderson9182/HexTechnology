@@ -49,4 +49,45 @@ class QuoteTest extends HexTechnologyTestCase
         $this->assertEquals(3, sizeof($quote->QuoteItems), "A quote can have many quote items");
     }
 
+    public function testQuoteCanHaveAGrandTotal() {
+        $totals = 0;
+
+        $quote = new Quote();
+        $quote->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->NumberOfUnits = 7;
+        $quoteItem->UnitCost = 1.4;
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->save();
+
+        $totals += $quoteItem->Amount;
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->NumberOfUnits = 9;
+        $quoteItem->UnitCost = 7;
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->save();
+
+        $totals += $quoteItem->Amount;
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->NumberOfUnits = 99;
+        $quoteItem->UnitCost = 1.2;
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->save();
+
+        $totals += $quoteItem->Amount;
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->NumberOfUnits = 2;
+        $quoteItem->UnitCost = 3500.99;
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->save();
+
+        $totals += $quoteItem->Amount;
+
+        $this->assertEquals($totals, $quote->GrandTotal, "Grand Total is the sum of all of the QuoteItem Amounts");
+    }
+
 }

@@ -12,6 +12,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property int $QuoteID Repository field
  * @property-read Project $Project Relationship
  * @property-read QuoteItem[]|\Rhubarb\Stem\Collections\RepositoryCollection $QuoteItems Relationship
+ * @property-read int|mixed $GrandTotal {@link getGrandTotal()}
  */
 class Quote extends Model
 {
@@ -28,5 +29,18 @@ class Quote extends Model
             new AutoIncrementColumn("QuoteID")
         );
         return $schema;
+    }
+
+    /**
+     * @return int|mixed $GrandTotal
+     */
+    public function getGrandTotal() {
+        $grandTotal = 0;
+        foreach ($this->QuoteItems as $quoteItem)
+        {
+            $grandTotal += $quoteItem->Amount;
+        }
+
+        return $grandTotal;
     }
 }
