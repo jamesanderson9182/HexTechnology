@@ -64,7 +64,7 @@ class ExpensesItemView extends HexTechnologyItemView
                     <?
                 }
                 ?>
-                <a href="<?= $expense->DownloadUrl ?>"><?= $expense->FileName ?></a>
+                <a href="<?= $expense->DownloadUrl ?>" download><?= $expense->FileName ?></a>
                 <br>
                 <?php
             }
