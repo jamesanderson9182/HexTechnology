@@ -2,10 +2,12 @@
 
 namespace HexTechnology\Tests\Unit;
 
+use HexTechnology\Models\Client;
 use HexTechnology\Models\Project;
 use HexTechnology\Models\Quote;
 use HexTechnology\Models\QuoteItem;
 use HexTechnology\Tests\HexTechnologyTestCase;
+use Rhubarb\Crown\DateTime\RhubarbDate;
 
 class QuoteTest extends HexTechnologyTestCase
 {
@@ -49,7 +51,8 @@ class QuoteTest extends HexTechnologyTestCase
         $this->assertEquals(3, sizeof($quote->QuoteItems), "A quote can have many quote items");
     }
 
-    public function testQuoteCanHaveAGrandTotal() {
+    public function testQuoteCanHaveAGrandTotal()
+    {
         $totals = 0;
 
         $quote = new Quote();
@@ -88,6 +91,18 @@ class QuoteTest extends HexTechnologyTestCase
         $totals += $quoteItem->Amount;
 
         $this->assertEquals($totals, $quote->GrandTotal, "Grand Total is the sum of all of the QuoteItem Amounts");
+    }
+
+    public function testCanHaveClient()
+    {
+        $client = new Client();
+        $client->save();
+
+        $quote = new Quote();
+        $quote->ClientID = $client->ClientID;
+        $quote->save();
+
+        $this->assertEquals($client->ClientID, $quote->Client->ClientID, "A quote can have a client");
     }
 
 }

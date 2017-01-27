@@ -23,6 +23,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $Email Repository field
  * @property-read Project[]|\Rhubarb\Stem\Collections\RepositoryCollection $Projects Relationship
  * @property-read Rental[]|\Rhubarb\Stem\Collections\RepositoryCollection $Rentals Relationship
+ * @property-read Quote[]|\Rhubarb\Stem\Collections\RepositoryCollection $Quotes Relationship
  */
 class Client extends Model
 {

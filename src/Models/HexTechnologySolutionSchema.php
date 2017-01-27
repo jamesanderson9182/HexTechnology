@@ -49,7 +49,8 @@ class HexTechnologySolutionSchema extends SolutionSchema
             "Client" =>
                 [
                     "Projects" => "Project.ClientID",
-                    "Rentals" => "Rental.ClientID"
+                    "Rentals" => "Rental.ClientID",
+                    "Quotes" => "Quote.ClientID"
                 ],
             "Project" =>
                 [
