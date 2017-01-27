@@ -33,7 +33,7 @@ class Quote extends Model
         $schema->addColumn(
             new AutoIncrementColumn("QuoteID"),
             new ForeignKeyColumn("ClientID"),
-            new DateColumn("DateCreated", new RhubarbDate("now")) // Hopefully the default value won't break anything 
+            new DateColumn("DateCreated", new RhubarbDate("now")) // Hopefully the default value won't break anything
         );
         return $schema;
     }
