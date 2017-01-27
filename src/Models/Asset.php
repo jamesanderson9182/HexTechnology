@@ -27,6 +27,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $Model Repository field
  * @property int $ManufacturerID Repository field
  * @property-read Manufacturer $Manufacturer Relationship
+ * @property-read mixed $NumberOwned {@link getNumberOwned()}
  */
 class Asset extends Model
 {
@@ -63,6 +64,10 @@ class Asset extends Model
                 $this->AssetName = $this->Manufacturer->ManufacturerName . " " . $this->Model;
             }
         }
+    }
+
+    public function getNumberOwned() {
+        return sizeof($this->SerialNumbers);
     }
 
     // TODO Method for times rented

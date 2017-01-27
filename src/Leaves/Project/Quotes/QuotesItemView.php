@@ -3,7 +3,9 @@
 namespace HexTechnology\Leaves\Project\Quotes;
 
 use HexTechnology\Layouts\HexTechnologyItemView;
+use HexTechnology\Models\Asset;
 use HexTechnology\Models\Quote;
+use Rhubarb\Leaf\Table\Leaves\Table;
 
 class QuotesItemView extends HexTechnologyItemView
 {
@@ -13,8 +15,17 @@ class QuotesItemView extends HexTechnologyItemView
 
         $this->registerSubLeaf(
             "ClientID",
-            "DateCreated"
+            "DateCreated",
+            $assetTable = new Table(Asset::all(), 50, "AssetTable")
         );
+
+        $assetTable->columns = [
+            "AssetName",
+            "RentalCostPerDay",
+            "AssetTypeID",
+            "RentalCostPerDay",
+            "RentalCostPerWeek",
+        ];
     }
 
     protected function printInnerContent()
@@ -28,6 +39,8 @@ class QuotesItemView extends HexTechnologyItemView
             ]
         );
         print "Grand Total: £" . $quote->GrandTotal;
+
+        print $this->leaves["AssetTable"];
     }
 
 }

@@ -18,6 +18,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read int|mixed $GrandTotal {@link getGrandTotal()}
  * @property int $ClientID Repository field
  * @property-read Client $Client Relationship
+ * @property RhubarbDate $DateCreated Repository field
  */
 class Quote extends Model
 {
