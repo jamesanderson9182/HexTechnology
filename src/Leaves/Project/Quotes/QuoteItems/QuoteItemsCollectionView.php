@@ -14,7 +14,9 @@ class QuoteItemsCollectionView extends HexTechnologyCollectionTableView
         $table = $this->leaves["Table"];
         $table->setCollection($this->model->restCollection);
         $table->columns = [
-            "" => '<a href="{QuoteItemID}/">view</a>'
+            "" => '<a href="{QuoteItemID}/">view</a>',
+            "QuoteItemTitle",
+            "Quote.DateCreated"
         ];
     }
 
