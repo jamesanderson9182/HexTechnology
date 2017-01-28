@@ -5,11 +5,69 @@ html {
     margin: 0;
     padding: 0;
 }
+
+/* Responsive Navigation */
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(113, 0, 255, 0.53);
+}
+
+ul.topnav li {float: left;}
+
+.topnav img {
+    height:34px;
+    margin: -6px;
+}
+
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+ul.topnav li a:hover {background-color: #f97352;}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:920px) {
+    ul.topnav li:not(:first-child) {display: none;}
+    ul.topnav li.icon {
+        float: right;
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width:920px) {
+    ul.topnav.responsive {position: relative;}
+    ul.topnav.responsive li.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    ul.topnav.responsive li {
+        float: none;
+        display: inline;
+    }
+    ul.topnav.responsive li a {
+        display: block;
+        text-align: left;
+    }
+}
+
+
+/* End of Responsive Navigation */
 .title {
     background-color: #523784;
     margin: 0;
     padding: 20px;
 }
+
 body {
     margin: 0;
     padding: 0;
@@ -41,48 +99,8 @@ body {
     width: 300px;
 }
 
-nav {
-    height: 55px;
-    background-color: rgba(113, 0, 255, 0.53);
-    margin: 0px;
-}
-
-nav img {
-    float: left;
-}
-
-nav ul {
-    float: right;
-    margin: 0px;
-}
-
-nav ul h1 {
-    margin: 0px;
-    vertical-align: middle;
-}
-
-nav ul li {
-    display: inline-block;
-    font-size: 12pt;
-    color: #ffffff;
-    font-family: "Roboto", sans-serif;
-    height: 100%;
-}
-
-nav ul li:hover {
-    display: inline-block;
-    background-color: #f97352;
-    font-size: 12pt;
-    color: #ffffff;
-    font-family: "Roboto", sans-serif;
-}
-
 a {
     color: inherit;
-}
-nav ul li a:visited {
-    color: #ffffff;
-    font-family: "Roboto", sans-serif;
 }
 
 table {
