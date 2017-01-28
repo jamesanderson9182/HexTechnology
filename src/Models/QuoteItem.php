@@ -42,7 +42,7 @@ class QuoteItem extends Model
             new DecimalColumn("NumberOfUnits")
         );
 
-        $schema->labelColumnName = "QuoteTitle";
+        $schema->labelColumnName = "QuoteItemTitle";
 
         return $schema;
     }

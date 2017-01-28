@@ -2,7 +2,6 @@
 
 namespace HexTechnology\Models;
 
-
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\StringColumn;
@@ -50,5 +49,13 @@ class Client extends Model
         );
         $schema->labelColumnName = "ClientDisplayName";
         return $schema;
+    }
+
+    public function beforeSave()
+    {
+        if ($this->ClientDisplayName == "") {
+            $this->ClientDisplayName = $this->Forename . " " . $this->Surname;
+        }
+        parent::beforeSave();
     }
 }

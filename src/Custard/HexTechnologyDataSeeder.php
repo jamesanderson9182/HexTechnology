@@ -8,6 +8,8 @@ use HexTechnology\Models\Client;
 use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\Project;
 use HexTechnology\Models\Expense;
+use HexTechnology\Models\Quote;
+use HexTechnology\Models\QuoteItem;
 use HexTechnology\Models\SerialNumber;
 use HexTechnology\Models\Task;
 use Rhubarb\Crown\DateTime\RhubarbDate;
@@ -24,6 +26,7 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $this->SeedProjects();
         $this->SeedExpenses();
         $this->SeedTasks();
+        $this->SeedQuotes();
     }
 
     public function SeedAssets()
@@ -744,5 +747,122 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $task->TaskDescription = "lol, every time you seed data this will be unticked xD";
         $task->Completed = false;
         $task->save();
+    }
+
+    private function SeedQuotes()
+    {
+        // One
+        $client = new Client();
+        $client->Forename = "King";
+        $client->Surname = "De'Quotes";
+        $client->save();
+
+        $project = new Project();
+        $project->ProjectName = "Quotable Project";
+        $project->ClientID = $client->ClientID;
+        $project->save();
+
+        $quote = new Quote();
+        $quote->ProjectID = $project->ProjectID;
+        $quote->ClientID = $client->ClientID;
+        $quote->DateCreated = new RhubarbDate("now");
+        $quote->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "XLRs";
+        $quoteItem->NumberOfUnits = 3;
+        $quoteItem->UnitCost =  23;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Qu32";
+        $quoteItem->NumberOfUnits = 1;
+        $quoteItem->UnitCost =  2046;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Something else";
+        $quoteItem->NumberOfUnits = 7;
+        $quoteItem->UnitCost =  2.4;
+        $quoteItem->save();
+
+        // Two
+        $client = new Client();
+        $client->Forename = "Yer";
+        $client->Surname = "Mann";
+        $client->save();
+
+        $project = new Project();
+        $project->ProjectName = "Second Quotable Project";
+        $project->ClientID = $client->ClientID;
+        $project->save();
+
+        $quote = new Quote();
+        $quote->ProjectID = $project->ProjectID;
+        $quote->ClientID = $client->ClientID;
+        $quote->DateCreated = new RhubarbDate("yesterday");
+        $quote->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Time";
+        $quoteItem->NumberOfUnits = 3;
+        $quoteItem->UnitCost = 10;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Stairville Light";
+        $quoteItem->NumberOfUnits = 3;
+        $quoteItem->UnitCost =  7;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Something else";
+        $quoteItem->NumberOfUnits = 3;
+        $quoteItem->UnitCost =  2.4;
+        $quoteItem->save();
+
+        // Three
+        $client = new Client();
+        $client->Forename = "Trintiy";
+        $client->Surname = "Methodist Quote";
+        $client->save();
+
+        $project = new Project();
+        $project->ProjectName = "Sound Upgrade 2016";
+        $project->ClientID = $client->ClientID;
+        $project->save();
+
+        $quote = new Quote();
+        $quote->ProjectID = $project->ProjectID;
+        $quote->ClientID = $client->ClientID;
+        $quote->DateCreated = new RhubarbDate("1 week ago");
+        $quote->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Cromo 8\"";
+        $quoteItem->NumberOfUnits = 2;
+        $quoteItem->UnitCost = 250;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Qu32";
+        $quoteItem->NumberOfUnits = 1;
+        $quoteItem->UnitCost =  3024;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Training";
+        $quoteItem->NumberOfUnits = 4;
+        $quoteItem->UnitCost =  10.50;
+        $quoteItem->save();
     }
 }

@@ -36,6 +36,7 @@ class Quote extends Model
         $schema->addColumn(
             new AutoIncrementColumn("QuoteID"),
             new ForeignKeyColumn("ProjectID"),
+            new ForeignKeyColumn("ClientID"),
             new DateColumn("DateCreated", new RhubarbDate("now"))
         );
 
