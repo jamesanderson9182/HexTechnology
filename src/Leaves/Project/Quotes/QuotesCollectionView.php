@@ -14,7 +14,10 @@ class QuotesCollectionView extends HexTechnologyCollectionTableView
         $table = $this->leaves["Table"];
         $table->setCollection($this->model->restCollection);
         $table->columns = [
-          "" => '<a href="{QuoteID}/"><a>view</a>'
+            "" => '<a href="{QuoteID}/">view</a>',
+            "Client" => "Client",
+            "DateCreated",
+            "Grand Total (£)" => "GrandTotal"
         ];
     }
 

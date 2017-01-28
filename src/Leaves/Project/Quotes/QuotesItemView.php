@@ -42,6 +42,14 @@ class QuotesItemView extends HexTechnologyItemView
         print "Grand Total: £" . $quote->GrandTotal;
 
         print $this->leaves["AssetTable"];
+
+        ?>
+        <script>
+            document.getElementById("copyButton").addEventListener("click", function() {
+                document.execCommand("copy");
+            });
+        </script>
+        <?php
     }
 
 }
