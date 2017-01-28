@@ -5,19 +5,36 @@ namespace HexTechnology\Leaves\Project\Quotes;
 use HexTechnology\Layouts\HexTechnologyItemView;
 use HexTechnology\Models\Asset;
 use HexTechnology\Models\Quote;
+use Rhubarb\Leaf\Controls\Common\Buttons\Button;
+use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
+use Rhubarb\Leaf\Controls\Common\Text\TextBox;
 use Rhubarb\Leaf\Table\Leaves\Table;
 
 class QuotesItemView extends HexTechnologyItemView
 {
+    /**
+     * @var QuotesItemModel
+     */
+    protected $model;
+
     protected function createSubLeaves()
     {
         parent::createSubLeaves();
+        /** @var Quote $quote */
+        $quote = $this->model->restModel;
 
         $this->registerSubLeaf(
             "ClientID",
             "DateCreated",
             $assetTable = new Table(Asset::all(), 50, "AssetTable"),
-            $quoteItemTable = new Table($this->model->restModel->QuoteItems, 50, "QuoteItemTable")
+            $quoteItemTable = new Table($quote->QuoteItems, 50, "QuoteItemTable"),
+            //adding quote items
+            new TextBox("NewQuoteItemTitle"),
+            new NumericTextBox("NewUnitCost"),
+            new NumericTextBox("NewNumberOfUnits"),
+            new Button("NewQuoteItem", "+", function() {
+                $this->model->AddNewQuoteItemEvent->raise();
+            })
         );
 
         $assetTable->columns = [
@@ -49,6 +66,13 @@ class QuotesItemView extends HexTechnologyItemView
         );
         print "Grand Total: £" . $quote->GrandTotal;
         print $this->leaves["QuoteItemTable"];
+        $this->layoutItemsWithContainer("New Quote Item",
+            [
+                "NewQuoteItemTitle",
+                "NewUnitCost",
+                "NewNumberOfUnits",
+                "NewQuoteItem"
+            ]);
 
         print $this->leaves["AssetTable"];
 
