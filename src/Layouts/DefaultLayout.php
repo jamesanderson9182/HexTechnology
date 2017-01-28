@@ -48,18 +48,23 @@ class DefaultLayout extends BaseLayout
     {
         $pageSettings = HtmlPageSettings::singleton();
         return <<<HTML
-        <nav>
-        <a href="/"><img src="/static/images/logo.png" alt="logo" height="55px"></a>
-            <ul>
-                <a href="/assets/"><li><h1>Assets</h1></li></a>
-                <a href="/assets/manufacturers/"><li><h1>Manufacturers</h1></li></a>
-                <a href="/assets/types/"><li><h1>Asset-Types</h1></li></a>
-                <a href="/clients/"><li><h1>Clients</h1></li></a>
-                <a href="/expenses/"><li><h1>Expenses</h1></li></a>
-                <a href="/projects/"><li><h1>Projects</h1></li></a>
-                <a href="/tasks/"><li><h1>Tasks</h1></li></a>
-            </ul>
-        </nav>
+<nav>
+    <ul class="topnav" id="myTopnav">
+        <li><a href="/"><img src="/static/images/logo.png" alt="Hex Technology"></a></li>
+        <li><a href="/assets/">Assets</a></li>
+        <li><a href="/assets/manufacturers/">Manufacturers</a></li>
+        <li><a href="/assets/types/">Asset-Types</a></li>
+        <li><a href="/clients/">Clients</a></li>
+        <li><a href="/expenses/">Expenses</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/projects/quotes/">Quotes</a></li>
+        <li><a href="/projects/quotes/quote-items/">Quote Items</a></li>
+        <li><a href="/tasks/">Tasks</a></li>
+        <li class="icon">
+            <a href="javascript:void(0);" onclick="mmmBurgers()">&#9776;</a>
+        </li>
+    </ul>
+</nav>
 HTML;
     }
     protected function printContent($content)
@@ -76,6 +81,16 @@ HTML;
             <?= ResourceLoader::getResourceInjectionHtml(); ?>
             <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <script>
+                function mmmBurgers() {
+                    var x = document.getElementById("myTopnav");
+                    if (x.className === "topnav") {
+                        x.className += " responsive";
+                    } else {
+                        x.className = "topnav";
+                    }
+                }
+            </script>
         </head>
         <header>
             <?php $this->printPageHeading(); ?>

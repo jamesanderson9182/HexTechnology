@@ -22,6 +22,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read mixed $TotalExpenses {@link getTotalExpenses()}
  * @property-read mixed $TotalRevenue {@link getTotalRevenue()}
  * @property-read mixed $TotalProfit {@link getTotalProfit()}
+ * @property-read Quote $Quote Relationship
  */
 class Project extends Model
 {

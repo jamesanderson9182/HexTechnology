@@ -2,7 +2,6 @@
 
 namespace HexTechnology\Models;
 
-
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\StringColumn;
@@ -23,6 +22,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property string $Email Repository field
  * @property-read Project[]|\Rhubarb\Stem\Collections\RepositoryCollection $Projects Relationship
  * @property-read Rental[]|\Rhubarb\Stem\Collections\RepositoryCollection $Rentals Relationship
+ * @property-read Quote[]|\Rhubarb\Stem\Collections\RepositoryCollection $Quotes Relationship
  */
 class Client extends Model
 {
@@ -49,5 +49,13 @@ class Client extends Model
         );
         $schema->labelColumnName = "ClientDisplayName";
         return $schema;
+    }
+
+    public function beforeSave()
+    {
+        if ($this->ClientDisplayName == "") {
+            $this->ClientDisplayName = $this->Forename . " " . $this->Surname;
+        }
+        parent::beforeSave();
     }
 }

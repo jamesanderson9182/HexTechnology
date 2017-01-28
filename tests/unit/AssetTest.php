@@ -42,11 +42,23 @@ class AssetTest extends HexTechnologyTestCase
 
         /** @var Asset $testAsset */
         $testAsset = new Asset($asset->AssetID);
-        $this->assertEquals("XLR_5m_1", $testAsset->SerialNumbers[0]->SerialNumberCode, "Assets should have access to their serial numbers");
+        $this->assertEquals(
+            "XLR_5m_1",
+            $testAsset->SerialNumbers[0]->SerialNumberCode,
+            "Assets should have access to their serial numbers"
+        );
 
-        $this->assertEquals("Thomann", $testAsset->Manufacturer->ManufacturerName, "Assets should have access to their manufacturer");
+        $this->assertEquals(
+            "Thomann",
+            $testAsset->Manufacturer->ManufacturerName,
+            "Assets should have access to their manufacturer"
+        );
 
-        $this->assertEquals("Wire", $testAsset->AssetType->AssetTypeName, "Assets should have access to their asset type");
+        $this->assertEquals(
+            "Wire",
+            $testAsset->AssetType->AssetTypeName,
+            "Assets should have access to their asset type"
+        );
 	}
 
 	public function testAssetNameNotSet() {
@@ -59,6 +71,47 @@ class AssetTest extends HexTechnologyTestCase
         $asset->Model = "15m";
         $asset->save();
 
-        $this->assertEquals($asset->AssetName, $manufacturer->ManufacturerName . " " . $asset->Model, "If AssetName is not set, but manufacturer and model are use those with a space");
+        $this->assertEquals(
+            $asset->AssetName,
+            $manufacturer->ManufacturerName . " " . $asset->Model,
+            "If AssetName is not set, but manufacturer and model are use those with a space"
+        );
     }
+
+    public function testCountOfAssetSerials() {
+        $manufacturer = new Manufacturer();
+        $manufacturer->ManufacturerName = "Thomann";
+        $manufacturer->save();
+
+        $asset = new Asset();
+        $asset->ManufacturerID = $manufacturer->ManufacturerID;
+        $asset->Model = "15m";
+        $asset->save();
+
+        $serialNumber = new SerialNumber();
+        $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->save();
+
+        $serialNumber = new SerialNumber();
+        $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->save();
+
+        $serialNumber = new SerialNumber();
+        $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->save();
+
+        $serialNumber = new SerialNumber();
+        $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->save();
+
+        $serialNumber = new SerialNumber();
+        $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->save();
+
+        $this->assertEquals(
+            5,
+            $asset->NumberOwned,
+            "Number Owned of each asset should be the count of Serial Numbers"
+        );
+	}
 }

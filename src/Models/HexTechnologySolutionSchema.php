@@ -18,6 +18,8 @@ class HexTechnologySolutionSchema extends SolutionSchema
         $this->addModel("Expense", Expense::class);
         $this->addModel("Task", Task::class);
         $this->addModel("Rental", Rental::class);
+        $this->addModel("Quote", Quote::class);
+        $this->addModel("QuoteItem", QuoteItem::class);
     }
 
     protected function defineRelationships()
@@ -47,16 +49,28 @@ class HexTechnologySolutionSchema extends SolutionSchema
             "Client" =>
                 [
                     "Projects" => "Project.ClientID",
-                    "Rentals" => "Rental.ClientID"
+                    "Rentals" => "Rental.ClientID",
+                    "Quotes" => "Quote.ClientID"
                 ],
             "Project" =>
                 [
                     "Expenses" => "Expense.ProjectID",
                     "Tasks" => "Task.ProjectID"
+                ],
+            "Quote" =>
+                [
+                    "QuoteItems" => "QuoteItem.QuoteID"
                 ]
         ]);
 
-//        $this->declareOneToOneRelationship();
+        /**
+         * One Project can have one quote
+         */
+        $this->declareOneToOneRelationships([
+            "Project" => [
+                "Quote" => "Quote.ProjectID"
+            ]
+        ]);
     }
 
 }

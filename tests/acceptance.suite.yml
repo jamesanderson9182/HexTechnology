@@ -7,7 +7,6 @@
 class_name: AcceptanceTester
 modules:
     enabled:
-        - WebDriver:
+        - PhpBrowser:
             url: 'http://localhost:8080'
-            browser: chrome
         - \Helper\Acceptance
