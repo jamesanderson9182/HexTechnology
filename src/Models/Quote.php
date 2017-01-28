@@ -19,6 +19,8 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property int $ClientID Repository field
  * @property-read Client $Client Relationship
  * @property RhubarbDate $DateCreated Repository field
+ * @property-read mixed $Title {@link getTitle()}
+ * @property int $ProjectID Repository field
  */
 class Quote extends Model
 {
@@ -33,9 +35,12 @@ class Quote extends Model
         $schema = new ModelSchema("Quote");
         $schema->addColumn(
             new AutoIncrementColumn("QuoteID"),
-            new ForeignKeyColumn("ClientID"),
-            new DateColumn("DateCreated", new RhubarbDate("now")) // Hopefully the default value won't break anything
+            new ForeignKeyColumn("ProjectID"),
+            new DateColumn("DateCreated", new RhubarbDate("now"))
         );
+
+        $schema->labelColumnName = "Title";
+
         return $schema;
     }
 
@@ -50,5 +55,10 @@ class Quote extends Model
         }
 
         return $grandTotal;
+    }
+
+    //TODO wrote a test for the below 
+    public function getTitle() {
+        return $this->Client->ClientDisplayName . " " . $this->DateCreated;
     }
 }

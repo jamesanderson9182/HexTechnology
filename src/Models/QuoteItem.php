@@ -7,6 +7,7 @@ use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\DecimalColumn;
 use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
 use Rhubarb\Stem\Schema\Columns\MoneyColumn;
+use Rhubarb\Stem\Schema\Columns\StringColumn;
 use Rhubarb\Stem\Schema\ModelSchema;
 
 /**
@@ -18,6 +19,9 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property float $UnitCost Repository field
  * @property float $NumberOfUnits Repository field
  * @property-read mixed $Amount {@link getAmount()}
+ * @property int $ProjectID Repository field
+ * @property string $QuoteTitle Repository field
+ * @property string $QuoteItemTitle Repository field
  */
 class QuoteItem extends Model
 {
@@ -33,9 +37,12 @@ class QuoteItem extends Model
         $schema->addColumn(
             new AutoIncrementColumn("QuoteItemID"),
             new ForeignKeyColumn("QuoteID"),
+            new StringColumn("QuoteItemTitle", 50),
             new MoneyColumn("UnitCost"),
             new DecimalColumn("NumberOfUnits")
         );
+
+        $schema->labelColumnName = "QuoteTitle";
 
         return $schema;
     }

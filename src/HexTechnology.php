@@ -13,6 +13,7 @@ use HexTechnology\Leaves\Expenses\ExpensesCollection;
 use HexTechnology\Leaves\Index\Index;
 use HexTechnology\Leaves\Assets\Serials\SerialsCollection;
 use HexTechnology\Leaves\Project\ProjectCollection;
+use HexTechnology\Leaves\Project\Quotes\QuoteItems\QuoteItemsCollection;
 use HexTechnology\Leaves\Project\Quotes\QuotesCollection;
 use HexTechnology\Leaves\Tasks\TasksCollection;
 use HexTechnology\Models\Asset;
@@ -23,6 +24,7 @@ use HexTechnology\Models\HexTechnologySolutionSchema;
 use HexTechnology\Models\Manufacturer;
 use HexTechnology\Models\Project;
 use HexTechnology\Models\Quote;
+use HexTechnology\Models\QuoteItem;
 use HexTechnology\Models\SerialNumber;
 use HexTechnology\Models\Task;
 use HexTechnology\RestApi\AssetsResource;
@@ -87,7 +89,9 @@ class HexTechnology extends Application
                     ]),
                     "clients/" => new CrudUrlHandler(Client::class, StringTools::getNamespaceFromClass(ClientsCollection::class)),
                     "projects/" => new CrudUrlHandler(Project::class, StringTools::getNamespaceFromClass(ProjectCollection::class), [], [
-                        "quotes/" => new CrudUrlHandler(Quote::class, StringTools::getNamespaceFromClass(QuotesCollection::class))
+                        "quotes/" => new CrudUrlHandler(Quote::class, StringTools::getNamespaceFromClass(QuotesCollection::class), [], [
+                            "quote-items/" => new CrudUrlHandler(QuoteItem::class, StringTools::getNamespaceFromClass(QuoteItemsCollection::class))
+                        ])
                     ]),
                     "expenses/" => new CrudUrlHandler(Expense::class, StringTools::getNamespaceFromClass(ExpensesCollection::class)),
                     "tasks/" => new CrudUrlHandler(Task::class, StringTools::getNamespaceFromClass(TasksCollection::class))
