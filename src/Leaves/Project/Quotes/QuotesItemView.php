@@ -16,7 +16,8 @@ class QuotesItemView extends HexTechnologyItemView
         $this->registerSubLeaf(
             "ClientID",
             "DateCreated",
-            $assetTable = new Table(Asset::all(), 50, "AssetTable")
+            $assetTable = new Table(Asset::all(), 50, "AssetTable"),
+            $quoteItemTable = new Table($this->model->restModel->QuoteItems, 50, "QuoteItemTable")
         );
 
         $assetTable->columns = [
@@ -26,6 +27,13 @@ class QuotesItemView extends HexTechnologyItemView
             "RentalCostPerDay",
             "RentalCostPerWeek",
             "NumberOwned"
+        ];
+
+        $quoteItemTable->columns = [
+            "QuoteItemTitle",
+            "UnitCost",
+            "NumberOfUnits",
+            "Amount"
         ];
     }
 
@@ -40,6 +48,7 @@ class QuotesItemView extends HexTechnologyItemView
             ]
         );
         print "Grand Total: £" . $quote->GrandTotal;
+        print $this->leaves["QuoteItemTable"];
 
         print $this->leaves["AssetTable"];
 
