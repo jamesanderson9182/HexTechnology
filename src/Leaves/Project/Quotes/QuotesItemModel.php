@@ -27,10 +27,16 @@ class QuotesItemModel extends CrudModel
      */
     public $AddNewQuoteItemEvent;
 
+    /**
+     * @var Event
+     */
+    public $downloadPdfEvent;
+
     public function __construct()
     {
         parent::__construct();
         $this->AddNewQuoteItemEvent = new Event();
+        $this->downloadPdfEvent = new Event();
     }
 
 }

@@ -14,7 +14,8 @@
     "rhubarbphp/module-restapi": "^2.0",
     "rhubarbphp/module-leaf-table": "1.0.6",
     "rhubarbphp/pikaday": "^1.5",
-    "codeception/codeception" : "*"
+    "codeception/codeception" : "*",
+    "dompdf/dompdf": "^0.7.0"
   },
   "config":
   {

@@ -34,6 +34,9 @@ class QuotesItemView extends HexTechnologyItemView
             new NumericTextBox("NewNumberOfUnits"),
             new Button("NewQuoteItem", "+", function() {
                 $this->model->AddNewQuoteItemEvent->raise();
+            }),
+            new Button("PDF", "Download Pdf", function () {
+                $this->model->downloadPdfEvent->raise();
             })
         );
 
@@ -66,6 +69,7 @@ class QuotesItemView extends HexTechnologyItemView
         );
         print "Grand Total: £" . $quote->GrandTotal;
         print $this->leaves["QuoteItemTable"];
+        print $this->leaves["PDF"];
         $this->layoutItemsWithContainer("New Quote Item",
             [
                 "NewQuoteItemTitle",
