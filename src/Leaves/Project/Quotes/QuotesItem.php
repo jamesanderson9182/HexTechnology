@@ -2,9 +2,13 @@
 
 namespace HexTechnology\Leaves\Project\Quotes;
 
+use HexTechnology\Integrations\Documents\QuotePdf;
+use HexTechnology\Models\Quote;
 use HexTechnology\Models\QuoteItem;
 use Rhubarb\Crown\Exceptions\ForceResponseException;
+use Rhubarb\Crown\Response\BinaryResponse;
 use Rhubarb\Crown\Response\RedirectResponse;
+use Rhubarb\Crown\String\StringTools;
 use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;
 
 class QuotesItem extends CrudLeaf
@@ -45,6 +49,19 @@ class QuotesItem extends CrudLeaf
 
             }
             throw new ForceResponseException(new RedirectResponse('.'));
+        });
+
+        $this->model->downloadPdfEvent->attachHandler(function () {
+
+            $quotePdf = new QuotePdf();
+            /** @var Quote $quote */
+            $quote = $this->model->restModel;
+            $file = tempnam("data/temp", 'pdf');
+            $quotePdf->toPdfFile($file, $quote);
+            rename($file, $file . ".pdf");
+            $download = file_get_contents($file . ".pdf");
+            unlink($file . "Thank You Donation Letters.pdf");
+            throw new ForceResponseException(new BinaryResponse($this, $download, "application/pdf", "Quote".$quote->Client->ClientDisplayName .$quote->DateCreated  . ".pdf"));
         });
     }
 

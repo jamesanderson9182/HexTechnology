@@ -172,18 +172,6 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->save();
 
         $client = new Client();
-        $client->ClientDisplayName = "Dan Moore";
-        $client->Forename = "Dan";
-        $client->Surname = "Moore";
-        $client->AddressLine1 = "6751 Risus. Road";
-        $client->Postcode = "L9B 7X1";
-        $client->Town = "Ways";
-        $client->Mobile = "0800 1111";
-        $client->Telephone = "0894 750 3043";
-        $client->Email = "lectus.justo.eu@enimNuncut.net";
-        $client->save();
-
-        $client = new Client();
         $client->ClientDisplayName = "Paul Moorehead";
         $client->Forename = "Paul";
         $client->Surname = "Moorehead";
@@ -196,18 +184,6 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->save();
 
         $client = new Client();
-        $client->ClientDisplayName = "Thomas Glass";
-        $client->Forename = "Thomas";
-        $client->Surname = "Glass";
-        $client->AddressLine1 = "496-1874 Consectetuer Road";
-        $client->Postcode = "P8H 8G9";
-        $client->Town = "Sainte-Marie-Chevigny";
-        $client->Mobile = "(016977) 3844";
-        $client->Telephone = "07624 769617";
-        $client->Email = "parturient@auguescelerisquemollis.com";
-        $client->save();
-
-        $client = new Client();
         $client->ClientDisplayName = "Sam Thompson";
         $client->Forename = "Sam";
         $client->Surname = "Thompson";
@@ -217,18 +193,6 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $client->Mobile = "(01310) 079430";
         $client->Telephone = "07624 451546";
         $client->Email = "nunc.est.mollis@sedorci.co.uk";
-        $client->save();
-
-        $client = new Client();
-        $client->ClientDisplayName = "Timothy Hancock";
-        $client->Forename = "Timothy";
-        $client->Surname = "Hancock";
-        $client->AddressLine1 = "Ap #217-2694 Dolor. Rd.";
-        $client->Postcode = "P1A 0W9";
-        $client->Town = "Middlesbrough";
-        $client->Mobile = "076 4063 6734";
-        $client->Telephone = "(0113) 954 3727";
-        $client->Email = "dapibus.quam.quis@afelisullamcorper.co.uk";
         $client->save();
     }
 
@@ -753,8 +717,15 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
     {
         // One
         $client = new Client();
-        $client->Forename = "King";
-        $client->Surname = "De'Quotes";
+        $client->ClientDisplayName = "Dan Moore";
+        $client->Forename = "Dan";
+        $client->Surname = "Moore";
+        $client->AddressLine1 = "6751 Risus. Road";
+        $client->Postcode = "L9B 7X1";
+        $client->Town = "Ways";
+        $client->Mobile = "0800 1111";
+        $client->Telephone = "0894 750 3043";
+        $client->Email = "lectus.justo.eu@enimNuncut.net";
         $client->save();
 
         $project = new Project();
@@ -791,8 +762,15 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
 
         // Two
         $client = new Client();
-        $client->Forename = "Yer";
-        $client->Surname = "Mann";
+        $client->ClientDisplayName = "Timothy Hancock";
+        $client->Forename = "Timothy";
+        $client->Surname = "Hancock";
+        $client->AddressLine1 = "Ap #217-2694 Dolor. Rd.";
+        $client->Postcode = "P1A 0W9";
+        $client->Town = "Middlesbrough";
+        $client->Mobile = "076 4063 6734";
+        $client->Telephone = "(0113) 954 3727";
+        $client->Email = "dapibus.quam.quis@afelisullamcorper.co.uk";
         $client->save();
 
         $project = new Project();
@@ -829,8 +807,15 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
 
         // Three
         $client = new Client();
-        $client->Forename = "Trintiy";
-        $client->Surname = "Methodist Quote";
+        $client->ClientDisplayName = "Thomas Glass";
+        $client->Forename = "Thomas";
+        $client->Surname = "Glass";
+        $client->AddressLine1 = "496-1874 Consectetuer Road";
+        $client->Postcode = "P8H 8G9";
+        $client->Town = "Sainte-Marie-Chevigny";
+        $client->Mobile = "(016977) 3844";
+        $client->Telephone = "07624 769617";
+        $client->Email = "parturient@auguescelerisquemollis.com";
         $client->save();
 
         $project = new Project();
