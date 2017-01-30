@@ -849,5 +849,107 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $quoteItem->NumberOfUnits = 4;
         $quoteItem->UnitCost =  10.50;
         $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Cromo 8\"";
+        $quoteItem->NumberOfUnits = 2;
+        $quoteItem->UnitCost = 250;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Qu32";
+        $quoteItem->NumberOfUnits = 1;
+        $quoteItem->UnitCost =  3024;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Training";
+        $quoteItem->NumberOfUnits = 4;
+        $quoteItem->UnitCost =  10.50;
+        $quoteItem->save();
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Cromo 8\"";
+        $quoteItem->NumberOfUnits = 2;
+        $quoteItem->UnitCost = 250;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Qu32";
+        $quoteItem->NumberOfUnits = 1;
+        $quoteItem->UnitCost =  3024;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Training";
+        $quoteItem->NumberOfUnits = 4;
+        $quoteItem->UnitCost =  10.50;
+        $quoteItem->save();
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Cromo 8\"";
+        $quoteItem->NumberOfUnits = 2;
+        $quoteItem->UnitCost = 250;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Qu32";
+        $quoteItem->NumberOfUnits = 1;
+        $quoteItem->UnitCost =  3024;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Training";
+        $quoteItem->NumberOfUnits = 4;
+        $quoteItem->UnitCost =  10.50;
+        $quoteItem->save();
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Cromo 8\"";
+        $quoteItem->NumberOfUnits = 2;
+        $quoteItem->UnitCost = 250;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Qu32";
+        $quoteItem->NumberOfUnits = 1;
+        $quoteItem->UnitCost =  3024;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Training";
+        $quoteItem->NumberOfUnits = 4;
+        $quoteItem->UnitCost =  10.50;
+        $quoteItem->save();
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Cromo 8\"";
+        $quoteItem->NumberOfUnits = 2;
+        $quoteItem->UnitCost = 250;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Qu32";
+        $quoteItem->NumberOfUnits = 1;
+        $quoteItem->UnitCost =  3024;
+        $quoteItem->save();
+
+        $quoteItem = new QuoteItem();
+        $quoteItem->QuoteID = $quote->QuoteID;
+        $quoteItem->QuoteItemTitle = "Training";
+        $quoteItem->NumberOfUnits = 4;
+        $quoteItem->UnitCost =  10.50;
+        $quoteItem->save();
+
     }
 }
