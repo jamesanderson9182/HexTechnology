@@ -67,26 +67,21 @@ class QuotesItemView extends HexTechnologyItemView
                 "DateCreated"
             ]
         );
-        print "Grand Total: £" . $quote->GrandTotal;
-        print $this->leaves["QuoteItemTable"];
-        print $this->leaves["PDF"];
-        $this->layoutItemsWithContainer("New Quote Item",
-            [
-                "NewQuoteItemTitle",
-                "NewUnitCost",
-                "NewNumberOfUnits",
-                "NewQuoteItem"
-            ]);
+        if($this->model->restModel->isNewRecord() == false)
+        {
+			print "Grand Total: £" . $quote->GrandTotal;
+			print $this->leaves["QuoteItemTable"];
+			print $this->leaves["PDF"];
+			$this->layoutItemsWithContainer("New Quote Item",
+				[
+					"NewQuoteItemTitle",
+					"NewUnitCost",
+					"NewNumberOfUnits",
+					"NewQuoteItem"
+				]);
 
-        print $this->leaves["AssetTable"];
-
-        ?>
-        <script>
-            document.getElementById("copyButton").addEventListener("click", function() {
-                document.execCommand("copy");
-            });
-        </script>
-        <?php
+			print $this->leaves["AssetTable"];
+        }
     }
 
 }
