@@ -318,24 +318,24 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $task->save();
 
         /*
-         * Projects for Trinity
+         * Projects for Trinity, I'm putting a Quote on this too
          */
 
         $client = new Client();
         $client->ClientDisplayName = "Trinity Methodist Church";
         $client->Forename = "Paul";
         $client->Surname = "Coulter";
-        $client->AddressLine1 = "563-904 Sollicitudin Avenue";
-        $client->Postcode = "M1L 1Y5";
-        $client->Town = "Glimes";
-        $client->Mobile = "0800 1111";
-        $client->Telephone = "055 2556 9122";
+        $client->AddressLine1 = "Ballymacoss Avenue";
+        $client->Postcode = "BT28 2GU";
+        $client->Town = "LISBURN";
+        $client->Mobile = "028 9260 5335";
+        $client->Telephone = "028 9260 5335";
         $client->Email = "nec.euismod.in@auctornunc.org";
         $client->save();
 
         $project = new Project();
         $project->ClientID = $client->ClientID;
-        $project->ProjectName = "Variety Concert";
+        $project->ProjectName = "Worship Evening";
         $project->save();
 
         $expense = new Expense();
@@ -410,6 +410,61 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $task->Completed = true;
         $task->ProjectID = $project->ProjectID;
         $task->save();
+
+        $quote = new Quote();
+        $quote->ClientID = $client->ClientID;
+        $quote->DateCreated = new RhubarbDate("Now");
+        $quote->ProjectID = $project->ProjectID;
+        $quote->save();
+
+		$quoteItem = new QuoteItem();
+		$quoteItem->QuoteID = $quote->QuoteID;
+		$quoteItem->QuoteItemTitle = "YAMAHA DXS 12 Sub";
+		$quoteItem->UnitCost = 18.10;
+		$quoteItem->NumberOfUnits = 2;
+		$quoteItem->save();
+
+		$quoteItem = new QuoteItem();
+		$quoteItem->QuoteID = $quote->QuoteID;
+		$quoteItem->QuoteItemTitle = "YAMAHA DBR10 Speaker";
+		$quoteItem->UnitCost = 10;
+		$quoteItem->NumberOfUnits = 2;
+		$quoteItem->save();
+
+		$quoteItem = new QuoteItem();
+		$quoteItem->QuoteID = $quote->QuoteID;
+		$quoteItem->QuoteItemTitle = "K&M 21366 Sat Pole";
+		$quoteItem->UnitCost = 0;
+		$quoteItem->NumberOfUnits = 2;
+		$quoteItem->save();
+
+		$quoteItem = new QuoteItem();
+		$quoteItem->QuoteID = $quote->QuoteID;
+		$quoteItem->QuoteItemTitle = "RGB Flood Light";
+		$quoteItem->UnitCost = 4;
+		$quoteItem->NumberOfUnits = 2;
+		$quoteItem->save();
+
+		$quoteItem = new QuoteItem();
+		$quoteItem->QuoteID = $quote->QuoteID;
+		$quoteItem->QuoteItemTitle = "DrumKit6 Drum Micriphone Kit";
+		$quoteItem->UnitCost = 12;
+		$quoteItem->NumberOfUnits = 1;
+		$quoteItem->save();
+
+		$quoteItem = new QuoteItem();
+		$quoteItem->QuoteID = $quote->QuoteID;
+		$quoteItem->QuoteItemTitle = "QU32 LEDlamp";
+		$quoteItem->UnitCost = 1.3;
+		$quoteItem->NumberOfUnits = 2;
+		$quoteItem->save();
+
+		$quoteItem = new QuoteItem();
+		$quoteItem->QuoteID = $quote->QuoteID;
+		$quoteItem->QuoteItemTitle = "Eurolight DMX Move Control 512";
+		$quoteItem->UnitCost = 4.2;
+		$quoteItem->NumberOfUnits = 1;
+		$quoteItem->save();
 
         /*
          * Projects in Kilkeel
