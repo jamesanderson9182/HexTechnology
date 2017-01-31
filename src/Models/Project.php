@@ -25,6 +25,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read mixed $TotalProfit {@link getTotalProfit()}
  * @property-read Quote $Quote Relationship
  * @property \Rhubarb\Crown\DateTime\RhubarbDate $Date Repository field
+ * @property-read Time[]|\Rhubarb\Stem\Collections\RepositoryCollection $Times Relationship
  */
 class Project extends Model
 {
