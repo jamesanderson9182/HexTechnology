@@ -50,6 +50,13 @@ class ProjectItemView extends HexTechnologyItemView
             }),
             $toggle = new Button("ToggleTaskButton", "↺", function ($viewIndex) {
                 $this->model->ToggleTaskEvent->raise($viewIndex);
+            }),
+            // Time
+            $startTimeButton = new Button("StartTimeNow", "Start Timing Now", function() {
+                $this->model->StartTimingEvent->raise();
+            }),
+            $endTimeButton = new Button("StartTimeNow", "Start Timing Now", function($viewIndex) {
+                $this->model->StartTimingEvent->raise($viewIndex);
             })
         );
 
