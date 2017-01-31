@@ -2,9 +2,10 @@
 
 namespace HexTechnology\Models;
 
-use Rhubarb\Stem\Aggregates\Count;
+use Rhubarb\Crown\DateTime\RhubarbDate;
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
+use Rhubarb\Stem\Schema\Columns\DateColumn;
 use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
 use Rhubarb\Stem\Schema\Columns\StringColumn;
 use Rhubarb\Stem\Schema\ModelSchema;
@@ -23,6 +24,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read mixed $TotalRevenue {@link getTotalRevenue()}
  * @property-read mixed $TotalProfit {@link getTotalProfit()}
  * @property-read Quote $Quote Relationship
+ * @property \Rhubarb\Crown\DateTime\RhubarbDate $Date Repository field
  */
 class Project extends Model
 {
@@ -38,6 +40,7 @@ class Project extends Model
         $schema->addColumn(
             new AutoIncrementColumn("ProjectID"),
             new StringColumn("ProjectName", 50),
+            new DateColumn("Date", new RhubarbDate('now')),
             new ForeignKeyColumn("ClientID")
         );
         $schema->labelColumnName = "ProjectName";
