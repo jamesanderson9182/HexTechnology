@@ -3,6 +3,7 @@
 namespace HexTechnology\Models;
 
 use Rhubarb\Crown\DateTime\RhubarbDate;
+use Rhubarb\Stem\Exceptions\ModelConsistencyValidationException;
 use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\DateColumn;
@@ -49,12 +50,24 @@ class SerialNumber extends Model
         if ($this->isNewRecord()) {
             $this->DateAddedToSystem = new RhubarbDate("now");
         }
+
+        // Prevent an asset having two of the same SerialNumberCodes
+        if (sizeof($this->Asset) > 0) {
+            foreach ($this->Asset->SerialNumbers as $serialNumber) {
+                if (
+                    $serialNumber->SerialNumberCode == $this->SerialNumberCode &&
+                    $serialNumber->SerialNumberID != $this->SerialNumberID
+                ) {
+                    throw new ModelConsistencyValidationException(
+                        [
+                            "An asset can't have two serial numbers with the same code"
+                        ]
+                    );
+                }
+            }
+        }
         //TODO Have a method called GetCurrentLocation that when called without the 'Get' works out the current location
         //based on who had it last and if the person who had it last returned it.
-
-        //TODO before save check if there is a serial number with this unique code in the system already,
-        // if so throw a ModelConsistencyException make sure that the same one with the same serial does not throw
-        // one though
     }
 
 }

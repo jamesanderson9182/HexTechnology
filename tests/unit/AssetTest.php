@@ -90,22 +90,27 @@ class AssetTest extends HexTechnologyTestCase
 
         $serialNumber = new SerialNumber();
         $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->SerialNumberCode = "1";
         $serialNumber->save();
 
         $serialNumber = new SerialNumber();
         $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->SerialNumberCode = "2";
         $serialNumber->save();
 
         $serialNumber = new SerialNumber();
         $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->SerialNumberCode = "3";
         $serialNumber->save();
 
         $serialNumber = new SerialNumber();
         $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->SerialNumberCode = "4";
         $serialNumber->save();
 
         $serialNumber = new SerialNumber();
         $serialNumber->AssetID = $asset->AssetID;
+        $serialNumber->SerialNumberCode = "5";
         $serialNumber->save();
 
         $this->assertEquals(
