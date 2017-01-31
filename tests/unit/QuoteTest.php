@@ -105,4 +105,22 @@ class QuoteTest extends HexTechnologyTestCase
         $this->assertEquals($client->ClientID, $quote->Client->ClientID, "A quote can have a client");
     }
 
+    public function testTitleNotSet()
+    {
+        $client = new Client();
+        $client->ClientDisplayName = "James Anderson";
+        $client->save();
+
+        $quote = new Quote();
+        $quote->ClientID = $client->ClientID;
+        $quote->DateCreated = new RhubarbDate("now");
+        $quote->save();
+
+        $this->assertEquals(
+            $client->ClientDisplayName . " " . new RhubarbDate('now'),
+            $quote->Title, "
+            Quote Title should be Automatically set if there is a client  and one isn't set by the user "
+        );
+    }
+
 }
