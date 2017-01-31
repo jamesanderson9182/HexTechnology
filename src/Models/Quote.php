@@ -7,6 +7,7 @@ use Rhubarb\Stem\Models\Model;
 use Rhubarb\Stem\Schema\Columns\AutoIncrementColumn;
 use Rhubarb\Stem\Schema\Columns\DateColumn;
 use Rhubarb\Stem\Schema\Columns\ForeignKeyColumn;
+use Rhubarb\Stem\Schema\Columns\StringColumn;
 use Rhubarb\Stem\Schema\ModelSchema;
 
 /**
@@ -37,6 +38,7 @@ class Quote extends Model
             new AutoIncrementColumn("QuoteID"),
             new ForeignKeyColumn("ProjectID"),
             new ForeignKeyColumn("ClientID"),
+            new StringColumn("Title", 50),
             new DateColumn("DateCreated", new RhubarbDate("now"))
         );
 
@@ -48,18 +50,23 @@ class Quote extends Model
     /**
      * @return int|mixed $GrandTotal
      */
-    public function getGrandTotal() {
+    public function getGrandTotal()
+    {
         $grandTotal = 0;
-        foreach ($this->QuoteItems as $quoteItem)
-        {
+        foreach ($this->QuoteItems as $quoteItem) {
             $grandTotal += $quoteItem->Amount;
         }
 
         return $grandTotal;
     }
 
-    //TODO wrote a test for the below 
-    public function getTitle() {
-        return $this->Client->ClientDisplayName . " " . $this->DateCreated;
+    protected function beforeSave()
+    {
+        if ($this->Title == "") {
+            if ($this->ClientID != "") {
+                $this->Title = $this->Client->ClientDisplayName . " " . $this->DateCreated;
+            }
+        }
     }
+
 }
