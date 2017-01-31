@@ -51,21 +51,20 @@ class SerialNumber extends Model
             $this->DateAddedToSystem = new RhubarbDate("now");
         }
 
-        // Prevent an asset having two of the same SerialNumberCodes
-        if (sizeof($this->Asset) > 0) {
-            foreach ($this->Asset->SerialNumbers as $serialNumber) {
-                if (
-                    $serialNumber->SerialNumberCode == $this->SerialNumberCode &&
-                    $serialNumber->SerialNumberID != $this->SerialNumberID
-                ) {
-                    throw new ModelConsistencyValidationException(
-                        [
-                            "An asset can't have two serial numbers with the same code"
-                        ]
-                    );
-                }
+        // Prevent duplicate serial numbers in the system
+        foreach (SerialNumber::all() as $serialNumber) {
+            if (
+                $serialNumber->SerialNumberCode == $this->SerialNumberCode &&
+                $serialNumber->SerialNumberID != $this->SerialNumberID
+            ) {
+                throw new ModelConsistencyValidationException(
+                    [
+                        "Two SerialNumbers can't have the same SerialNumberCode"
+                    ]
+                );
             }
         }
+
         //TODO Have a method called GetCurrentLocation that when called without the 'Get' works out the current location
         //based on who had it last and if the person who had it last returned it.
     }

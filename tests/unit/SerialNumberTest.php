@@ -26,19 +26,13 @@ class SerialNumberTest extends HexTechnologyTestCase
     public function testAssetCantHaveTwoOfSameSerialNumbers()
     {
         $this->assertThrowsException(ModelConsistencyValidationException::class, function () {
-            $asset = new Asset();
-            $asset->AssetName = "Sure SM58";
-            $asset->save();
-
             $serialNumber = new SerialNumber();
-            $serialNumber->AssetID = $asset->AssetID;
             $serialNumber->SerialNumberCode = "SM581";
             $serialNumber->save();
 
             $serialNumber = new SerialNumber();
-            $serialNumber->AssetID = $asset->AssetID;
             $serialNumber->SerialNumberCode = "SM581";
             $serialNumber->save();
-        }, "An asset Can't have two serial numbers with the same code");
+        }, "Two SerialNumbers can't have the same SerialNumberCode");
     }
 }
