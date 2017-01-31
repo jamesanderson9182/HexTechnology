@@ -12,7 +12,9 @@ use HexTechnology\Models\Quote;
 use HexTechnology\Models\QuoteItem;
 use HexTechnology\Models\SerialNumber;
 use HexTechnology\Models\Task;
+use HexTechnology\Models\Time;
 use Rhubarb\Crown\DateTime\RhubarbDate;
+use Rhubarb\Crown\DateTime\RhubarbDateTime;
 use Rhubarb\Stem\Custard\DemoDataSeederInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -219,6 +221,12 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
         $project->ClientID = $client->ClientID;
         $project->ProjectName = "VHS To DVD";
         $project->save();
+
+        $time = new Time();
+        $time->ProjectID = $project->ProjectID;
+        $time->StartTime = new RhubarbDateTime("1 hour ago");
+        $time->EndTime = new RhubarbDateTime("now");
+        $time->save();
 
         $expense = new Expense();
         $expense->ProjectID = $project->ProjectID;
