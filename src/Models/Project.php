@@ -62,8 +62,7 @@ class Project extends Model
     {
         $totalRevenue = 0;
 
-        foreach ($this->Expenses as $expense)
-        {
+        foreach ($this->Expenses as $expense) {
             $totalRevenue += $expense->TotalCharge;
         }
 
@@ -78,9 +77,10 @@ class Project extends Model
     public function getTotalTime()
     {
         $total = 0;
-        foreach ($this->Times as $time)
-        {
-            $total = $total + $time->TotalHours;
+        foreach ($this->Times as $time) {
+            if ($time->EndTime != null) {
+                $total = $total + round($time->TotalHours, 1);
+            }
         }
         return $total;
     }

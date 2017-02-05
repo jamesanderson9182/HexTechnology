@@ -224,8 +224,8 @@ class HexTechnologyDataSeeder implements DemoDataSeederInterface
 
         $time = new Time();
         $time->ProjectID = $project->ProjectID;
-        $time->StartTime = new RhubarbDateTime("1 hour ago");
-        $time->EndTime = new RhubarbDateTime("now");
+        $time->StartTime = "2017-01-01 00:00:00";
+        $time->EndTime = "2017-01-01 07:30:00";
         $time->save();
 
         $expense = new Expense();

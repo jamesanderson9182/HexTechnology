@@ -38,10 +38,10 @@ class Time extends Model
 
     public function getTotalHours()
     {
-        if ($this->EndTime != "0000-00-00 00:00:00") {
+        if ($this->EndTime != "0000-00-00 00:00:00.000000") {
             $dateTime = new RhubarbDateTime($this->EndTime);
             return $dateTime->diff($this->StartTime)->totalHours;
         }
-        return "";
+        return 0;
     }
 }
