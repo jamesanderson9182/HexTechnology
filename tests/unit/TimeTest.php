@@ -14,7 +14,7 @@ class TimeTest extends HexTechnologyTestCase
         $time->EndTime = new RhubarbDateTime("now");// Now
         $time->save();
 
-        $diff = $time->StartTime->diff($time->EndTime);
+        $diff = $time->EndTime->diff($time->StartTime);
 
         $this->assertEquals($diff, $time->TotalTime);
     }

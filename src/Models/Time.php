@@ -36,11 +36,11 @@ class Time extends Model
         return $schema;
     }
 
-    public function getTotalTime()
+    public function getTotalHours()
     {
         if ($this->EndTime != "") {
-            $dateTime = new RhubarbDateTime($this->StartTime);
-            return $dateTime->diff($this->EndTime);
+            $dateTime = new RhubarbDateTime($this->EndTime);
+            return $dateTime->diff($this->StartTime)->totalHours;
         }
         return "";
     }

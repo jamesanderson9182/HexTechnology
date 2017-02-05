@@ -178,7 +178,7 @@ class ProjectItemView extends HexTechnologyItemView
                                     $this->leaves["StopTimeNow"]->printWithIndex($time->TimeID);
                                 } else {
                                     //TODO Implement the below!
-                                    print ""; // $time->TotalTime;
+                                    print round($time->TotalHours, 1) . "h";
                                 }
                                 ?>
                             </td>
