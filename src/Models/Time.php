@@ -18,7 +18,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property \Rhubarb\Crown\DateTime\RhubarbDateTime $StartTime Repository field
  * @property \Rhubarb\Crown\DateTime\RhubarbDateTime $EndTime Repository field
  * @property-read Project $Project Relationship
- * @property-read mixed $TotalTime {@link getTotalTime()}
+ * @property-read mixed $TotalHours {@link getTotalHours()}
  */
 class Time extends Model
 {
@@ -38,7 +38,7 @@ class Time extends Model
 
     public function getTotalHours()
     {
-        if ($this->EndTime != "") {
+        if ($this->EndTime != "0000-00-00 00:00:00") {
             $dateTime = new RhubarbDateTime($this->EndTime);
             return $dateTime->diff($this->StartTime)->totalHours;
         }

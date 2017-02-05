@@ -8,14 +8,12 @@ use Rhubarb\Crown\DateTime\RhubarbDateTime;
 
 class TimeTest extends HexTechnologyTestCase
 {
-    public function testTotalTime(){
+    public function testTotalHours(){
         $time = new Time();
-        $time->StartTime = new RhubarbDateTime("30 minutes ago");
-        $time->EndTime = new RhubarbDateTime("now");// Now
+        $time->StartTime = "2017-01-01 00:00:00";
+        $time->EndTime = "2017-01-01 00:30:00";// 30 minutes i.e. 0.5 hours
         $time->save();
 
-        $diff = $time->EndTime->diff($time->StartTime);
-
-        $this->assertEquals($diff, $time->TotalTime);
+        $this->assertEquals(0.5, round($time->TotalHours, 1));
     }
 }

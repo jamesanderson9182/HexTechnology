@@ -177,7 +177,6 @@ class ProjectItemView extends HexTechnologyItemView
                                 if ($time->EndTime == "") {
                                     $this->leaves["StopTimeNow"]->printWithIndex($time->TimeID);
                                 } else {
-                                    //TODO Implement the below!
                                     print round($time->TotalHours, 1) . "h";
                                 }
                                 ?>
@@ -190,7 +189,7 @@ class ProjectItemView extends HexTechnologyItemView
                         <td></td>
                         <td></td>
                         <td>Grand Total</td>
-                        <td>Hurry Up And Implement!</td>
+                        <td><?= $project->TotalTime ?></td>
                     </tr>
                 </table>
                 <?php
