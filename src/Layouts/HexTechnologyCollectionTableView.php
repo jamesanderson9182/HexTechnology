@@ -25,6 +25,9 @@ class HexTechnologyCollectionTableView extends CrudView
         );
 
         $table->setNoDataHtml("<p class='empty-table'>Woah there tiger! You have no ". $this->getTitle() .". Go ahead and add one.</p>");
+
+        // this line might break stuff
+        $table->setCollection($this->model->restCollection);
     }
 
     /**
