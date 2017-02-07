@@ -6,6 +6,7 @@ use HexTechnology\Models\Client;
 use HexTechnology\Models\Expense;
 use HexTechnology\Models\Project;
 use HexTechnology\Models\Task;
+use HexTechnology\Models\Time;
 use HexTechnology\Tests\HexTechnologyTestCase;
 
 class ProjectTest extends HexTechnologyTestCase
@@ -92,11 +93,11 @@ class ProjectTest extends HexTechnologyTestCase
 
         $this->assertEquals(110, $project->TotalRevenue, "TotalRevenue should equal the sum of Expense.TotalCharge(s)");
 
-
-        $this->assertEquals(35.80 , $project->TotalRevenue - $project->TotalExpenses, "TotalProfit should equal Total Revenue Minus TotalExpenses");
+        $this->assertEquals(35.80, $project->TotalRevenue - $project->TotalExpenses, "TotalProfit should equal Total Revenue Minus TotalExpenses");
     }
 
-    public function testProjectsCanHaveTasks(){
+    public function testProjectsCanHaveTasks()
+    {
         $project = new Project();
         $project->save();
 
@@ -111,6 +112,42 @@ class ProjectTest extends HexTechnologyTestCase
         $task->save();
 
         $this->assertEquals(2, sizeof($project->Tasks), "Projects should be able to have tasks associated with them");
+    }
+
+    public function testTotalHours()
+    {
+        $project = new Project();
+        $project->save();
+
+        $total = 0;
+
+        $time = new Time();
+        $time->ProjectID = $project->ProjectID;
+        $time->StartTime = "2017-02-05 12:23:14";
+        $time->EndTime = "2017-02-05 15:54:02";
+        $time->save();
+
+        $total = $total + $time->TotalHours;
+
+        $time = new Time();
+        $time->ProjectID = $project->ProjectID;
+        $time->StartTime = "2017-02-05 12:23:14";
+        $time->EndTime = "2017-02-05 15:54:02";
+        $time->save();
+
+        $total = $total + $time->TotalHours;
+
+        $time = new Time();
+        $time->ProjectID = $project->ProjectID;
+        $time->StartTime = "2017-02-05 12:23:14";
+        $time->EndTime = "2017-02-05 15:54:02";
+        $time->save();
+
+        $total = $total + $time->TotalHours;
+
+        $total = round($total, 1);
+
+        $this->assertEquals($total, round($project->TotalTime, 1));
     }
 
 }

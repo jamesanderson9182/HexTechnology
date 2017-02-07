@@ -4,6 +4,9 @@ namespace HexTechnology\Leaves\Project;
 
 use HexTechnology\Models\Expense;
 use HexTechnology\Models\Task;
+use HexTechnology\Models\Time;
+use Rhubarb\Crown\DateTime\RhubarbDateTime;
+use Rhubarb\Crown\Events\Event;
 use Rhubarb\Crown\Exceptions\ForceResponseException;
 use Rhubarb\Crown\Response\RedirectResponse;
 use Rhubarb\Leaf\Crud\Leaves\CrudLeaf;
@@ -78,6 +81,21 @@ class ProjectItem extends CrudLeaf
             $task->Completed = !$task->Completed;
             $task->save();
 
+            throw new ForceResponseException(new RedirectResponse('.'));
+        });
+
+        $this->model->StartTimingEvent->attachHandler(function () {
+            $time = new Time();
+            $time->ProjectID = $this->model->restModel->UniqueIdentifier;
+            $time->StartTime = new RhubarbDateTime("now");
+            $time->save();
+            throw new ForceResponseException(new RedirectResponse('.'));
+        });
+
+        $this->model->StopTimingEvent->attachHandler(function ($viewIndex) {
+            $time = new Time($viewIndex);
+            $time->EndTime = new RhubarbDateTime("now");
+            $time->save();
             throw new ForceResponseException(new RedirectResponse('.'));
         });
 

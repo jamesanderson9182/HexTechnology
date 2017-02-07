@@ -26,6 +26,7 @@ use Rhubarb\Stem\Schema\ModelSchema;
  * @property-read Quote $Quote Relationship
  * @property \Rhubarb\Crown\DateTime\RhubarbDate $Date Repository field
  * @property-read Time[]|\Rhubarb\Stem\Collections\RepositoryCollection $Times Relationship
+ * @property-read mixed $TotalTime {@link getTotalTime()}
  */
 class Project extends Model
 {
@@ -61,8 +62,7 @@ class Project extends Model
     {
         $totalRevenue = 0;
 
-        foreach ($this->Expenses as $expense)
-        {
+        foreach ($this->Expenses as $expense) {
             $totalRevenue += $expense->TotalCharge;
         }
 
@@ -72,5 +72,16 @@ class Project extends Model
     public function getTotalProfit()
     {
         return $this->TotalRevenue - $this->TotalExpenses;
+    }
+
+    public function getTotalTime()
+    {
+        $total = 0;
+        foreach ($this->Times as $time) {
+            if ($time->EndTime != null) {
+                $total = $total + round($time->TotalHours, 1);
+            }
+        }
+        return $total;
     }
 }
