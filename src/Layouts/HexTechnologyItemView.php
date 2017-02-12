@@ -4,7 +4,7 @@ namespace HexTechnology\Layouts;
 
 use Rhubarb\Leaf\Crud\Leaves\CrudView;
 
-class HexTechnologyItemView extends CrudView
+class zHexTechnologyItemView extends CrudView
 {
     /**
      * Set this to false in your subclass to prevent the button bar being printed in the usual place.

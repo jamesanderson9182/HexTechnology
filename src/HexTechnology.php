@@ -16,6 +16,7 @@ use HexTechnology\Leaves\Project\ProjectCollection;
 use HexTechnology\Leaves\Project\Quotes\QuoteItems\QuoteItemsCollection;
 use HexTechnology\Leaves\Project\Quotes\QuotesCollection;
 use HexTechnology\Leaves\Tasks\TasksCollection;
+use HexTechnology\Leaves\Times\TimesCollection;
 use HexTechnology\Models\Asset;
 use HexTechnology\Models\AssetType;
 use HexTechnology\Models\Client;
@@ -27,6 +28,7 @@ use HexTechnology\Models\Quote;
 use HexTechnology\Models\QuoteItem;
 use HexTechnology\Models\SerialNumber;
 use HexTechnology\Models\Task;
+use HexTechnology\Models\Time;
 use HexTechnology\RestApi\AssetsResource;
 use HexTechnology\RestApi\SerialsResource;
 use Rhubarb\Crown\Application;
@@ -94,7 +96,9 @@ class HexTechnology extends Application
                         ])
                     ]),
                     "expenses/" => new CrudUrlHandler(Expense::class, StringTools::getNamespaceFromClass(ExpensesCollection::class)),
-                    "tasks/" => new CrudUrlHandler(Task::class, StringTools::getNamespaceFromClass(TasksCollection::class))
+                    "tasks/" => new CrudUrlHandler(Task::class, StringTools::getNamespaceFromClass(TasksCollection::class)),
+                    "times/" => new CrudUrlHandler(Time::class, StringTools::getNamespaceFromClass(TimesCollection::class))
+
                 ])
             ]
         );
