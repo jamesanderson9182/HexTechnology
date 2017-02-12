@@ -4,7 +4,7 @@ namespace HexTechnology\Leaves\Times;
 
 use HexTechnology\Layouts\HexTechnologyCollectionTableView;
 
-class TimesCollectionView extends HexTechnologyCollectionTableView
+class   TimesCollectionView extends HexTechnologyCollectionTableView
 {
 	protected function createSubLeaves()
 	{

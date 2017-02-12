@@ -97,7 +97,6 @@ class HexTechnology extends Application
                     ]),
                     "expenses/" => new CrudUrlHandler(Expense::class, StringTools::getNamespaceFromClass(ExpensesCollection::class)),
                     "tasks/" => new CrudUrlHandler(Task::class, StringTools::getNamespaceFromClass(TasksCollection::class)),
-
                     "times/" => new CrudUrlHandler(Time::class, StringTools::getNamespaceFromClass(TimesCollection::class))
                 ])
             ]
