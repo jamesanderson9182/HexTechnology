@@ -3,16 +3,18 @@
 namespace HexTechnology\Leaves\Times;
 
 use HexTechnology\Layouts\HexTechnologyItemView;
+use Rhubarb\Leaf\Controls\Common\DateTime\Time;
 
 class TimesItemView extends HexTechnologyItemView
 {
+    // TODO Implement the ability to set a date as well
     protected function createSubLeaves()
     {
         parent::createSubLeaves();
         $this->registerSubLeaf(
             "ProjectID",
-            "StartTime",
-            "EndTime"
+            new Time("StartTime"),
+            new Time("EndTime")
         );
     }
 
