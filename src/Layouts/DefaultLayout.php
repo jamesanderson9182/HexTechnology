@@ -60,6 +60,7 @@ class DefaultLayout extends BaseLayout
         <li><a href="/projects/quotes/">Quotes</a></li>
         <li><a href="/projects/quotes/quote-items/">Quote Items</a></li>
         <li><a href="/tasks/">Tasks</a></li>
+        <li><a href="/times/">Times</a></li>
         <li class="icon">
             <a href="javascript:void(0);" onclick="mmmBurgers()">&#9776;</a>
         </li>

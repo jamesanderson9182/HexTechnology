@@ -3,9 +3,10 @@
 namespace HexTechnology\Leaves\Project;
 
 use HexTechnology\Layouts\HexTechnologyItemView;
-use HexTechnology\Models\Expense;
 use HexTechnology\Models\Project;
 use HexTechnology\Models\Task;
+use HexTechnology\Models\Time;
+use Rhubarb\Crown\DateTime\RhubarbDateTime;
 use Rhubarb\Leaf\Controls\Common\Buttons\Button;
 use Rhubarb\Leaf\Controls\Common\Checkbox\Checkbox;
 use Rhubarb\Leaf\Controls\Common\DateTime\Date;
@@ -13,8 +14,6 @@ use Rhubarb\Leaf\Controls\Common\SelectionControls\RadioButtons\RadioButtons;
 use Rhubarb\Leaf\Controls\Common\Text\NumericTextBox;
 use Rhubarb\Leaf\Controls\Common\Text\TextBox;
 use Rhubarb\Leaf\Table\Leaves\Table;
-use Rhubarb\Stem\Aggregates\Count;
-use Rhubarb\Stem\Filters\Equals;
 
 class ProjectItemView extends HexTechnologyItemView
 {
@@ -50,6 +49,13 @@ class ProjectItemView extends HexTechnologyItemView
             }),
             $toggle = new Button("ToggleTaskButton", "↺", function ($viewIndex) {
                 $this->model->ToggleTaskEvent->raise($viewIndex);
+            }),
+            // Time
+            $startTimeButton = new Button("StartTimeNow", "Start Timing Now", function () {
+                $this->model->StartTimingEvent->raise();
+            }),
+            $endTimeButton = new Button("StopTimeNow", "Stop Timing", function ($viewIndex) {
+                $this->model->StopTimingEvent->raise($viewIndex);
             })
         );
 
@@ -95,7 +101,7 @@ class ProjectItemView extends HexTechnologyItemView
                 <p>Total Profit: £<?= $project->TotalProfit ?></p>
                 <?
             }
-            
+
             $this->layoutItemsWithContainer("New Expense",
                 [
                     "ExpenseTitle",
@@ -132,6 +138,59 @@ class ProjectItemView extends HexTechnologyItemView
                         <?php
                     }
                     ?>
+                </table>
+                <?php
+            }
+
+            $this->layoutItemsWithContainer("New Task",
+                [
+                    "NewTaskTitle",
+                    "NewTaskEvent"
+                ]
+            );
+            print "</div>";
+
+            print "<div>";
+            print "<h2>Time Tracking</h2>";
+            print $this->leaves["StartTimeNow"];
+            if ($this->model->restModel->isNewRecord() == false && sizeof($times = $this->model->restModel->Times) > 0) {
+                ?>
+                <table>
+                    <thead>
+                    <th></th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Total Time</th>
+                    </thead>
+                    <?php
+                    /** @var Time $time */
+                    foreach ($times as $time) {
+                        $startTime = new RhubarbDateTime($time->StartTime);
+                        $endTime = new RhubarbDateTime($time->EndTime);
+                        ?>
+                        <tr>
+                            <td><a href="/times/<?= $time->TimeID ?>/">view</a></td>
+                            <td><?= $startTime->format("d m Y H:i:s") ?></td>
+                            <td><?= $endTime->format("d m Y H:i:s") ?></td>
+                            <td>
+                                <?php
+                                if ($time->EndTime == "") {
+                                    $this->leaves["StopTimeNow"]->printWithIndex($time->TimeID);
+                                } else {
+                                    print round($time->TotalHours, 1) . "h";
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                    ?>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Grand Total</td>
+                        <td><?= $project->TotalTime ?></td>
+                    </tr>
                 </table>
                 <?php
             }
