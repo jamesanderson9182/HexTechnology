@@ -21,13 +21,10 @@ class HexTechnologyCollectionTableView extends CrudView
     {
         parent::createSubLeaves();
         $this->registerSubLeaf(
-            $table = new Table()
+            $table = new Table($this->model->restCollection)
         );
 
         $table->setNoDataHtml("<p class='empty-table'>Woah there tiger! You have no ". $this->getTitle() .". Go ahead and add one.</p>");
-
-        // this line might break stuff
-        $table->setCollection($this->model->restCollection);
     }
 
     /**
