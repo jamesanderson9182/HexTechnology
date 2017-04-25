@@ -19,8 +19,7 @@ class QuotePdf extends PdfDocument
      */
     public function getContent($quote =[])
     {
-		$string = StringTools::parseTemplateString($this->content, $data);
-		return $string;
+		$string = StringTools::parseTemplateString($this->content, $quote);
         $brandContent = "<div style='width: 100%; height: 130px;'>";
         $brandContent .= "";
         $logo = base64_encode(file_get_contents(APPLICATION_ROOT_DIR . '/static/images/logo.png'));
