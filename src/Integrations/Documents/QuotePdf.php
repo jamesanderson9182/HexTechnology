@@ -3,6 +3,7 @@
 namespace HexTechnology\Integrations\Documents;
 
 use HexTechnology\Models\Quote;
+use Rhubarb\Crown\String\StringTools;
 
 class QuotePdf extends PdfDocument
 {
@@ -18,6 +19,8 @@ class QuotePdf extends PdfDocument
      */
     public function getContent($quote =[])
     {
+		$string = StringTools::parseTemplateString($this->content, $data);
+		return $string;
         $brandContent = "<div style='width: 100%; height: 130px;'>";
         $brandContent .= "";
         $logo = base64_encode(file_get_contents(APPLICATION_ROOT_DIR . '/static/images/logo.png'));

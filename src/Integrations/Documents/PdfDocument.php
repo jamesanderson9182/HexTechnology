@@ -4,14 +4,13 @@ namespace HexTechnology\Integrations\Documents;
 
 use Dompdf\Dompdf;
 use Rhubarb\Crown\Application;
-use Rhubarb\Crown\String\StringTools;
 
-class PdfDocument
+abstract class PdfDocument
 {
     public $content;
     public $data;
 
-    public function toHtml($data = [])
+	public function toHtml($data = [])
     {
         $html = "
 <html>
@@ -40,9 +39,5 @@ class PdfDocument
         file_put_contents($file, $pdfString);
     }
 
-    public function getContent($data = [])
-    {
-        $string = StringTools::parseTemplateString($this->content, $data);
-        return $string;
-    }
+    abstract public function getContent($data = []);
 }
