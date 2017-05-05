@@ -4,7 +4,7 @@
 /vendor/
 /composer.lock
 /cache/
-/bin/*
+/bin
 tests/_output/*
 tests/_data/*
 tests/_support/_generated/*
