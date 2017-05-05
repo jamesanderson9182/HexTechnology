@@ -38,6 +38,4 @@ class AssetRentalTest extends HexTechnologyTestCase
 
        //TODO Assert some condition
     }
-
-
 }
