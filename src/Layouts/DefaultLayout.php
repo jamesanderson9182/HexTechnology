@@ -12,7 +12,7 @@ class DefaultLayout extends BaseLayout
 {
     public function __construct()
     {
-        ResourceLoader::loadResource( "/static/css/base.css" );
+        ResourceLoader::loadResource( "/static/css/app.css" );
     }
 
     protected function printPageHeading()

@@ -9,3 +9,4 @@ tests/_output/*
 tests/_data/*
 tests/_support/_generated/*
 /static/uploads/
+/static/.sass-cache
