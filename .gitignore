@@ -2,7 +2,6 @@
 /.idea/
 /deployed/
 /vendor/
-/composer.lock
 /cache/
 /bin
 tests/_output/*

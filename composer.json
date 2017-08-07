@@ -14,9 +14,11 @@
     "rhubarbphp/module-restapi": "^2.0",
     "rhubarbphp/module-leaf-table": "^1.0.6",
     "rhubarbphp/pikaday": "^1.5",
-    "codeception/codeception" : "*",
     "dompdf/dompdf": "^0.7.0"
   },
+  "require-dev": {
+  "codeception/codeception": "^2.2"
+},
   "config":
   {
     "bin-dir": "bin/"
